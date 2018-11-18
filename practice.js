@@ -1,4 +1,4 @@
-let PracticeTimes = {
+var PracticeTimes = {
     "Academic": { Cycle: 6, Routine: 2, Difficult: 4, Challenging: 8 },
     "Artisan": { Cycle: 12, Routine: 4, Difficult: 8, Challenging: 12 },
     "Artist": { Cycle: 6, Routine: 3, Difficult: 6, Challenging: 12 },
@@ -25,6 +25,10 @@ let PracticeTimes = {
     "Steel": { Cycle: 2, Routine: 1, Difficult: 3, Challenging: 9 },
 }
 
+var Regiments = [];
+
+var LastMonth = 0;
+
 interact(".practiceBox")
     .draggable({
         snap: {
@@ -40,6 +44,12 @@ interact(".practiceBox")
     });
 
 
+/* Everything Starts Here */
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("practiceTable").innerHTML = "<table id='actualTable'><tr><td></td><td colspan='24'>Hours</td></tr><tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr></table>";
+});
+
+
 document.getElementById("createBox").addEventListener('click', function () {
     if (document.getElementById("practiceType").value != "" &&
         document.getElementById("practiceData").value != "") {
@@ -47,17 +57,38 @@ document.getElementById("createBox").addEventListener('click', function () {
     }
 });
 
-document.getElementById("practiceLength").addEventListener('change', function () {
+document.getElementById("createRegiment").addEventListener('click', function () {
     let length = document.getElementById("practiceLength").value;
-    if (length.value != "") {
+    let duration = document.getElementById("practiceDuration").value;
+
+    if (length.value != "" && duration.value != "") {
         let a = "";
 
         for (let i = 0; i < length; i++) {
-            a += "<tr><td>" + (i + 1) + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
+            LastMonth++;
+            a += "<tr><td>" + LastMonth + "</td>";
+
+            for (let ii = 0; ii < duration; ii++) {
+                a += "<td></td>";
+            }
+
+            a += "</tr>";
         }
 
-        document.getElementById("practiceTable").innerHTML = "<table id='actualTable'><tr><td></td><td colspan='24'>Hours</td></tr><tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>" + a + "</table>";
+        Regiments.push(length);
+        document.getElementById("actualTable").firstChild.innerHTML += a;
     }
+});
+
+document.getElementById("removeRegiment").addEventListener('click', function () {
+    let toRemove = Regiments[Regiments.length - 1];
+
+    for (let i = 0; i < toRemove; i++) {
+        document.getElementById("actualTable").firstChild.lastChild.remove();
+    }
+
+    LastMonth -= toRemove;
+    Regiments.splice(-1, 1);
 });
 
 function dragMoveListener(event) {
@@ -90,7 +121,7 @@ function createBox() {
     let cycle = PracticeTimes[data]["Cycle"];
     let hours = PracticeTimes[data][type];
 
-    document.getElementById("practiceBoxStart").innerHTML += "<span class='practiceBox' style='display: inline-block; width: " + (hours * 30) + "px; height: " + (cycle * 30) + "px' title='" + name + "/" + data + "/" + type + "'>" + dataName + data + "<br>" + type + "<div class='close' title='remove'>X</div></span>";
+    document.getElementById("practiceTableWrapper").innerHTML += "<span class='practiceBox' style='display: inline-block; width: " + (hours * 30) + "px; height: " + (cycle * 30) + "px' title='" + name + "/" + data + "/" + type + "'>" + dataName + data + "<br>" + type + "<div class='close' title='remove'>X</div></span>";
 
     interact(".practiceBox").draggable(true);
 

@@ -3,9 +3,9 @@
 @font-face { font-family: "BWG-Font"; src: url("./inc/PostMediaeval-Regular.otf"); }
 
 /********* base *********/
-html, body { height: 100%; padding: 0; margin: 0;  background: #2d2d2d; }
+html, body { padding: 0; margin: 0;  background: #2d2d2d; }
 html 	{ font-size: 0.93em; font-weight: normal; }
-body	{ letter-spacing: 0.2px; }
+body	{ letter-spacing: 0.2px; margin-bottom: 100px; }
 h1, h2  { margin: 18px 0px 2px 0; padding: 0 0 0 6px; }
 h3 		{ margin-left: 0px 23px 6px 0px; }
 h4 		{ padding: 4px 7px; margin: 0px; }
@@ -15,19 +15,21 @@ a:hover { color: #a03c3c; }
 
 input, textarea, select, button {
     border: 1px solid #444;
-    margin: 4px;
+    margin: 4px 2px;
     padding: 0;
     background: #2d2d2d;
     height: 21px;
 }
+button {
+    padding: 0 6px;
+}
 
-#title { font-size: 3.0em; padding: 5px 20px; }
+#title { height: 60px; font-size: 3.0em; padding: 5px 20px; }
 #selectWrapper, #practiceBoxStart { float: left; }
 #selectWrapper { padding: 2px 0px 0px 10px; }
 
 #practiceBoxGenerator, #practiceTableWrapper { display: flex; height: 60px; width: 100%; }
 #practiceTableWrapper { height: auto; }
-#practiceBoxStart { height: 60px; width: 200px; margin:0; padding: 0; }
 .practiceBox { overflow: hidden; padding: 2px 0px 0px 8px; position: absolute; border: 1px #cccccc solid; background: #2d2d2d; opacity: 0.9; filter: alpha(opacity=90); }
 .close { position: absolute; bottom: 0; right: 0; font-weight: bold; padding: 3px; cursor: pointer; }
 
