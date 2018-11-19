@@ -32,6 +32,26 @@ var sortableOptions = {
 	}
 }
 
+interact(".practiceBox").draggable({
+	snap: {
+		targets: [
+			interact.createSnapGrid({ x: 24, y: 24 })
+		],
+		range: Infinity
+	},
+	inertia: false,
+	autoScroll: true
+}).on('dragmove', function (event) {
+	let target = event.target,
+		// keep the dragged position in the data-x/data-y attributes
+		x = (parseFloat(target.style.left) || 0) + event.dx,
+		y = (parseFloat(target.style.top) || 0) + event.dy;
+
+	// translate the element
+	target.style.left = x + "px";
+	target.style.top = y + "px";
+});
+
 /* Everything Starts Here */
 document.addEventListener("DOMContentLoaded", function () {
 	appWeaponsList = Sortable.create(document.getElementById("appropriateWeapons"), sortableOptions);
@@ -45,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		document.body.removeChild(cont);
 		document.getElementById("leftMenu").appendChild(cont);
 	}
+
+	document.getElementById("practiceTableWrapper").innerHTML += "<table id='actualPracticeTable'><tr><td></td><td colspan='24'>Hours</td></tr><tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr></table>";
 
 	currentGame.updateLeftMenu();
 	currentChar.refresh();
@@ -121,11 +143,12 @@ function unloadEventListeners() {
 	let prevChr = document.getElementById("chroniclerWrapper").scrollTop;
 	let prevAdj = document.getElementById("adjusterWrapper").scrollTop;
 	let prevObs = document.getElementById("observerWrapper").scrollTop;
+	let prevPra = document.getElementById("practicerWrapper").scrollTop;
 	let prevRev = document.getElementById("revealerWrapper").scrollTop;
 
 	let cloneThese = [
 		"explorerWrapper", "burnerWrapper", "chroniclerWrapper",
-		"adjusterWrapper", "observerWrapper", "revealerWrapper",
+		"adjusterWrapper", "practicerWrapper", "observerWrapper", "revealerWrapper",
 		"infoBox", "tabs", "settingSelector"
 	];
 
@@ -140,6 +163,7 @@ function unloadEventListeners() {
 	document.getElementById("chroniclerWrapper").scrollTop = prevChr;
 	document.getElementById("adjusterWrapper").scrollTop = prevAdj;
 	document.getElementById("observerWrapper").scrollTop = prevObs;
+	document.getElementById("practicerWrapper").scrollTop = prevPra;
 	document.getElementById("revealerWrapper").scrollTop = prevRev;
 }
 
@@ -196,6 +220,10 @@ function loadEventListeners() {
 	let resor = document.querySelectorAll(".resElement, .smallCheckbox");
 	resor.forEach(function (element) { element.addEventListener('change', currentChar.addResources.bind(currentChar)); });
 
+	document.getElementById("createPracticeBox").addEventListener('mouseup', currentGame.createBox.bind(currentGame));
+	document.getElementById("createPracticeRegiment").addEventListener('mouseup', currentGame.createRegiment.bind(currentGame));
+	document.getElementById("removePracticeRegiment").addEventListener('mouseup', currentGame.removeRegiment.bind(currentGame));
+
 	let searc = document.querySelectorAll("#search");
 	searc.forEach(function (element) {
 		element.addEventListener("keyup", filterList);
@@ -239,13 +267,40 @@ function getStorage(key) {
 /* Classes */
 class game {
 	constructor() {
-		this.version = "4.18.01";
+		this.version = "4.19.01";
 		this.title = "Burning Wheel Gold";
 		this.gameType = ["bwg"];
 		this.currentContent = [];
 		this.stocks = [];
 		this.skillLists = [];
 		this.traitLists = [];
+		this.lastMonth = 0;
+		this.practiceTimes = {
+			"Academic": { Cycle: 6, Routine: 2, Difficult: 4, Challenging: 8 },
+			"Artisan": { Cycle: 12, Routine: 4, Difficult: 8, Challenging: 12 },
+			"Artist": { Cycle: 6, Routine: 3, Difficult: 6, Challenging: 12 },
+			"Craftsman": { Cycle: 12, Routine: 3, Difficult: 8, Challenging: 12 },
+			"Forester": { Cycle: 6, Routine: 3, Difficult: 6, Challenging: 12 },
+			"Martial": { Cycle: 1, Routine: 2, Difficult: 4, Challenging: 8 },
+			"Medicinal": { Cycle: 12, Routine: 4, Difficult: 8, Challenging: 12 },
+			"Military": { Cycle: 6, Routine: 2, Difficult: 4, Challenging: 8 },
+			"Musical": { Cycle: 1, Routine: 2, Difficult: 4, Challenging: 8 },
+			"Peasant": { Cycle: 3, Routine: 1, Difficult: 4, Challenging: 12 },
+			"Physical": { Cycle: 1, Routine: 2, Difficult: 4, Challenging: 8 },
+			"School of Thought": { Cycle: 6, Routine: 3, Difficult: 6, Challenging: 12 },
+			"Seafaring": { Cycle: 3, Routine: 2, Difficult: 4, Challenging: 8 },
+			"Social": { Cycle: 1, Routine: 2, Difficult: 4, Challenging: 8 },
+			"Sorcerous": { Cycle: 12, Routine: 5, Difficult: 10, Challenging: 15 },
+			"Special": { Cycle: 3, Routine: 3, Difficult: 6, Challenging: 12 },
+			"Will": { Cycle: 12, Routine: 4, Difficult: 8, Challenging: 16 },
+			"Perception": { Cycle: 6, Routine: 3, Difficult: 6, Challenging: 12 },
+			"Agility": { Cycle: 3, Routine: 2, Difficult: 4, Challenging: 8 },
+			"Speed": { Cycle: 3, Routine: 3, Difficult: 6, Challenging: 9 },
+			"Power": { Cycle: 1, Routine: 2, Difficult: 4, Challenging: 8 },
+			"Forte": { Cycle: 2, Routine: 4, Difficult: 8, Challenging: 16 },
+			"Faith": { Cycle: 12, Routine: 5, Difficult: 10, Challenging: 20 },
+			"Steel": { Cycle: 2, Routine: 1, Difficult: 3, Challenging: 9 },
+		}
 
 		let version = localStorage.getItem("game_version");
 		if (version === null || version != this.version) {
@@ -265,6 +320,61 @@ class game {
 		for (let i = 0; i < this.gameType.length; i++) { document.getElementsByName(this.gameType[i])[0].classList.add("added"); }
 		this.refreshDisables();
 	}
+	
+	createBox() {
+		if (document.getElementById("practiceType").value != "" && document.getElementById("practiceData").value != "") {
+			let data = document.getElementById("practiceData").value;
+			let type = document.getElementById("practiceType").value;
+			let name = document.getElementById("practiceSkillName").value;
+
+			let dataName = "";
+			if (data != "Will" && data != "Perception" && data != "Agility" && data != "Speed" &&
+				data != "Power" && data != "Forte" && data != "Faith" && data != "Steel") {
+				dataName = name + "<br>";
+			}
+
+			let cycle = this.practiceTimes[data]["Cycle"];
+			let hours = this.practiceTimes[data][type];
+
+			document.getElementById("practiceBlocksLayer").innerHTML += "<span class='practiceBox' style='top: 0; left: 0; width: " + (hours * 24) + "px; height: " + (cycle * 24) + "px' title='" + name + "/" + data + "/" + type + "'>" + dataName + data + "<br>" + type + "<div class='close' title='remove'>X</div></span>";
+
+			interact(".practiceBox").draggable(true);
+
+			let quest = document.querySelectorAll(".close");
+			quest.forEach(function (element) { element.addEventListener('click', function () { element.parentElement.remove(); }) });
+		}
+	}
+
+	createRegiment() {
+		let length = document.getElementById("practiceLength").value;
+		let duration = document.getElementById("practiceDuration").value;
+	
+		if (length.value != "" && duration.value != "") {
+			let a = "";
+
+			console.log(this.lastMonth)
+	
+			for (let i = 0; i < length; i++) {
+				this.lastMonth++;
+				a += "<tr><td>" + this.lastMonth + "</td>";
+	
+				for (let ii = 0; ii < duration; ii++) {
+					a += "<td></td>";
+				}
+	
+				a += "</tr>";
+			}
+	
+			document.getElementById("actualPracticeTable").firstChild.innerHTML += a;
+		}
+	}
+	
+	removeRegiment() {
+		if (this.lastMonth > 0) {
+			document.getElementById("actualPracticeTable").firstChild.lastChild.remove();
+			this.lastMonth--;
+		}
+}
 	
 	changeType(targetObj) {
 		document.getElementById("content").innerHTML = "";
@@ -572,10 +682,10 @@ class game {
 		this.classList.add("chosenTab");
 		let name = this.getAttribute("name");
 
-		document.querySelectorAll("#explorerWrapper, #chroniclerWrapper, #burnerWrapper, #adjusterWrapper, #observerWrapper").forEach(function (element) {
+		document.querySelectorAll("#explorerWrapper, #chroniclerWrapper, #burnerWrapper, #adjusterWrapper, #practicerWrapper, #observerWrapper").forEach(function (element) {
 			element.style.display = "none";
 		});
-		
+
 		document.querySelector("#" + name + "Wrapper").style.display = "block";
 	}
 
@@ -832,7 +942,7 @@ class game {
 
 				if (!this.stocks[stockName.replace(/\s/g, '')].settings[settingName.replace(/\s/g, '')].disabled) {
 					if (i > 0) {
-						let p = lifepathArray.leads[i-1].split("->");
+						let p = lifepathArray.leads[i - 1].split("->");
 						let pstockName = p[0];
 						let psettingName = p[1];
 
@@ -1598,9 +1708,9 @@ class character {
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 		// DEAD FAITH
-		if (this.attributes["Emotional"].name == "Dead Faith") { 
+		if (this.attributes["Emotional"].name == "Dead Faith") {
 			emoAdj = 2;
-			
+
 			for (var key in this.skills) {
 				if (this.skills[key].name == "Doctrine of Dead Gods " && this.skills[key].opened) { emoAdj += 1; }
 			}

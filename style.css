@@ -16,12 +16,33 @@ input[type=checkbox]    { width: 11px; height: 11px; -webkit-appearance: none; }
 input[type=checkbox].appWeaCheck { height: 15px; width: 15px; margin-bottom: -1px; }
 input.resElement        { height: 18px; margin: 0 4px 0 0px; padding: 0; }
 select.resElement       { height: 20px; margin: 0 4px 0 0px; padding: 0; }
+table { text-align: center; border: none; border-spacing: 0; }
+td { width: 24px; background: none; }
+tr { height: 24px; }
+td:nth-child(1), tr:nth-child(2), tr:nth-child(1) { background: #3b3b3b !important; }
+td:nth-child(odd) { border-right: 1px #545454 dotted; }
+td:nth-child(1), td:last-child { border: none; }
+tr:nth-child(odd) { background: #373737; }
+tr:nth-child(even) { background: #333333; }
 
 /********* scrollbar *********/
 ::-webkit-scrollbar 		{ width: 8px; height: 4px; }
 ::-webkit-scrollbar-track 	{ background: #555555; border-radius: 0px; margin: 0; }
 ::-webkit-scrollbar-thumb 	{ background: rgba(255,255,255,.5); border-radius: 0px; }
 ::-webkit-scrollbar-corner 	{ background: transparent; }
+
+/********* practice *********/
+#practiceSettingsWrapper { position: sticky; top: 0; background: #2d2d2d; width: 100%; z-index: 100; }
+#practiceTableWrapper { width: 100%; }
+#practiceBlocksLayer { width: 100%; height: 0; position: relative; }
+.practiceBox { position: absolute; display: inline-block; overflow: hidden; padding: 2px 0px 0px 8px; border: 1px #cccccc solid; background: #2d2d2d; opacity: 0.9; filter: alpha(opacity=90); }
+.close { position: absolute; bottom: 0; right: 0; font-weight: bold; padding: 3px; cursor: pointer; }
+#practiceSkillName, #practiceData, #practiceType, #createPracticeBox,
+#practiceLength, #practiceDuration, #createPracticeRegiment, #removePracticeRegiment 
+{ border: 1px solid #444; margin: 4px 2px; padding: 0; background: #2d2d2d; color: #cccccc; height: 21px; }
+#practiceLength, #practiceDuration { width: 60px; }
+#createPracticeBox, #createPracticeRegiment, #removePracticeRegiment 
+{ padding: 0 6px; }
 
 /********* misc *********/
 #bottomSpace 	    { min-height: 200px; }
@@ -70,8 +91,6 @@ select.resElement       { height: 20px; margin: 0 4px 0 0px; padding: 0; }
 .stat.name > select option { font-size: 0.8em; }
 #chosenLifepaths > .lifepathBox > #lifepathTop > .lifepathName 
 { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-/*#chosenLifepaths > .lifepathBox > #lifepathTop > .lifepathLeads
-{ white-space: nowrap; overflow-x: auto; }*/
     
 /********* info box *********/                        
 #infoBox 		{ position: absolute; width: 400px; left: 0; top: 0; min-height: 50px; z-index: 100; margin: 5px; }
@@ -302,12 +321,12 @@ select.appWeaPriority, .settingSelect, .optionalSelect, .extraSelect
 
 #tabs { width: 100%; padding: 0; margin: 0; display: flex; flex-flow: wrap-reverse; align-content: flex-start; }
 
-#adjusterWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper { display: none; }
+#adjusterWrapper, #practicerWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper { display: none; }
 
-#explorerWrapper, #revealerWrapper, #adjusterWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper
-{ height: 100%; overflow-y: scroll; float: left; padding: 0 12px 0 12px; }
+#explorerWrapper, #revealerWrapper, #adjusterWrapper, #practicerWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper
+{ height: 100%; overflow-y: scroll; padding: 0 12px 200px 12px; }
 
-#explorerWrapper, #adjusterWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper
+#explorerWrapper, #adjusterWrapper, #practicerWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper
 { width: 100%; }
 
 #revealerWrapper 

@@ -11,7 +11,8 @@
 		<title>Burning Wheel</title>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="style.css" async>
-		<script src="Sortable.min.js" defer></script>
+		<script src="sortable.min.js" defer></script>
+		<script src="interact.min.js" defer></script>
 		<script src="bw.js" defer></script>
 		<script src="database.js" defer></script>
 	</head>
@@ -22,6 +23,7 @@
 				<div class="midTitle" name="burner">Burner</div>
 				<div class="midTitle" name="chronicler">Chronicler</div>
 				<div class="midTitle" name="adjuster">Adjuster</div>
+				<div class="midTitle" name="practicer">Practicer</div>
 				<div class="midTitle" name="observer">Observer</div>
 				<div class="midTitle hide" name="revealer">Revealer</div>
 			</div>
@@ -29,7 +31,6 @@
 			<div id="explorerWrapper">
 				<div id="settings">
 				</div>
-				<div id="bottomSpace"></div>
 			</div>
 
 			<div id="burnerWrapper">
@@ -92,7 +93,6 @@
 						<div id="burnerResources" class="burnerChild"></div>
 					</div>
 				</div>
-				<div id="bottomSpace"></div>
 			</div>
 			
 			<div id="chroniclerWrapper">
@@ -388,7 +388,6 @@
 						<li class="weapon notPicked" data-id="13"><span class="handle"></span><input type="checkbox" class="appWeaCheck" value="Sword"> Sword</li>
 					</ul>
 				</div>
-				<div id="bottomSpace"></div>
 			</div>
 
 			<div id="adjusterWrapper">
@@ -417,7 +416,57 @@
 						<div class="extraSelect" name="soldierspy">Spy<br>(Man Prof. Soldier Lifepath)</div>
 					</div>
 				</div>
-				<div id="bottomSpace"></div>
+			</div>
+
+			<div id="practicerWrapper">
+				<div id="practiceSettingsWrapper">
+					Skill Name (if applicable): <input type="text" id="practiceSkillName" style="width: 65%" />
+					<br>
+					Type: <select id="practiceData">
+						<option value=""></option>
+						<option value="Academic">Academic</option>
+						<option value="Artisan">Artisan</option>
+						<option value="Artist">Artist</option>
+						<option value="Craftsman">Craftsman</option>
+						<option value="Forester">Forester</option>
+						<option value="Martial">Martial</option>
+						<option value="Medicinal">Medicinal</option>
+						<option value="Military">Military</option>
+						<option value="Musical">Musical</option>
+						<option value="Peasant">Peasant</option>
+						<option value="Physical">Physical</option>
+						<option value="School of Thought">School of Thought</option>
+						<option value="Seafaring">Peasant</option>
+						<option value="Social">Social</option>
+						<option value="Sorcerous">Sorcerous</option>
+						<option value="Special">Special</option>
+						<option value="Will">Will</option>
+						<option value="Perception">Perception</option>
+						<option value="Agility">Agility</option>
+						<option value="Speed">Speed</option>
+						<option value="Power">Power</option>
+						<option value="Forte">Forte</option>
+						<option value="Faith">Faith</option>
+						<option value="Steel">Steel</option>
+					</select>
+					Test: <select id="practiceType">
+						<option value=""></option>
+						<option value="Routine">Routine</option>
+						<option value="Difficult">Difficult</option>
+						<option value="Challenging">Challenging</option>
+					</select>
+					<button type="button" id="createPracticeBox">Create Practice</button>
+					<br>
+					Length (months): <input type="number" id="practiceLength" style="width: 40px" /> 
+					Duration (hours): <input type="number" id="practiceDuration" style="width: 40px" /> 
+					<button type="button" id="createPracticeRegiment">Add Regiment</button>
+					<button type="button" id="removePracticeRegiment">Remove Last Month</button>
+				</div>
+		
+				<div id="practiceTableWrapper">
+					<div id="practiceBlocksLayer">
+					</div>
+				</div>
 			</div>
 			
 			<div id="observerWrapper">
@@ -496,13 +545,11 @@
 						<br>All the people who made the fan-made stuff.
 					</div>
 				</div>
-				<div id="bottomSpace"></div>
 			</div>
 		</div>
 
 		<div id="revealerWrapper">
 			<div id="content"></div>
-			<div id="bottomSpace"></div>
 		</div>
 
 		<div id="infoBox"></div>
