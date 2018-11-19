@@ -330,7 +330,7 @@ select.appWeaPriority, .settingSelect, .optionalSelect, .extraSelect
 { width: 100%; }
 
 #revealerWrapper 
-{ width: 60%; margin-top: 40px; }
+{ width: 60%; }
 
 .midTitle 
 { line-height: 1.5em; flex: 1 1 25%; 

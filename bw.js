@@ -267,7 +267,7 @@ function getStorage(key) {
 /* Classes */
 class game {
 	constructor() {
-		this.version = "4.19.01";
+		this.version = "4.19.04";
 		this.title = "Burning Wheel Gold";
 		this.gameType = ["bwg"];
 		this.currentContent = [];
@@ -1161,8 +1161,8 @@ class character {
 
 		charInfo += "Lifepaths:\r\n\t";
 		for (var i = 0; i < this.chosenLifepaths.length; i++) {
-			charInfo += currentChar.chosenLifepaths[i].name;
-			if (i < currentChar.chosenLifepaths.length - 1) {
+			charInfo += this.chosenLifepaths[i].name;
+			if (i < this.chosenLifepaths.length - 1) {
 				charInfo += ", "
 			}
 		}
@@ -1170,51 +1170,51 @@ class character {
 
 		charInfo += "Stats:";
 		for (var key in this.stats) {
-			charInfo += "\r\n\t" + currentChar.stats[key].name + " "
-				+ this.colorShade(currentChar.stats[key].shade)
-				+ currentChar.stats[key].exponent;
+			charInfo += "\r\n\t" + this.stats[key].name + " "
+				+ this.colorShade(this.stats[key].shade)
+				+ this.stats[key].exponent;
 		}
 		charInfo += "\r\n\r\n";
 
 		charInfo += "Attributes:";
 		for (var key in this.attributes) {
-			if (currentChar.attributes[key].hasShade) {
-				charInfo += "\r\n\t" + currentChar.attributes[key].name + " "
-					+ this.colorShade(currentChar.attributes[key].shade)
-					+ currentChar.attributes[key].exponent;
+			if (this.attributes[key].hasShade) {
+				charInfo += "\r\n\t" + this.attributes[key].name + " "
+					+ this.colorShade(this.attributes[key].shade)
+					+ this.attributes[key].exponent;
 			}
 			else {
-				charInfo += "\r\n\t" + currentChar.attributes[key].name + " "
-					+ currentChar.attributes[key].exponent;
+				charInfo += "\r\n\t" + this.attributes[key].name + " "
+					+ this.attributes[key].exponent;
 			}
 		}
 		charInfo += "\r\n\r\n";
 
 		charInfo += "Skills:";
 		for (var key in this.skills) {
-			if (currentChar.skills[key].opened) {
-				charInfo += "\r\n\t" + currentChar.skills[key].name + " "
-					+ this.colorShade(currentChar.skills[key].shade)
-					+ currentChar.skills[key].exponent;
+			if (this.skills[key].opened) {
+				charInfo += "\r\n\t" + this.skills[key].name + " "
+					+ this.colorShade(this.skills[key].shade)
+					+ (parseInt(this.skills[key].baseExponent) + parseInt(this.skills[key].exponent));
 			}
 		}
 		charInfo += "\r\n\r\n";
 
 		charInfo += "Traits:";
 		for (var key in this.traits) {
-			if (currentChar.traits[key].opened) {
-				charInfo += "\r\n\t" + currentChar.traits[key].name;
+			if (this.traits[key].opened) {
+				charInfo += "\r\n\t" + this.traits[key].name;
 			}
 		}
 		charInfo += "\r\n\r\n";
 
 		charInfo += "Resources:";
 		for (var key in this.resources) {
-			if (currentChar.resources[key].type != "none") {
-				charInfo += "\r\n\t" + currentChar.resources[key].name
-					+ " (cost: " + currentChar.resources[key].cost
-					+ ", type: " + currentChar.resources[key].type
-					+ ", note: " + currentChar.resources[key].note + ")\r\n ";
+			if (this.resources[key].type != "none") {
+				charInfo += "\r\n\t" + this.resources[key].name
+					+ " (cost: " + this.resources[key].cost
+					+ ", type: " + this.resources[key].type
+					+ ", note: " + this.resources[key].note + ")\r\n ";
 			}
 		}
 
@@ -1625,6 +1625,7 @@ class character {
 					else { tmp += this.attributes["Emotional"].exponent; }
 				}
 				exp = Math.trunc(((tmp + a[1]) / rootArray.length) / 2);
+				if (exp < 1) { exp = 1; }
 			}
 
 			this.skills[key].shade = sha;
