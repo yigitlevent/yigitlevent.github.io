@@ -138,8 +138,8 @@ function conjugate() {
         if (presentVerb[0] == "a") { }
         else if (presentVerb[0] == "é") { presentVerb = "e" + presentVerb.substring(1); }
         else if (presentVerb[0] == "í") { presentVerb = "i" + presentVerb.substring(1); }
-        else if (presentVerb[0] == "ó") { presentVerb = "o" + presentVerb.substring(1); }
-        else if (presentVerb[0] == "ú") { presentVerb = "u" + presentVerb.substring(1); }
+        else if (presentVerb[0] == "ó") { presentVerb = "ór" + presentVerb.substring(1); }
+        else if (presentVerb[0] == "ú") { presentVerb = "úr" + presentVerb.substring(1); }
         else if (presentVerb[0] == "e" && presentVerb[1] == "a") { presentVerb = "ae" + presentVerb.substring(2); }
         else { presentVerb = "a" + presentVerb; }
         document.querySelector("#present > .simple > input").value = presentVerb;
@@ -161,7 +161,7 @@ function conjugate() {
 }
 
 function conjugateContinuous(verb) {
-    if (verb[0] == "ó" || verb[0] == "ú") { verb = "ro'" + verb; }
+    if (verb[0] == "ó" || verb[0] == "ú") { verb = "re'" + verb; }
     else { verb = "ró'" + verb; }
     return verb;
 }
@@ -173,7 +173,7 @@ function conjugatePerfect(verb) {
 }
 
 function conjugateImperfect(verb) {
-    if (verb[0] == "ó" || verb[0] == "ú") { verb = "nom'" + verb; }
+    if (verb[0] == "ó" || verb[0] == "ú") { verb = "nóm'" + verb; }
     else { verb = "nó'" + verb; }
     return verb;
 }
