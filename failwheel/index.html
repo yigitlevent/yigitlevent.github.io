@@ -16,13 +16,74 @@
 	</head>
 
 	<body>
+		Element Category:
+		<select id="element-category">
+			<option value="0">Prime Elements</option>
+			<option value="1">Lower Elements</option>
+			<option value="2">Higher Elements</option>
+		</select>
+
+		<br />
+
+		Starting Point:
+		<select id="starting-law" class="">
+			<option value="0">Alteration</option>
+			<option value="1">Assertion</option>
+			<option value="2">Conjuration</option>
+			<option value="3">Destruction</option>
+			<option value="4">Exaltation</option>
+			<option value="5">Reduction</option>
+			<option value="6">Transmutation</option>
+		</select>
+		<select id="starting-aoe">
+			<option value="0">Caster</option>
+			<option value="1">Single Target</option>
+			<option value="2">Presence</option>
+			<option value="3">Natural Effect</option>
+			<option value="4">Measured Area</option>
+		</select>
+		<select id="starting-duration">
+			<option value="0">Instantaneous</option>
+			<option value="1">Sustained</option>
+			<option value="2">Elapsed Time</option>
+			<option value="3">Permanent</option>
+		</select>
+		<select id="starting-elements-prime">
+			<option value="0">Air</option>
+			<option value="1">Earth</option>
+			<option value="2">Fire</option>
+			<option value="3">Water</option>
+			<option value="4">White</option>
+		</select>
+		<select id="starting-elements-lower" style="display: none;">
+			<option value="0">Anima</option>
+			<option value="1">Leta</option>
+			<option value="2">Simulacra</option>
+			<option value="3">Vita</option>
+		</select>
+		<select id="starting-elements-higher" style="display: none;">
+			<option value="0">Arcane</option>
+			<option value="1">Light</option>
+			<option value="2">Shadow</option>
+		</select>
+		<select id="starting-origin">
+			<option value="0">Personal</option>
+			<option value="1">Presence</option>
+			<option value="2">Sight</option>
+		</select>
+
+		<br />
+
+		Turn the Wheel:
 		<select id="direction">
 			<option value="true">Clockwise</option>
 			<option value="false">Counter-Clockwise</option>
 		</select>
-		<input type="number" id="steps" placeholder="0" value="1" />
+		<input type="number" id="steps" value="1" min="1" max="6" style="margin-top: 3px" />
 		<input type="button" id="turnbutton" value="Turn it!" />
-		<canvas id="Canvas" width="600" height="600"></div>
+
+		<canvas id="Canvas" width="590" height="590"></div>
+
 	</body>
 
 </html>

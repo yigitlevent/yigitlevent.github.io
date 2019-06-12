@@ -24,6 +24,7 @@ html {
 
 body {
     letter-spacing: 0.2px;
+    margin: 5px;
 }
 
 select {
@@ -41,5 +42,3 @@ input {
     color: #cccccc;
     border: 1px #555555 solid;
 }
-
-#Canvas {}
