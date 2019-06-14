@@ -12,16 +12,19 @@
 		<title>Burning Wheel Failed Casting</title>
 		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="index.css" async>
-		<script src="index.js" defer></script>
+		<script src="index.min.js" defer></script>
 	</head>
 
 	<body>
+		<img id="wheel-img" src="wheel.png" style="display: none;" />
+		<img id="font-img" src="font.png" style="display: none;" />
+
 		<canvas id="Canvas" width="590" height="590"></canvas>
 		<div class="line">
 			Turn the Wheel:
 			<select id="direction">
-				<option value="true">Clockwise</option>
-				<option value="false">Counter-Clockwise</option>
+				<option value="false">Clockwise</option>
+				<option value="true">Counter-Clockwise</option>
 			</select>
 			<input type="number" id="steps" value="1" min="1" max="6" style="margin-top: 3px" />
 			<input type="button" id="turnbutton" value="Turn it!" onclick="startRotation()" />

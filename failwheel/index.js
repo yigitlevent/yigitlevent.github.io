@@ -1,13 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () { loadCircles(); });
-
-var canvas = document.getElementById("Canvas");
-var context = canvas.getContext("2d");
-
-var wheel_image = new Image();
-wheel_image.src = "wheel.png";
-var font_bitmap_image = new Image();
-font_bitmap_image.src = "font.png";
-var font_data = [
+const canvas = document.getElementById("Canvas");
+const context = canvas.getContext("2d");
+const wheel_image = document.getElementById("wheel-img");
+const font_image = document.getElementById("font-img");
+const font_data = [
     "Y", "Q", "V",
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
     "K", "L", "M", "N", "O", "P", "R", "S", "T",
@@ -16,24 +11,42 @@ var font_data = [
     "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
     "u", "v", "w", "x", "y", "z", " "
 ];
-var char_width = 14;
-var char_height = 20;
-
-var center_x = canvas.width / 2;
-var center_y = canvas.height / 2;
-var max_radius = (canvas.width / 2) - 10
+const char_width = 14;
+const char_height = 20;
+const center_x = 295;
+const center_y = center_x;
+const max_radius = 285;
+const elements_prime = [
+    "Air",
+    "Earth",
+    "Fire",
+    "Water",
+    "White"
+];
+const elements_lower = [
+    "Anima",
+    "Leta",
+    "Simulacra",
+    "Vita"
+];
+const elements_higher = [
+    "Arcane",
+    "Light",
+    "Shadow"
+];
+const data_elements = [
+    "starting-law",
+    "starting-aoe",
+    "starting-duration",
+    "starting-elements-prime",
+    "starting-elements-lower",
+    "starting-elements-higher",
+    "starting-origin"
+];
 
 var rotation_interval;
 var interval_running = false;
-
 var hiding = false;
-
-var elements_prime = ["Air", "Earth", "Fire", "Water", "White"];
-var elements_lower = ["Anima", "Leta", "Simulacra", "Vita"];
-var elements_higher = ["Arcane", "Light", "Shadow"];
-
-var data_elements = ["starting-law", "starting-aoe", "starting-duration", "starting-elements-prime", "starting-elements-lower", "starting-elements-higher", "starting-origin"];
-
 var circles = {
     laws: {
         color: "#444444",
@@ -93,14 +106,11 @@ var circles = {
     }
 }
 
-var dead_circle = {
-    color: "#999999",
-    radius: max_radius - 200
-}
+document.addEventListener("DOMContentLoaded", function () { loadCircles(); });
 
 function loadCircles() {
     for (let circle in circles) { circles[circle].angle_per_part = (2 * Math.PI) / (circles[circle].parts.length); }
-    font_bitmap_image.onload = function () { drawCircles(); }
+    font_image.onload = function () { drawCircles(); }
 }
 
 function changeCategory() {
@@ -177,13 +187,13 @@ function startRotation() {
     if (!interval_running && typeof (rotation_interval) === "undefined") {
         interval_running = true;
 
-        let clockwise = (document.getElementById("direction").value == "true");
+        let counterclockwise = (document.getElementById("direction").value == "true");
         let steps = parseInt(document.getElementById("steps").value);
-        if (clockwise) { steps *= -1; }
+        if (counterclockwise) { steps *= -1; }
 
         for (let circle in circles) {
             circles[circle].target_step = circles[circle].current_step - steps;
-            circles[circle].speed = ((Math.random() * 2) + 1) / (80 * circles[circle].angle_per_part);
+            circles[circle].speed = (steps * ((Math.random() * 2) + 1)) / (50 * Math.abs(steps) * circles[circle].angle_per_part);
         }
 
         rotation_interval = setInterval(rotationInterval, 16, steps);
@@ -194,7 +204,7 @@ function rotationInterval(steps) {
     let rotation_done_for = 0;
 
     for (let circle in circles) {
-        circles[circle].current_step -= (circles[circle].speed * steps);
+        circles[circle].current_step -= circles[circle].speed;
 
         if (steps < 0 && circles[circle].current_step >= circles[circle].target_step) {
             circles[circle].current_step = circles[circle].target_step;
@@ -233,7 +243,7 @@ function rotationInterval(steps) {
 function drawCircles() {
     for (let circle in circles) {
         context.beginPath();
-        context.arc(center_x, center_y, circles[circle].radius, 0, 2 * Math.PI);
+        context.arc(center_x, center_y, circles[circle].radius, 0, 6.28318);
         context.closePath();
 
         context.fillStyle = circles[circle].color;
@@ -270,8 +280,11 @@ function drawTextAlongArc(string, radius, letter_angle, start_angle, center_angl
 
         context.save();
         context.translate(0, -1 * radius + 11);
-        context.drawImage(font_bitmap_image, (font_data.indexOf(string[n]) * char_width), 0,
-            char_width, char_height, 0, 0, (char_width - 2), char_height);
+        context.drawImage(
+            font_image,
+            (font_data.indexOf(string[n]) * char_width), 0,
+            char_width, char_height, 0, 0, (char_width - 2), char_height
+        );
         context.restore();
     }
 
@@ -279,10 +292,11 @@ function drawTextAlongArc(string, radius, letter_angle, start_angle, center_angl
 }
 
 function drawDeadCircle() {
-    context.fillStyle = dead_circle.color;
-
     context.beginPath();
-    context.arc(center_x, center_y, dead_circle.radius, 0, 2 * Math.PI);
+    context.arc(center_x, center_y, 85, 0, 6.28318);
+    context.closePath();
+
+    context.fillStyle = "#999999";
     context.fill();
 
     context.save();
@@ -292,13 +306,10 @@ function drawDeadCircle() {
 }
 
 function drawWedge() {
-    let first_angle = 240 * Math.PI / 180;
-    let last_angle = 300 * Math.PI / 180;
-
     context.save();
 
     context.beginPath();
-    context.arc(center_x, center_y, max_radius, first_angle, last_angle);
+    context.arc(center_x, center_y, max_radius, 4.18879, 5.23599);
     context.lineTo(center_x, center_y);
     context.closePath();
 
@@ -310,11 +321,8 @@ function drawWedge() {
 }
 
 function drawHideWedge() {
-    let first_angle = 300 * Math.PI / 180;
-    let last_angle = 240 * Math.PI / 180;
-
     context.beginPath();
-    context.arc(center_x, center_y, max_radius + 1, first_angle, last_angle);
+    context.arc(center_x, center_y, max_radius + 1, 5.23599, 4.18879);
     context.lineTo(center_x, center_y);
     context.closePath();
 
