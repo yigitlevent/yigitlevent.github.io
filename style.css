@@ -1,375 +1,65 @@
 /********* basics *********/
-* { box-sizing: border-box; }
-@font-face { font-family: "BWG-Font"; src: url("./inc/PostMediaeval-Regular.otf"); }
-
-/********* base *********/
-html, body { height: 100%; padding: 0; margin: 0; }
-html 	{ overflow: hidden; font-family: BWG-Font; font-weight: normal; }
-body	{ letter-spacing: 0.2px; }
-h1, h2  { margin: 18px 0px 2px 0; padding: 0 0 0 6px; }
-h3 		{ margin-left: 0px 23px 6px 0px; }
-h4 		{ padding: 4px 7px; margin: 0px; }
-ul 		{ padding: 0px 10px; margin: 5px; }
-a		{ text-decoration: none; }
-input 	                { height: 10px; margin: 0px; }
-input[type=checkbox]    { width: 11px; height: 11px; -webkit-appearance: none; }
-input[type=checkbox].appWeaCheck { height: 15px; width: 15px; margin-bottom: -1px; }
-input.resElement        { height: 18px; margin: 0 4px 0 0px; padding: 0; }
-select.resElement       { height: 20px; margin: 0 4px 0 0px; padding: 0; }
-table { text-align: center; border: none; border-spacing: 0; }
-td { width: 24px; background: none; }
-tr { height: 24px; }
-td:nth-child(1), tr:nth-child(2), tr:nth-child(1) { background: #3b3b3b !important; }
-td:nth-child(odd) { border-right: 1px #545454 dotted; }
-td:nth-child(1), td:last-child { border: none; }
-tr:nth-child(odd) { background: #373737; }
-tr:nth-child(even) { background: #333333; }
-
-/********* scrollbar *********/
-::-webkit-scrollbar 		{ width: 8px; height: 4px; }
-::-webkit-scrollbar-track 	{ background: #555555; border-radius: 0px; margin: 0; }
-::-webkit-scrollbar-thumb 	{ background: rgba(255,255,255,.5); border-radius: 0px; }
-::-webkit-scrollbar-corner 	{ background: transparent; }
-
-/********* practice *********/
-#practiceSettingsWrapper { position: sticky; top: 0; background: #2d2d2d; width: 100%; z-index: 100; }
-#practiceTableWrapper { width: 100%; }
-#practiceBlocksLayer { width: 100%; height: 0; position: relative; }
-.practiceBox { position: absolute; display: inline-block; overflow: hidden; padding: 2px 0px 0px 8px; border: 1px #cccccc solid; background: #2d2d2d; opacity: 0.9; filter: alpha(opacity=90); }
-.close { position: absolute; bottom: 0; right: 0; font-weight: bold; padding: 3px; cursor: pointer; }
-#practiceSkillName, #practiceData, #practiceType, #createPracticeBox,
-#practiceLength, #practiceDuration, #createPracticeRegiment, #removePracticeRegiment 
-{ border: 1px solid #444; margin: 4px 2px; padding: 0; background: #2d2d2d; color: #cccccc; height: 21px; }
-#practiceLength, #practiceDuration { width: 60px; }
-#createPracticeBox, #createPracticeRegiment, #removePracticeRegiment 
-{ padding: 0 6px; }
-
-/********* misc *********/
-#bottomSpace 	    { min-height: 200px; }
-#search             { margin: 10px 0px; height: 18px; }
-#charImg            { width: 100px; height: 40px; margin-left: 8px; vertical-align: bottom; }
-.notPicked          { opacity: 0.5; filter: alpha(opacity=50); }
-.picked             { opacity: 1.0; filter: alpha(opacity=100); }
-#settingSelector    { width: 100%; margin: 30px 0 0 0; }
-.selectorFlex       { display: flex; flex-flow: wrap; align-content: flex-start; }
-.settingSelect, 
-.optionalSelect,     
-.extraSelect        { padding: 2px; margin: 0.5%; text-align: center; display: flex; justify-content: center; flex-direction: column; }
-.settingSelect, 
-.optionalSelect     { flex: 1 1 30%; }
-.extraSelect        { flex: 1 1 30%; }
-#helpWrapper        { width: 100%; margin: 30px 0 0 0; }
-.smallTitle.helpBox { padding-left: 6px; padding-top: 4px; }
-.helpText           { padding-bottom: 16px; display: none; } 
-
-/********* titles *********/
-.midTitle                   { margin-top: 20px; font-weight: 900; }
-#innerTitle, .smallTitle    { margin-top: 0px; font-weight: bolder; }
-#innerTitle 	            { margin: 16px 0px 0px 10px; }
-.smallTitle 	            { padding-left: 26px; }
-
-/********* content *********/
-#contentTop		    { top: 0px; position: sticky; }
-#lifepathTopTitles 	{ padding: 2px 0px 2px 22px; margin: 10px 0px -10px 0px; }
-.lifepathBox 		{ padding: 10px 0px; }
-#lifepathTop 		{ padding: 2px 4px; }
-#lifepathSkills, #lifepathTraits, #lifepathRequirements 
-					{ padding: 4px 4px 0px; }
-#lifepathRequirements 
-					{ font-style: italic; }
-.lifepathLeadsTop 	{ padding-left: 2px; max-width: 51%; }
-#lifepathTopTitles > .lifepathName 
-                    { padding-right: 18px; }
-.lifepathName 		{ width: 20%; }
-.lifepathLeads 		{ width: 56%; padding-left: 3px; }
-.lifepathYears, .lifepathResources, .lifepathStats 
-                    { width: 8%; text-align: center; }
-.checkboxBox        { width: 28%; height: 22px; }
-.checkboxBoxWide    { width: 56%; height: 22px; }
-.checkboxBoxWider   { width: 100%; height: auto; }
-.stat.name > select { font-size: 1em; font-family: BWG-Font; -webkit-appearance: none; }
-.stat.name > select option { font-size: 0.8em; }
-#chosenLifepaths > .lifepathBox > #lifepathTop > .lifepathName 
-{ white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-    
-/********* info box *********/                        
-#infoBox 		{ position: absolute; width: 400px; left: 0; top: 0; min-height: 50px; z-index: 100; margin: 5px; }
-#infoBoxContent { margin: 5px; }
-
+*{box-sizing:border-box;scrollbar-color:rgba(255,255,255,.5) #555555;scrollbar-width:thin;}
+@font-face{font-family:BWG-Font;src:url(./inc/PostMediaeval-Regular.otf);}
+html,body{height:100%;padding:0;margin:auto;background:#2d2d2d;color:#cccccc;}
+html{width:60%;overflow:hidden;font-family:BWG-Font;font-weight:normal;font-size:.93em;}
+body{letter-spacing:.2px;}
+::-webkit-scrollbar{width:8px;height:4px;}
+::-webkit-scrollbar-track{background:#555555;border-radius:0;margin:0;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.5);border-radius:0;}
+::-webkit-scrollbar-corner{background:transparent;}
+/********* headers *********/
+h1,h2{margin:18px 0 2px;padding:0 0 0 6px;}
+h3{margin-left:0 23px 6px 0;}
+h4{padding:4px 7px;margin:0;}
 /********* lists *********/
-#List > li 					{ padding: 2px 4px; margin: 0 5px 6px; }
-#listSearch 				{ margin: 5px 23px; }
-li > .skill, li > .trait 	{ padding-left: 0px; }
-#appropriateWeapons         { list-style: none; margin: 0; padding: 0; }
-
-/********* sheet *********/
-.sheetBlock             { padding-top: 26px; }
-.sheetStatBox           { text-align: center; width: 24%; margin-bottom: 10px; }
-.sheetBasicBox          { width: 24%; height: 24px; }
-.sheetBasicsExtraBox    { width: 90%; min-height: 24px; text-align: left; }
-.shade, .exponent       { width: 20px; height: 20px; margin: 3px 4px 0px 2px; text-align: center; line-height: 1.1em; }
-.burnerBlock            { min-width: 200px; padding: 3px 10px 0px 0px; }
-.burnerBlockExtra       { min-width: 300px; padding: 3px 10px 0px 0px; }
-.burnerBlockFull        { min-width: 100%; padding: 3px 10px 0px 0px; }
-.resname > .resElement  { width: 30%; }
-.restype > .resElement  { width: 15%; }
-.rescost > .resElement  { width: 5%; text-align: center; }
-.resnote > .resElement  { width: 46%; }
-#burnerMentalPart, #burnerPhysicalPart  { vertical-align: top; }
-#burnerMentalPart                       { width: 33%; }
-#burnerPhysicalPart                     { width: 66%; }
-.smallCheckboxBlock > .smallCheckbox    { margin: 0px 4px -1px 25px; height: 11px; }
-
-/********* images *********/
-.info
-{ background: url("./inc/icon_info.png") no-repeat center bottom; }
-.mandatory
-{ background: url("./inc/icon_mandatory.png") no-repeat center bottom; }
-.lifetrait
-{ background: url("./inc/icon_person.png") no-repeat center bottom; }
-.doublecost
-{ background: url("./inc/icon_dots.png") no-repeat center bottom; }
-.extraSkill, .extraTrait
-{ background: url("./inc/icon_dotempty.png") no-repeat center bottom; }
-.commonTrait
-{ background: url("./inc/icon_dotthree.png") no-repeat center bottom; }
-.up
-{ background: url("./inc/arrow_up.png") no-repeat; }
-.down
-{ background: url("./inc/arrow_down.png") no-repeat; }
-#charReset
-{ background: url("./inc/icon_reset.png") no-repeat center bottom; }
-#charDownload
-{ background: url("./inc/icon_downChar.png") no-repeat center top; }
-.addEither, .addLP, .addGeneral, .plus
-{ background: url("./inc/icon_add.png") no-repeat center bottom; }
-.removeEither, .removeLP, .removeGeneral, .minus
-{ background: url("./inc/icon_remove.png") no-repeat center bottom; }
-.handle
-{ background: url("./inc/icon_list.png") no-repeat center top; }
-.info, .doublecost, .lifetrait, .mandatory,
-.commonTrait, .extraSkill, .extraTrait { 
-    opacity: 0.5; 
-    filter: alpha(opacity=50); 
-}
-.up:hover, .down:hover, #charReset:hover, .addEither:hover, 
-.addLP:hover, .addGeneral:hover, .plus:hover, .removeEither:hover, 
-.removeLP:hover, .removeGeneral:hover, .minus:hover, .handle:hover, 
-#charDownload:hover {
-    opacity: 0.4;
-    filter: alpha(opacity=40);
-}
-
-/********* buttons *********/
-.addEither, .removeEither, .addGeneral, .removeGeneral, .addLP, .removeLP
-{ background-size: 12px 12px; height: 12px; width: 12px; vertical-align: middle; margin: 0px 2px 4px; }
-.info, .mandatory, .lifetrait, .doublecost, .addEither, 
-.removeEither, .extraSkill, .extraTrait, .commonTrait
-{ background-size: 16px 16px; height: 16px; width: 16px; vertical-align: middle; margin: 0px 0px 2px 4px; }
-.plus, .minus, .emptyUM         
-{ background-size: 20px 20px; height: 20px; width: 20px; vertical-align: middle; margin: 0px 6px 2px 2px; }
-.charSett, #charReset, #charDownload       
-{ background-size: 26px 26px; height: 26px; width: 26px; margin: 0px 6px 7px 4px; }
-.up, .down, .emptyUD            
-{ background-size: 70% 80%;   height: 10px; width: 24px; background-position: bottom;  }
-.addLP, .removeLP               
-{ margin: 2px 4px 0px 2px; }
-.handle
-{ background-size: 15px 14px; height: 18px; width: 18px; vertical-align: middle; }
-
-/********* display *********/
-#infoBox, .questionBox
-{ display: none; }
-
-.checkboxBox, .checkboxBoxWide, .checkboxBoxWider,
-.lifepathName, .lifepathYears, .lifepathResources, .lifepathStats,
-.sheetBasicBox, .sheetBasicsExtraBox, .midTitle,
-.mentalstat, .physicalstat, .stat, .attribute, .burnerskill, .burnertrait,
-.burnerBlock, .burnerBlockExtra, .burnerBlockFull,
-#List > li, #burnerMentalPart, #burnerPhysicalPart, #charImg, 
-.settingLink, .listLink, .skill, .trait, .lead, .handle
-{ display: inline-block; }
-
-.Setting, .Subsetting, .defaultOpen
-{ display: block; }
-
-.plus, .minus, .emptyUM, .extraSkill, .extraTrait, .commonTrait,
-.addEither, .removeEither, .addGeneral, .removeGeneral, .addLP, .removeLP,
-.info, .mandatory, .lifetrait, .doublecost, .addEither, .removeEither,
-#charDownload, #charReset
-{ display: inline-flex; }
-
-#lifepathTop
-{ display: flex; }
-
-/********* font size *********/
-html
-{ font-size: 0.93em; }
-
-#innerTitle
-{ font-size: 2em; }
-
-.midTitle
-{ font-size: 1.8em; }
-
-.smallTitle, .settingSelect 
-{ font-size: 1.6em; }
-
-.optionalSelect
-{ font-size: 1.4em; }
-
-.weapon, .smallTitle.helpBox
-{ font-size: 1.2em; }
-
-.burnerBlock, .burnerBlockExtra, .burnerBlockFull
-{ font-size: 1.1em; }
-
-.extraSelect
-{ font-size: 1.0em; }
-
-#infoBox, #infoBoxContent, #lifepathRequirements 
-{ font-size: 0.9em; }
-
-.smallCheckboxBlock
-{ font-size: 0.8em; }
-
-/********* cursor *********/
-a, .settingLink, .listLink, .skill, .trait, .lead, .midTitle,
-.addLP, .removeLP, .up, .down, .emptyUD, #charReset, 
-.plus, .minus, .stat.name > select, #charDownload, .settingSelect,
-.optionalSelect, .extraSelect, .smallTitle
-{ cursor: pointer; }
-
-.info, .mandatory, .lifetrait, .doublecost, .addEither, 
-.removeEither, .extraSkill, .extraTrait, .commonTrait,
-.addEither, .removeEither, .addGeneral, .removeGeneral 
-{ cursor: help; }
-
-.handle 
-{ cursor: move; cursor: grab; cursor: -moz-grab; cursor: -webkit-grab; }
-
-.handle:active 
-{ cursor: grabbing; cursor: -moz-grabbing; cursor: -webkit-grabbing; }
-
-/********* colors *********/
-html, #infoBox, #contentTop, .midTitle, 
-select.appWeaPriority, input.resElement, select.resElement, 
-.stat.name > select option, #settingSelector, #search
-{ background: #2d2d2d; }
-
-#lifepathTopTitles, #List > li
-{ background: #3d3d3d; }
-
-#lifepathTop 
-{ background: #383838; }
-
-input[type=checkbox]:checked 
-{ background: #cccccc; }
-
-.midTitle:hover 
-{ background: #303030; }
-
-.midTitle.chosenTab 
-{ background: #363636; }
-
-.stat.name > select 
-{ background:  none; }
-
-.added 
-{ background-color: #363636; }
-
-html, input.resElement, .stat.name > select, #search,
-select.resElement, select.appWeaPriority
-{ color: #cccccc; }
-
-a, .settingLink, .listLink, .skill, .trait, .lead
-{ color: #c54949; }
-
-a:hover, .settingLink:hover, .listLink:hover, .skill:hover, .trait:hover, .lead:hover
-{ color: #a03c3c; }
-
-input[type=checkbox], #search
-{ border: 1px #666666 solid; }
-
-input.resElement, select.resElement
-{ border: 1px #555555 solid; }
-
-.shade, .exponent
-{ border: 2px #555555 solid; }
-
-select.appWeaPriority, .settingSelect, .optionalSelect, .extraSelect
-{ border: 1px #444444 solid; }
-
-#infoBox
-{ border: 2px #262626 solid; }
-
-#charImg        
-{ border: 2px #000000 solid; }
-
-#characterBurner > div > h2, #settingAppropriateWeapons > h2, 
-.questionBox > h2
-{ border-bottom: 1px #444444 solid; }
-
-.stat.name > select 
-{ border: none; border-bottom: 2px #444444 dashed; }
-
-.midTitle 
-{ border: 1px #363636 solid; }
-
-/********* menus *********/
-#leftMenu { float: left; width: 40%; height: 100%; }
-
-#tabs { width: 100%; padding: 0; position: sticky; top: 0; margin: 0; display: flex; flex-flow: wrap-reverse; align-content: flex-start; }
-
-#adjusterWrapper, #practicerWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper { display: none; }
-
-#explorerWrapper, #revealerWrapper, #adjusterWrapper, #practicerWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper
-{ height: 100%; overflow-y: scroll; padding: 0 12px 200px 12px; }
-
-#explorerWrapper, #adjusterWrapper, #practicerWrapper, #burnerWrapper, #chroniclerWrapper, #observerWrapper
-{ width: 100%; }
-
-#revealerWrapper 
-{ width: 60%; }
-
-.midTitle 
-{ line-height: 1.5em; flex: 1 1 25%; 
-text-align: center; padding: 0; margin: 0; }
-
-.hide { display: none; }
-
-.topStuff { margin: 18px 0px 2px 0; padding: 0 0 0 6px; }
-
-/********* responsivity *********/
-@media screen and (max-width: 1000px) {
-    .midTitle { font-size: 1.4em; width: 48%; line-height: 1.4em; }
-    .innerTitle { padding-top: 20px; }
-    #leftMenu { width: 100%; }
-    #revealerWrapper { width: 100%; }
-    #burnerMentalPart { width: 100% }
-    #burnerPhysicalPart { width: 100% }
-    .burnerBlock { min-width: 50%; }
-    #lifepathTop { display: block; }
-    .addLP, .removeLP { margin: -4px 4px 0px 2px; }
-    .sheetBasicBox { width: 30%; }
-    .resname > .resElement { width: 50%; }
-    .restype > .resElement { width: 30%; }
-    .rescost > .resElement { width: 10%; }
-    .resnote > .resElement { width: 93%; }
-    #infoBox { position: absolute!important; top: 0px!important; left: -5px!important; max-height: 200px!important; width: 100%!important; }
-    .settingSelect { font-size: 1.4em; }
-    .optionalSelect { font-size: 1.2em; }
-    .extraSelect { font-size: 1.0em; }
-    .lifepathName 		{ width: 43%; }
-    .lifepathYears, .lifepathResources, .lifepathStats 
-                        { width: 17%; text-align: center; }
-    .lifepathLeads 		{ width: 100%; padding-left: 0; }
-}
-
-/********* disable double-click select *********/
-.skill.listEntry, .trait.listEntry {
-    -webkit-user-select: none; 
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-}
+ul{padding:0;margin:0;}
+ul>li{display:inline-block;padding:2px 4px;margin:0 5px 6px;background:#3d3d3d;}
+li>.skill,li>.trait{padding-left:0;}
+#listSearch{margin:5px 23px;}
+#search{margin:10px 0;height:18px;}
+/********* links *********/
+a,.settingLink,.listLink,.skill,.trait,.lead{text-decoration:none;color:#c54949;}
+a:hover,.settingLink:hover,.listLink:hover,.skill:hover,.trait:hover,.lead:hover{color:#a03c3c;cursor:pointer;}
+/********* input *********/
+input{height:10px;margin:0;}
+input[type=checkbox]{width:11px;height:11px;-webkit-appearance:none;border:1px #666666 solid;}
+input[type=checkbox]:checked{background:#cccccc;}
+select{height:20px;width:100px;margin:0 4px 0 0;padding:0;appearance:none;-webkit-appearance:none;-moz-appearance:none;background:#2d2d2d;color:#cccccc;border:1px #666666 solid;}
+select>option{background:#2d2d2d;color:#cccccc;}
+/********* tables *********/
+table{text-align:center;border:none;border-spacing:0;}
+td{width:24px;background:none;}
+tr{height:24px;}
+td:nth-child(1),tr:nth-child(2),tr:nth-child(1){background:#3b3b3b!important;}
+td:nth-child(odd){border-right:1px #545454 dotted;}
+td:nth-child(1),td:last-child{border:none;}
+tr:nth-child(odd){background:#373737;}
+tr:nth-child(even){background:#333333;}
+/********* info box *********/
+#infoBox{border:2px #262626 solid;background:#2d2d2d;font-size:.9em;display:none;position:absolute;width:400px;left:0;top:0;min-height:50px;z-index:100;margin:5px;}
+#infoBoxContent{font-size:.9em;margin:5px;}
+/********* top menu *********/
+#topMenu{width:100%;height:30px;padding:6px;}
+/********* explorer *********/
+#explorerWrapper{margin:20px 4px;}
+/********* revealer *********/
+#revealerWrapper{overflow-y:auto;height:85%;}
+.midTitle{margin-top:20px;font-weight:900;display:inline-block;cursor:pointer;font-size:1.8em;background:#2d2d2d;}
+#innerTitle,.smallTitle{margin-top:0;font-weight:bolder;}
+#innerTitle{margin:0 0 0 10px;font-size:2em;}
+.smallTitle{padding-left:26px;font-size:1.6em;cursor:pointer;}
+#content{padding-bottom:100px;}
+#contentTop{top:0;position:sticky;background:#2d2d2d;}
+#lifepathTopTitles{background:#3d3d3d;padding:2px 0 2px 22px;margin:10px 0 -10px;}
+.lifepathBox{padding:10px 0;}
+#lifepathTop{padding:2px 4px;background:#383838;display:flex;}
+#lifepathSkills,#lifepathTraits,#lifepathRequirements{padding:4px 4px 0;}
+#lifepathRequirements{font-style:italic;font-size:.9em;}
+.lifepathLeadsTop{padding-left:2px;max-width:51%;}
+.lifepathName{width:20%;display:inline-block;}
+.lifepathLeads{width:56%;padding-left:3px;}
+.lifepathYears,.lifepathResources,.lifepathStats{width:8%;text-align:center;display:inline-block;}
+.skill,.trait,.lead{display:inline-block;cursor:pointer;}
+/********* adjuster *********/
+#adjusterWrapper{display:none;overflow-y:auto;}
