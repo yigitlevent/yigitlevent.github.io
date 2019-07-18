@@ -3,9 +3,9 @@ class game {
 		this.version = "5.00.00";
 		this.title = "Burning Wheel Gold";
 		this.game_type = {
-			"main": "bwg",
-			"mods": [],
-			"extr": []
+			"main": "bwc",
+			"mods": ["dregs"],
+			"extr": ["bountyhunter", "druid", "masterpigeon", "soldierspy"]
 		};
 		this.current_revealer = "";
 	}
@@ -107,7 +107,7 @@ class game {
 			+ "<span class='lifepathYears'>Time</span>"
 			+ "<span class='lifepathResources'>Res</span>"
 			+ "<span class='lifepathStats'>Stat</span>"
-			+ "<span class='lifepathLeadsTop'>Leads</span>"
+			+ "<span class='lifepathLeads'>Leads</span>"
 			+ "</div>"
 			+ "</div>";
 
@@ -189,12 +189,12 @@ class game {
 				else if (lifepath_data.traitPool == 0) { lp_trait_points = "" }
 
 				// Check if there is lp requirements
-				let lifepath_requirements;
-				if (lifepath_data.requirements.length > 0) {
-					lifepath_requirements = "<div id='lifepathRequirements'>Requirements: " + lifepath_data.requirements + "</div>";
+				let lifepath_requirements = "";
+				if ("requirementsOR" in lifepath_data) {
+					lifepath_requirements += "<div id='lifepathRequirements'>Or requirements: " + lifepath_data.requirementsOR + "</div>";
 				}
-				else {
-					lifepath_requirements = "";
+				if ("requirementsAND" in lifepath_data) {
+					lifepath_requirements += "<div id='lifepathRequirements'>Must-have requirements: " + lifepath_data.requirementsAND + "</div>";
 				}
 
 				// Construct Skills list
@@ -387,7 +387,8 @@ class game {
 
 		// Set the box and empty it
 		infobox_element.innerHTML = "";
-		infobox_element.style.display = "block";
+		if (offset_width <= 600) { infobox_element.style.display = "absolute"; }
+		else { infobox_element.style.display = "block"; }
 		infobox_element.style.left = infobox_x + "px";
 		infobox_element.style.top = infobox_y + "px";
 
