@@ -190,11 +190,16 @@ class game {
 
 				// Check if there is lp requirements
 				let lifepath_requirements = "";
-				if ("requirementsOR" in lifepath_data) {
-					lifepath_requirements += "<div id='lifepathRequirements'>Or requirements: " + lifepath_data.requirementsOR + "</div>";
-				}
-				if ("requirementsAND" in lifepath_data) {
-					lifepath_requirements += "<div id='lifepathRequirements'>Must-have requirements: " + lifepath_data.requirementsAND + "</div>";
+				if ("requirements" in lifepath_data) {
+					if ("OR" in lifepath_data.requirements) {
+						lifepath_requirements += "<div id='lifepathRequirements'>Or requirements: " + lifepath_data.requirements.OR + "</div>";
+					}
+					if ("AND" in lifepath_data) {
+						lifepath_requirements += "<div id='lifepathRequirements'>Must-have requirements: " + lifepath_data.requirements.AND + "</div>";
+					}
+					if ("LIMIT" in lifepath_data) {
+						lifepath_requirements += "<div id='lifepathRequirements'>Restrictions: " + lifepath_data.requirements.LIMIT + "</div>";
+					}
 				}
 
 				// Construct Skills list
