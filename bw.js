@@ -6,16 +6,18 @@
 ///////////////////////////// TODO LIST ////////////////////////////////////////////////////////////////////////////////////////////
 // (BS)  Add Anakhi Lifepaths (Settings: Desert, Ghetto; Subsettings: Cannibal)
 // (CHN) Revise changeling age pools, lifepath years and resources and all that
-// (N/A) Uhh i forgot what i was gonna write here
 //	dwarf - > starting greed checklist now lists reduction from Virtuous trait
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var current_game;
+var current_char;
 
 document.addEventListener("DOMContentLoaded", function () {
 	current_game = new game();
 	current_game.updateAvailableSettings();
 	current_game.updateLeftMenu();
+
+	current_char = new char();
 });
 
 function getDataByID(id, category) {
@@ -40,7 +42,6 @@ function getDataByID(id, category) {
 		return db_skills[id_type];
 	}
 	else if (category == "skill") {
-		console.log(id_parts)
 		let skills_array = db_skills[id_type].skills;
 		return skills_array[skills_array.findIndex(x => x.name === id_name)];
 	}
@@ -52,3 +53,21 @@ function getDataByID(id, category) {
 		return traits_array[traits_array.findIndex(x => x.name === id_name)];
 	}
 }
+
+/*function fDT(stockName, search) {
+	let stock = db_stocks[stockName];
+	search = search.split(",");
+	let out = "";
+	for (var i = 0; i < search.length; i++) {
+		for (let setting in stock.settings) {
+			let lifepaths_array = stock.settings[setting].lifepaths;
+			let a = lifepaths_array.findIndex(x => x.name === search[i]);
+			if (a > -1) {
+				out += ",\"" + stockName + "->"
+					+ setting + "->"
+					+ lifepaths_array[lifepaths_array.findIndex(x => x.name === search[i])].name + "\"";
+			}
+		}
+	}
+	console.log(out);
+}*/

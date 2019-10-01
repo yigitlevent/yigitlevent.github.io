@@ -1,4 +1,5 @@
 var db_stocks = {
+  // Base Stocks
   "Dwarf": {
     "agepool": [[20, 0, 6, 13], [30, 21, 7, 13], [50, 31, 7, 14], [76, 51, 8, 15], [111, 77, 8, 16], [151, 112, 9, 16], [199, 152, 9, 17], [245, 200, 10, 18], [300, 246, 11, 17], [345, 301, 11, 16], [396, 346, 12, 15], [445, 397, 11, 14], [525, 446, 11, 13], [526, 99999, 10, 12]],
     "allowed": ["bwg", "bwc", "bsn"],
@@ -55,7 +56,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Tyro Artificer",
             "physicalPool": 1,
-            "requirements": { "OR": ["Dwarf->Artificer->Ardent", "Dwarf->Guilder->Journeyman"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Artificer->Ardent",
+                "Dwarf->Guilder->Journeyman"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Artificer",
@@ -75,7 +81,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Artificer",
             "physicalPool": 1,
-            "requirements": { "OR": ["Dwarf->Artificer->Tyro Artificer", "Dwarf->Guilder->Craftsman"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Artificer->Tyro Artificer",
+                "Dwarf->Guilder->Craftsman"
+              ]
+            },
             "resources": 35,
             "selectable": true,
             "setting": "Artificer",
@@ -95,7 +106,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Mask Bearer",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Artificer->Artificer"] },
+            "requirements": {
+              "AND": [
+                "Dwarf->Artificer->Artificer"
+              ]
+            },
             "resources": 50,
             "selectable": true,
             "setting": "Artificer",
@@ -114,7 +129,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master of Arches",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Artificer->Artificer"] },
+            "requirements": {
+              "AND": [
+                "Dwarf->Artificer->Artificer"
+              ]
+            },
             "resources": 75,
             "selectable": true,
             "setting": "Artificer",
@@ -134,12 +153,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master of Forges",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Artificer->Mask Bearer"] },
+            "requirements": {
+              "AND": [
+                "Dwarf->Artificer->Mask Bearer"
+              ]
+            },
             "resources": 75,
             "selectable": true,
             "setting": "Artificer",
             "skillPool": 6,
-            "skills": ["Dwarf Art->Forge Artifice", "Any General->Appraisal", "Any General->Engineering", "Any General->Command", "Any Wise->Maker’s Mark-wise"],
+            "skills": ["Dwarf Art->Forge Artifice", "Any General->Appraisal", "Any General->Engineering", "Any General->Command", "Any Wise->Maker's Mark-wise"],
             "stock": "Dwarf",
             "traitPool": 1,
             "traits": ["Any Callon->Meticulous", "Dwarf Special->Estimation"],
@@ -154,7 +177,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master Engraver",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Artificer->Master of Arches"] },
+            "requirements": {
+              "AND": [
+                "Dwarf->Artificer->Master of Arches"
+              ]
+            },
             "resources": 60,
             "selectable": true,
             "setting": "Artificer",
@@ -173,7 +200,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Earthbender",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Artificer->Tyro Artificer", "Dwarf->Artificer->Artificer"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Artificer->Tyro Artificer",
+                "Dwarf->Artificer->Artificer"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Artificer",
@@ -312,7 +344,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Brewer",
             "physicalPool": 1,
-            "requirements": { "OR": ["Dwarf->Clansman->Miller", "Dwarf->Clansman->Longbeard", "Dwarf->Noble->Seneschal", "Dwarf->Host->Captain", "Dwarf->Outcast->Drunk"] },
+            "requirements": {
+              "OR":
+                [
+                  "Dwarf->Clansman->Miller",
+                  "Dwarf->Clansman->Longbeard",
+                  "Dwarf->Noble->Seneschal",
+                  "Dwarf->Host->Captain",
+                  "Dwarf->Outcast->Drunk"
+                ]
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Clansman",
@@ -331,7 +372,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Foreman",
             "physicalPool": 1,
-            "requirements": { "OR": ["Dwarf->Clansman->Delver", "Dwarf->Artificer->Ardent", "Dwarf->Host->Engineer"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Clansman->Delver",
+                "Dwarf->Artificer->Ardent",
+                "Dwarf->Host->Engineer"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Clansman",
@@ -350,9 +397,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Husband/Wife",
             "physicalPool": 0,
-            "requirements": "Husband/Wife cannot be character's second lifepath",
             "resources": 18,
-            "requirements": { "LIMIT": ["NO=>Second Lifepath"] },
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "selectable": true,
             "setting": "Clansman",
             "skillPool": 5,
@@ -371,7 +421,18 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Longbeard",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Templar->Palisade", "Dwarf->Clansman->Foreman", "Dwarf->Host->Graybeard", "Dwarf->Artificer->Artificer", "Dwarf->Guilder->Trader", "Dwarf->Noble->Senechal", "Dwarf->Outcast->Adventurer", "Dwarf->Clansman->Husband/Wife"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Templar->Palisade",
+                "Dwarf->Clansman->Foreman",
+                "Dwarf->Host->Graybeard",
+                "Dwarf->Artificer->Artificer",
+                "Dwarf->Guilder->Trader",
+                "Dwarf->Noble->Senechal",
+                "Dwarf->Outcast->Adventurer",
+                "Dwarf->Clansman->Husband/Wife"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Clansman",
@@ -510,7 +571,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Journeyman",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Guilder->Apprentice", "Dwarf->Artificer->Ardent", "Dwarf->Noble->Ardent"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Guilder->Apprentice",
+                "Dwarf->Artificer->Ardent",
+                "Dwarf->Noble->Ardent"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Guilder",
@@ -531,7 +598,14 @@ var db_stocks = {
             "name": "Craftsman",
             "physicalPool": 0,
             "resources": 45,
-            "requirementOR": ["Dwarf->Guilder->Journeyman", "Dwarf->Artificer->Artificer", "Dwarf->Host->Artillerist", "Dwarf->Host->Engineer"],
+            "requirement": {
+              "OR": [
+                "Dwarf->Guilder->Journeyman",
+                "Dwarf->Artificer->Artificer",
+                "Dwarf->Host->Artillerist",
+                "Dwarf->Host->Engineer"
+              ]
+            },
             "selectable": true,
             "setting": "Guilder",
             "skillPool": 4,
@@ -550,7 +624,14 @@ var db_stocks = {
             "name": "Trader",
             "physicalPool": 0,
             "resources": 70,
-            "requirementOR": ["Dwarf->Guilder->Hawker", "Dwarf->Guilder->Journeyman", "Dwarf->Outcast->Adventurer", "Dwarf->Clansman->Husband/Wife"],
+            "requirement": {
+              "OR": [
+                "Dwarf->Guilder->Hawker",
+                "Dwarf->Guilder->Journeyman",
+                "Dwarf->Outcast->Adventurer",
+                "Dwarf->Clansman->Husband/Wife"
+              ]
+            },
             "selectable": true,
             "setting": "Guilder",
             "skillPool": 7,
@@ -586,7 +667,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Caravan Supplier",
             "physicalPool": 0,
-            "requirements": "Gambler, Hawker, Journeyman, Adventurer or Husband/Wife",
+            "requirements": {
+              "OR": [
+                "Dwarf->Outcast->Gambler",
+                "Dwarf->Guilder->Hawker",
+                "Dwarf->Guilder->Journeyman",
+                "Dwarf->Outcast->Adventurer",
+                "Dwarf->Clansman->Husband/Wife"
+              ]
+            },
             "resources": 16,
             "selectable": true,
             "setting": "Guilder",
@@ -606,9 +695,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Wholesaler",
             "physicalPool": 0,
-            "requirements": "Fence, Hawker, Journeyman, Adventurer or Husband/Wife",
             "resources": 25,
-            "requirements": { "OR": ["Dwarf->Guilder->Hawker", "Dwarf->Guilder->Journeyman", "Dwarf->Outcast->Adventurer", "Dwarf->Clansman->Husband/Wife"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Outcast->Palisade",
+                "Dwarf->Guilder->Hawker",
+                "Dwarf->Guilder->Journeyman",
+                "Dwarf->Outcast->Adventurer",
+                "Dwarf->Clansman->Husband/Wife"
+              ]
+            },
             "selectable": true,
             "setting": "Guilder",
             "skillPool": 7,
@@ -710,7 +806,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Axe Bearer",
             "physicalPool": 1,
-            "requirements": { "OR": ["Dwarf->Noble->Ardent", "Dwarf->Host->Graybeard", "Dwarf->Host->Banner Bearer"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Noble->Ardent",
+                "Dwarf->Host->Graybeard",
+                "Dwarf->Host->Banner Bearer"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Host",
@@ -730,7 +832,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Graybeard",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Host->Axe Bearer","Dwarf->Clansman->Longbeard","Dwarf->Host->3*ANY"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Host->Axe Bearer",
+                "Dwarf->Clansman->Longbeard",
+                "Dwarf->Host->3*ANY"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Host",
@@ -750,7 +858,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Khirurgeon",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Noble->Abecedart","Dwarf->Noble->Seneschal","Dwarf->Host->Graybeard"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Noble->Abecedart",
+                "Dwarf->Noble->Seneschal",
+                "Dwarf->Host->Graybeard"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Host",
@@ -769,7 +883,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Quartermaster",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Noble->Seneschal","Dwarf->Noble->Treasurer","Dwarf->Guilder->Trader","Dwarf->Host->Graybeard"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Noble->Seneschal",
+                "Dwarf->Noble->Treasurer",
+                "Dwarf->Guilder->Trader",
+                "Dwarf->Host->Graybeard"
+              ]
+            },
             "resources": 35,
             "selectable": true,
             "setting": "Host",
@@ -789,7 +910,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Captain",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Noble->Prince","Dwarf->Host->Graybeard"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Noble->Prince",
+                "Dwarf->Host->Graybeard"
+              ]
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Host",
@@ -808,7 +934,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Artillerist",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Artificer->Mask Bearer","Dwarf->Guilder->Craftsman","Dwarf->Clansman->Foreman","Dwarf->Host->3*Arbalester"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Artificer->Mask Bearer",
+                "Dwarf->Guilder->Craftsman",
+                "Dwarf->Clansman->Foreman",
+                "Dwarf->Host->3*Arbalester"
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "Host",
@@ -828,7 +961,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Engineer",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Host->Artillerist","Dwarf->Artificer->Mask Bearer"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Host->Artillerist",
+                "Dwarf->Artificer->Mask Bearer"
+              ]
+            },
             "resources": 50,
             "selectable": true,
             "setting": "Host",
@@ -848,7 +986,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Warden",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Noble->Prince","Dwarf->Host->Captain","Dwarf->Noble->High Captain"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Noble->Prince",
+                "Dwarf->Host->Captain",
+                "Dwarf->Noble->High Captain"
+              ]
+            },
             "resources": 65,
             "selectable": true,
             "setting": "Host",
@@ -869,8 +1013,14 @@ var db_stocks = {
             "name": "Kineticist",
             "physicalPool": 1,
             "requirements": {
-              "OR": ["Skill->Any General->Psionics (Kinetics)","Skill->Any General->Psionics (Metabolics)","Skill->Any General->Psionics (Metapsionics)"],
-              "AND": ["Dwarf->Host->1*ANY"]
+              "OR": [
+                "Skill->Any General->Psionics (Kinetics)",
+                "Skill->Any General->Psionics (Metabolics)",
+                "Skill->Any General->Psionics (Metapsionics)"
+              ],
+              "AND": [
+                "Dwarf->Host->1*ANY"
+              ]
             },
             "resources": 14,
             "selectable": true,
@@ -892,8 +1042,14 @@ var db_stocks = {
             "name": "Shaper",
             "physicalPool": 0,
             "requirements": {
-              "OR": ["Skill->Any General->Psionics (Kinetics)","Skill->Any General->Psionics (Metabolics)","Skill->Any General->Psionics (Metapsionics)"],
-              "AND": ["Dwarf->Host->1*ANY"]
+              "OR": [
+                "Skill->Any General->Psionics (Kinetics)",
+                "Skill->Any General->Psionics (Metabolics)",
+                "Skill->Any General->Psionics (Metapsionics)"
+              ],
+              "AND": [
+                "Dwarf->Host->1*ANY"
+              ]
             },
             "resources": 8,
             "selectable": true,
@@ -979,7 +1135,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Axe Bearer",
             "physicalPool": 1,
-            "requirements": { "OR": ["Dwarf->Noble->Ardent", "Dwarf->Host->Banner Bearer"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Noble->Ardent",
+                "Dwarf->Host->Banner Bearer"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Noble",
@@ -999,7 +1160,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Chronicler",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Noble->Abecedart", "Dwarf->Host->Khiurgeon", "Dwarf->Host->Graybeard"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Noble->Abecedart",
+                "Dwarf->Host->Khiurgeon",
+                "Dwarf->Host->Graybeard"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Noble",
@@ -1018,7 +1185,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Seneschal",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Guilder->Trader", "Dwarf->Clansman->Longbeard", "Dwarf->Host->Quartermaster", "Dwarf->Noble->Chronicler", "Dwarf->Host->Khiurgeon", "Dwarf->Host->Graybeard"] },
+            "requirements": {
+              "OR": ["Dwarf->Guilder->Trader",
+                "Dwarf->Clansman->Longbeard",
+                "Dwarf->Host->Quartermaster",
+                "Dwarf->Noble->Chronicler",
+                "Dwarf->Host->Khiurgeon",
+                "Dwarf->Host->Graybeard"
+              ]
+            },
             "resources": 50,
             "selectable": true,
             "setting": "Noble",
@@ -1038,7 +1213,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Treasurer",
             "physicalPool": 0,
-            "requirements": { "OR": ["Dwarf->Noble->Seneschal", "Dwarf->Artificer->Artificer", "Dwarf->Host->Warden"] },
+            "requirements": {
+              "OR": [
+                "Dwarf->Noble->Seneschal",
+                "Dwarf->Artificer->Artificer",
+                "Dwarf->Host->Warden"
+              ]
+            },
             "resources": 100,
             "selectable": true,
             "setting": "Noble",
@@ -1059,8 +1240,13 @@ var db_stocks = {
             "name": "High Captain",
             "physicalPool": 1,
             "requirements": {
-              "OR": ["Dwarf->Host->Captain", "Dwarf->Host->Warden"],
-              "AND": ["Dwarf->Noble->Axe Bearer"]
+              "OR": [
+                "Dwarf->Host->Captain",
+                "Dwarf->Host->Warden"
+              ],
+              "AND": [
+                "Dwarf->Noble->Axe Bearer"
+              ]
             },
             "resources": 75,
             "selectable": true,
@@ -1081,7 +1267,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Prince",
             "physicalPool": 0,
-            "requirements": { "AND": ["Dwarf->Noble->Born Noble", "Dwarf->Noble->Axe Bearer"] },
+            "requirements": {
+              "AND": [
+                "Dwarf->Noble->Born Noble",
+                "Dwarf->Noble->Axe Bearer"
+              ]
+            },
             "resources": 200,
             "selectable": true,
             "setting": "Noble",
@@ -1260,7 +1451,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Stoneman",
             "physicalPool": 0,
-            "requirements": { "OR": ["Skill->Any General->Psionics (Kinetics)", "Skill->Any General->Psionics (Metabolics)", "Skill->Any General->Psionics (Metapsionics)"] },
+            "requirements": {
+              "OR": [
+                "Skill->Any General->Psionics (Kinetics)",
+                "Skill->Any General->Psionics (Metabolics)",
+                "Skill->Any General->Psionics (Metapsionics)"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Outcast",
@@ -1345,7 +1542,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Templar",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Templar->Temple Acolyte"]},
+            "requirements": {
+              "AND": [
+                "Dwarf->Templar->Temple Acolyte"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Templar",
@@ -1365,7 +1566,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Inquisitor",
             "physicalPool": 1,
-            "requirements": {"OR": ["Dwarf->Templar->Fanatic","Dwarf->Templar->Temple Acolyte"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Templar->Fanatic",
+                "Dwarf->Templar->Temple Acolyte"
+              ]
+            },
             "resources": 24,
             "selectable": true,
             "setting": "Templar",
@@ -1385,7 +1591,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "White Warden",
             "physicalPool": 0,
-            "requirements": {"OR": ["Dwarf->Templar->Templar","Dwarf->Templar->Inquisitor"]},
+            "requirements": {
+              "OR": [
+                "Dwarf->Templar->Templar",
+                "Dwarf->Templar->Inquisitor"
+              ]
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Templar",
@@ -1702,7 +1913,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Patriarch/Matriarch",
             "physicalPool": 0,
-            "requirements": { "OR": ["Elf->Wilderness->Spouse"]},
+            "requirements": {
+              "AND": [
+                "Elf->Wilderness->Spouse"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Wilderlands",
@@ -1722,7 +1937,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Elder",
             "physicalPool": 0,
-            "requirements": { "TEXT": ["The character must be 750 years old after taking this path or the oldest character in the group by 100 years"]},
+            "requirements": {
+              "TEXT": [
+                "The character must be 750 years old after taking this path or the oldest character in the group by 100 years"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Wilderlands",
@@ -1863,7 +2082,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Soldier-Protector",
             "physicalPool": 1,
-            "requirements": "Wanderer, Seafarer, Spouse, Rider, Huntsman, any Etharch or Protector lifepath",
+            "requirements": {
+              "OR": [
+                "Elf->Citadel->Wanderer",
+                "Elf->Citadel->Seafarer",
+                "Elf->Wilderness->Spouse",
+                "Elf->Wilderness->Rider",
+                "Elf->Wilderness->Huntsman",
+                "Elf->Etharch->1*ANY",
+                "Elf->Protector->1*ANY"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Citadel",
@@ -1902,7 +2131,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Sea Captain",
             "physicalPool": 0,
-            "requirements": "Seafarer, Adjutant, Lieutenant or Sword Singer",
+            "requirements": {
+              "OR": [
+                "Elf->Citadel->Seafarer",
+                "Elf->Citadel->Adjutant",
+                "Elf->Protector->Lieutenant",
+                "Elf->Etharch->Sword Singer",
+                "Elf->Protector->Sword Singer"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Citadel",
@@ -1940,7 +2177,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Shaper",
             "physicalPool": 1,
-            "requirements": "Novice",
+            "requirements": {
+              "AND": [
+                "Elf->Citadel->Novice"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Citadel",
@@ -1960,7 +2201,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Jeweler",
             "physicalPool": 0,
-            "requirements": "Shaper",
+            "requirements": {
+              "AND": [
+                "Elf->Citadel->Shaper"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Citadel",
@@ -1980,7 +2225,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Artisan",
             "physicalPool": 0,
-            "requirements": "Shaper",
+            "requirements": {
+              "AND": [
+                "Elf->Citadel->Shaper"
+              ]
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Citadel",
@@ -1999,7 +2248,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Keel Master",
             "physicalPool": 0,
-            "requirements": "Shaper",
+            "requirements": {
+              "AND": [
+                "Elf->Citadel->Shaper"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Citadel",
@@ -2038,7 +2291,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bard",
             "physicalPool": 0,
-            "requirements": "Sword Singer",
+            "requirements": {
+              "OR": [
+                "Elf->Etharch->Sword Singer",
+                "Elf->Protector->Sword Singer"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Citadel",
@@ -2057,7 +2315,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Adjutant",
             "physicalPool": 0,
-            "requirements": "Herald, Attendant, Student or Spouse",
+            "requirements": {
+              "OR": [
+                "Elf->Protector->Herald",
+                "Elf->Etharch->Attendant",
+                "Elf->Etharch->Student",
+                "Elf->Wilderness->Spouse"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Citadel",
@@ -2077,7 +2342,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Loremaster",
             "physicalPool": 0,
-            "requirements": "Bard, Adjutant, Steward or Patriarch/Matriarch",
+            "requirements": {
+              "OR": [
+                "Elf->Citadel->Bard",
+                "Elf->Citadel->Adjutant",
+                "Elf->Etharch->Steward",
+                "Elf->Wilderness->Patriarch/Matriarch"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Citadel",
@@ -2096,7 +2368,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Althing",
             "physicalPool": 1,
-            "requirements": "Patriarch/Matriarch, Loremaster, Steward, Bard, Artisan, Sea Captain or Captain",
+            "requirements": {
+              "OR": [
+                "Elf->Wilderness->Patriarch/Matriarch",
+                "Elf->Citadel->Loremaster",
+                "Elf->Etharch->Steward",
+                "Elf->Citadel->Bard",
+                "Elf->Citadel->Artisan",
+                "Elf->Protector->Sea Captain",
+                "Elf->Protector->Captain"
+              ]
+            },
             "resources": 100,
             "selectable": true,
             "setting": "Citadel",
@@ -2181,7 +2463,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Second",
             "physicalPool": 1,
-            "requirements": "Attendant, Bowyer, Spearbearer, Seafarer or Soldier-Protector",
+            "requirements": {
+              "OR": [
+                "Elf->Etharch->Attendant",
+                "Elf->Protector->Bowyer",
+                "Elf->Protector->Spearbearer",
+                "Elf->Citadel->Seafarer",
+                "Elf->Protector->Soldier-Protector"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Etharch",
@@ -2201,7 +2491,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sword Singer",
             "physicalPool": 1,
-            "requirements": "Second, Lancer or Lieutenant",
+            "requirements": {
+              "OR": [
+                "Elf->Etharch->Second",
+                "Elf->Protector->Lancer",
+                "Elf->Protector->Lieutenant"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Etharch",
@@ -2221,7 +2517,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Steward",
             "physicalPool": 0,
-            "requirements": "Lieutenant, Artisan, Bard, Loremaster, Adjutant, Sea Captain or Matriarch/Patriarch",
+            "requirements": {
+              "OR": [
+                "Elf->Protector->Lieutenant",
+                "Elf->Citadel->Artisan",
+                "Elf->Citadel->Bard",
+                "Elf->Citadel->Loremaster",
+                "Elf->Citadel->Adjutant",
+                "Elf->Protector->Sea Captain",
+                "Elf->Wilderness->Patriarch/Matriarch"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Etharch",
@@ -2240,7 +2546,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Prince/Princess",
             "physicalPool": 0,
-            "requirements": "Fêa trait and Sword Singer",
+            "requirements": {
+              "OR": [
+                "Elf->Etharch->Sword Singer",
+                "Elf->Protector->Sword Singer"
+              ],
+              "AND": [
+                "Trait->Elf Lifepath->Fêa"
+              ]
+            },
             "resources": 100,
             "selectable": true,
             "setting": "Etharch",
@@ -2260,7 +2574,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Etharch",
             "physicalPool": 1,
-            "requirements": "Aman trait and either Loremaster or Prince",
+            "requirements": {
+              "OR": [
+                "Elf->Citadel->Loremaster",
+                "Elf->Etharch->Prince/Princess"
+              ],
+              "AND": [
+                "Trait->Elf Lifepath->Aman"
+              ]
+            },
             "resources": 200,
             "selectable": true,
             "setting": "Etharch",
@@ -2344,7 +2666,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Ranger",
             "physicalPool": 0,
-            "requirements": "Forester, Wanderer, Bowyer or Second",
+            "requirements": {
+              "OR": [
+                "Elf->Wilderness->Forester",
+                "Elf->Wilderness->Wanderer",
+                "Elf->Protector->Bowyer",
+                "Elf->Etharch->Second"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Protector",
@@ -2401,7 +2730,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sword Singer",
             "physicalPool": 1,
-            "requirements": "Second, Soldier-Protector, Soother, Spouse or Spearbearer",
+            "requirements": {
+              "OR": [
+                "Elf->Etharch->Second",
+                "Elf->Citadel->Soldier-Protector",
+                "Elf->Protector->Soother",
+                "Elf->Wilderness->Spouse",
+                "Elf->Protector->Spearbearer"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Protector",
@@ -2421,7 +2758,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Outrider",
             "physicalPool": 1,
-            "requirements": "Rider",
+            "requirements": {
+              "AND": [
+                "Elf->Protector->Rider"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Protector",
@@ -2441,7 +2782,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Lancer",
             "physicalPool": 1,
-            "requirements": "Outrider or Second",
+            "requirements": {
+              "OR": [
+                "Elf->Protector->Outrider",
+                "Elf->Etharch->Second"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Protector",
@@ -2460,7 +2806,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Lieutenant",
             "physicalPool": 0,
-            "requirements": "Sword Singer, Lancer, Sea Captain, or two Bowyer/Spearbearer lifepaths",
+            "requirements": {
+              "OR": [
+                "Elf->Protector->Sword Singer",
+                "Elf->Etharch->Sword Singer",
+                "Elf->Protector->Lancer",
+                "Elf->Citadel->Sea Captain",
+                "Elf->Protector->2*Bowyer",
+                "Elf->Protector->2*Spearbearer"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Protector",
@@ -2480,7 +2835,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Captain",
             "physicalPool": 1,
-            "requirements": "Lieutenant, Prince, Sea Captain, Steward or two Sword Singer lifepaths",
+            "requirements": {
+              "OR": [
+                "Elf->Protector->Lieutenant",
+                "Elf->Etharch->Prince/Princess",
+                "Elf->Citadel->Sea Captain",
+                "Elf->Etharch->Steward",
+                "Elf->Protector->2*Sword Singer",
+                "Elf->Etharch->2*Sword Singer"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Protector",
@@ -2500,7 +2864,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Armorer",
             "physicalPool": 1,
-            "requirements": "Shaper or Bladesmith",
+            "requirements": {
+              "OR": [
+                "Elf->Citadel->Shaper",
+                "Elf->Protector->Bladesmith"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Protector",
@@ -2520,7 +2889,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bladesmith",
             "physicalPool": 1,
-            "requirements": "Armorer, Shaper, Bowyer or Spearbearer",
+            "requirements": {
+              "OR": [
+                "Elf->Protector->Armorer",
+                "Elf->Citadel->Shaper",
+                "Elf->Protector->Bowyer",
+                "Elf->Protector->Spearbearer"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Protector",
@@ -2540,7 +2916,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Lord Protector",
             "physicalPool": 1,
-            "requirements": "Captain or Prince",
+            "requirements": {
+              "OR": [
+                "Elf->Protector->Captain",
+                "Elf->Etharch->Prince/Princess"
+              ]
+            },
             "resources": 60,
             "selectable": true,
             "setting": "Protector",
@@ -2585,7 +2966,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Wastrel",
             "physicalPool": 0,
-            "requirements": "Griever",
+            "requirements": {
+              "AND": [
+                "Elf->Path of Spite->Griever"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2604,7 +2989,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Thief",
             "physicalPool": 0,
-            "requirements": "Griever",
+            "requirements": {
+              "AND": [
+                "Elf->Path of Spite->Griever"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2623,7 +3012,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Assassin",
             "physicalPool": 1,
-            "requirements": "Griever",
+            "requirements": {
+              "AND": [
+                "Elf->Path of Spite->Griever"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2642,7 +3035,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Stalker",
             "physicalPool": 0,
-            "requirements": "Griever",
+            "requirements": {
+              "AND": [
+                "Elf->Path of Spite->Griever"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2661,7 +3058,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Deciever",
             "physicalPool": 0,
-            "requirements": "Griever",
+            "requirements": {
+              "AND": [
+                "Elf->Path of Spite->Griever"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2680,7 +3081,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Liar",
             "physicalPool": 0,
-            "requirements": "Griever",
+            "requirements": {
+              "AND": [
+                "Elf->Path of Spite->Griever"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2699,7 +3104,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Siren",
             "physicalPool": 0,
-            "requirements": "Assassin, Deciever, Liar",
+            "requirements": {
+              "OR": [
+                "Elf->Path of Spite->Assassin",
+                "Elf->Path of Spite->Deciever",
+                "Elf->Path of Spite->Liar"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2719,7 +3130,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Eremite",
             "physicalPool": 0,
-            "requirements": "Siren, Wastrel or Stalker",
+            "requirements": {
+              "OR": [
+                "Elf->Path of Spite->Siren",
+                "Elf->Path of Spite->Wastrel",
+                "Elf->Path of Spite->Stalker"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2738,7 +3155,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Recluse",
             "physicalPool": 1,
-            "requirements": "Eremite or any three Dark Elf lifepaths",
+            "requirements": {
+              "OR": [
+                "Elf->Path of Spite->Eremite",
+                "Elf->Path of Spite->3*ANY"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Path of Spite",
@@ -2795,7 +3217,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Slave to the Wheel",
             "physicalPool": 2,
-            "requirements": "Ripped from Mother’s Arms",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Ripped from Mother's Arms"
+              ]
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2815,7 +3241,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Pit Fighter",
             "physicalPool": 1,
-            "requirements": "Slave to the Wheel",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Slave to the Wheel"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2835,7 +3265,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Failed Pit Fighter",
             "physicalPool": 1,
-            "requirements": "Pit Fighter",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Pit Fighter"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2855,7 +3289,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Champion Pit Fighter",
             "physicalPool": 1,
-            "requirements": "Pit Fighter",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Pit Fighter"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2875,7 +3313,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Wanderer",
             "physicalPool": 0,
-            "requirements": "Pit Fighter",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Pit Fighter"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2895,7 +3337,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Thief",
             "physicalPool": 0,
-            "requirements": "Wanderer",
+            "requirements": {
+              "OR": [
+                "Man->Black Barbarian->Wanderer",
+                "Man->Lost Atlantean->Wanderer",
+                "Man->Nomad->Wanderer"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2915,7 +3363,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Drunken Lech",
             "physicalPool": 0,
-            "requirements": "Thief",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Thief"
+              ]
+            },
             "resources": 2,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2935,7 +3387,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "The Tree",
             "physicalPool": 0,
-            "requirements": "Thief",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Thief"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2955,7 +3411,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Avenger-Assassin",
             "physicalPool": 0,
-            "requirements": "The Tree",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->The Tree"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -2993,7 +3453,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Mercenary Captain",
             "physicalPool": 0,
-            "requirements": "Mercenary and Thief",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Mercenary",
+                "Man->Black Barbarian->Thief"
+              ]
+            },
             "resources": 16,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -3013,7 +3478,19 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "King by his Own Hand",
             "physicalPool": 1,
-            "requirements": "King by his Own Hand requires every lifepath in the setting, except Failed Pit Fighter of course.",
+            "requirements": {
+              "AND": [
+                "Man->Black Barbarian->Pit Fighter",
+                "Man->Black Barbarian->Champion Pit Fighter",
+                "Man->Black Barbarian->Wanderer",
+                "Man->Black Barbarian->Thief",
+                "Man->Black Barbarian->Drunken Lech",
+                "Man->Black Barbarian->The Tree",
+                "Man->Black Barbarian->Avenger-Assassin",
+                "Man->Black Barbarian->Mercenary",
+                "Man->Black Barbarian->Mercenary Captain",
+              ]
+            },
             "resources": 100,
             "selectable": true,
             "setting": "Black Barbarian",
@@ -3094,7 +3571,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Urchin",
             "physicalPool": 0,
-            "requirements": "if taken, must be second or third lifepath",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2/3"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "City Dweller",
@@ -3208,7 +3689,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Duelist",
             "physicalPool": 1,
-            "requirements": "Squire or any Outcast or Soldier lifepath, or any guard lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Outcast->1*ANY",
+                "Man->Professional->1*ANY",
+                "Man->Villager->Village Guard",
+                "Man->City Dweller->City Guard",
+                "Man->City Dweller->Guard Captain"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "City Dweller",
@@ -3228,7 +3719,18 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Duelist",
             "physicalPool": 1,
-            "requirements": "Squire or any Outcast or Soldier lifepath, or any guard lifepath, or Gladiator",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Servitude->Gladiator",
+                "Man->Outcast->1*ANY",
+                "Man->Professional->1*ANY",
+                "Man->Villager->Village Guard",
+                "Man->City Dweller->City Guard",
+                "Man->City Dweller->Guard Captain"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "City Dweller",
@@ -3701,7 +4203,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Alewife",
             "physicalPool": 1,
-            "requirements": "Character must be female",
+            "requirements": {
+              "LIMIT": [
+                "GENDER->FEMALE"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "City Dweller",
@@ -3758,7 +4264,18 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Scribe",
             "physicalPool": 0,
-            "requirements": "Student, Acolyte or Student",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Religious->Acolyte",
+                "Man->Villager->Acolyte",
+                "Man->City Dweller->Clerk",
+                "Man->Religious->Clerk",
+                "Man->Villager->Clerk"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "City Dweller",
@@ -3778,7 +4295,18 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Accountant",
             "physicalPool": 0,
-            "requirements": "Clerk, Young Lady or Student",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Clerk",
+                "Man->Religious->Clerk",
+                "Man->Villager->Clerk",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -3798,7 +4326,21 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Scholar",
             "physicalPool": 0,
-            "requirements": "Scribe, Thinker, Archivist, Interpreter, Custodian, Bishop or any sorcerous lifepath",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Scribe",
+                "Man->Religious->Scribe",
+                "Man->Outcast->Thinker",
+                "Man->Religious->Archivist",
+                "Man->Religious->Interpreter",
+                "Man->Religious->Custodian",
+                "Man->City Dweller->Bishop",
+                "Man->Religious->Bishop",
+                "Skill->Man Sorcerous->Sorcery",
+                "Skill->Man Sorcerous->Enchanting",
+                "Skill->Man Sorcerous->Summoning"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -3837,7 +4379,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Tax Collector",
             "physicalPool": 0,
-            "requirements": "may not be the charater's second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "City Dweller",
@@ -3857,7 +4403,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Tax Collector",
             "physicalPool": 0,
-            "requirements": "may not be the charater's second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "City Dweller",
@@ -3877,7 +4427,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Taskmaster",
             "physicalPool": 0,
-            "requirements": "may not be the charater's second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -3897,7 +4451,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Mercenary Captain",
             "physicalPool": 0,
-            "requirements": "Sailor, Pirate or Knight",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->Outcast->Pirate",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -3936,7 +4500,21 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sergeant-at-Arms",
             "physicalPool": 1,
-            "requirements": "any guard lifepath, Marine, First Mate, Foot Soldier, Freebooter, Squire, Man-at-Arms or Cavalryman",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Village Guard",
+                "Man->City Dweller->City Guard",
+                "Man->City Dweller->Guard Captain",
+                "Man->Seafaring->Marine",
+                "Man->Seafaring->First Mate",
+                "Man->Professional Soldier->Foot Soldier",
+                "Man->Outcast->Freebooter",
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Noble Court->Man-at-Arms",
+                "Man->Professional Soldier->Cavalryman"
+              ]
+            },
             "resources": 11,
             "selectable": true,
             "setting": "City Dweller",
@@ -3956,7 +4534,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Guard Captain",
             "physicalPool": 0,
-            "requirements": "Knight, Captain or any sergeant",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Professional Soldier->Captain",
+                "Man->Villager->Village Sergeant",
+                "Man->Villager->Corrupt Sergeant",
+                "Man->Professional Soldier->Sergeant"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -4013,7 +4600,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Journeyman",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Apprentice",
+                "Man->Nomad->Apprentice",
+                "Man->Professional Soldier->Apprentice",
+                "Man->Villager->Apprentice"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -4033,7 +4627,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Engraver",
             "physicalPool": 1,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -4053,7 +4653,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Saddler",
             "physicalPool": 0,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "City Dweller",
@@ -4072,7 +4678,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Armorer",
             "physicalPool": 0,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "City Dweller",
@@ -4092,7 +4704,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Plumber",
             "physicalPool": 0,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "City Dweller",
@@ -4112,7 +4730,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Locksmith",
             "physicalPool": 0,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 13,
             "selectable": true,
             "setting": "City Dweller",
@@ -4132,7 +4756,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Jeweler",
             "physicalPool": 0,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "City Dweller",
@@ -4152,7 +4782,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Gaol Warden",
             "physicalPool": 0,
-            "requirements": "Born Noble, Merchant, Sergeant, Man-at-Arms or Judge",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Born Noble",
+                "Man->City Dweller->Merchant",
+                "Man->Villager->Merchant",
+                "Man->Professional Soldier->Sergeant",
+                "Man->Noble Court->Man-at-Arms",
+                "Man->City Dweller->Judge"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -4171,7 +4810,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Gaol Warden",
             "physicalPool": 0,
-            "requirements": "any Guard, Soldier or Templar lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Village Guard",
+                "Man->City Dweller->City Guard",
+                "Man->City Dweller->Guard Captain",
+                "Man->Professional Soldier->1*ANY",
+                "Man->Religious->1*ANY"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -4190,7 +4837,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Advocate",
             "physicalPool": 0,
-            "requirements": "Student or Young Lady",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "City Dweller",
@@ -4210,7 +4865,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Doctor",
             "physicalPool": 0,
-            "requirements": "Student or Young Lady",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "City Dweller",
@@ -4230,7 +4893,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Physician",
             "physicalPool": 0,
-            "requirements": "Midwife, Young Lady or Student",
+            "requirements": {
+              "OR": [
+                "Man->Peasant->Midwife",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -4249,7 +4921,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Hospital Warden",
             "physicalPool": 0,
-            "requirements": "Any Noble, Noble Court or Religious lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Noble,->1*ANY",
+                "Man->Noble Court->1*ANY",
+                "Man->Religious->1*ANY"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "City Dweller",
@@ -4269,7 +4947,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Banker",
             "physicalPool": 0,
-            "requirements": "Merchant, Moneylender, Steward, Accountant or Chamberlain",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Merchant",
+                "Man->Villager->Merchant",
+                "Man->City Dweller->Moneylender",
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->City Dweller->Accountant",
+                "Man->Noble Court->Chamberlain"
+              ]
+            },
             "resources": 60,
             "selectable": true,
             "setting": "City Dweller",
@@ -4289,7 +4977,25 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Merchant",
             "physicalPool": 0,
-            "requirements": "Master Craftsman, Master of Horses, Master of Hounds, Moneylender, Steward, Jeweler, Saddler, Armorer, Cobbler, Courtier or Chamberlain",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Master Craftsman",
+                "Man->Villager->Master Craftsman",
+                "Man->Noble Court->Master of Horses",
+                "Man->Noble Court->Master of Hounds",
+                "Man->City Dweller->Moneylender",
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->City Dweller->Jeweler",
+                "Man->City Dweller->Saddler",
+                "Man->City Dweller->Armorer",
+                "Man->Noble Court->Armorer",
+                "Man->Professional Soldier->Armorer",
+                "Man->Villager->Cobbler",
+                "Man->Noble Court->Courtier",
+                "Man->Noble Court->Chamberlain"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "City Dweller",
@@ -4308,7 +5014,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Sorcerer",
             "physicalPool": 1,
-            "requirements": "Neophyte Sorcerer, Arcane Devotee or Weather Witch",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer",
+                "Man->Noble->Arcane Devotee",
+                "Man->Seafaring->Weather Witch"
+              ]
+            },
             "resources": 32,
             "selectable": true,
             "setting": "City Dweller",
@@ -4327,7 +5040,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Temple Priest",
             "physicalPool": 0,
-            "requirements": "Religious Acolyte, Temple Acolyte or Military Order",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Religious Acolyte",
+                "Man->City Dweller->Temple Acolyte",
+                "Man->Religious->Temple Acolyte",
+                "Man->Religious->Military Order"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "City Dweller",
@@ -4347,7 +5067,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Judge",
             "physicalPool": 0,
-            "requirements": "Town Official, Tax Collector, Bailiff or Justiciar",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Town Official",
+                "Man->City Dweller->Tax Collector",
+                "Man->Villager->Tax Collector",
+                "Man->Noble Court->Bailiff",
+                "Man->Noble Court->Justiciar"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "City Dweller",
@@ -4367,7 +5095,25 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Municipal Minister",
             "physicalPool": 0,
-            "requirements": "Town Official, Scholar, Priest, Bishop, Captain, Sea Captain, Artisan, Master Craftsman, Knight, Courtier or Master of Horses",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Town Official",
+                "Man->City Dweller->Scholar",
+                "Man->Religious->Priest",
+                "Man->City Dweller->Bishop",
+                "Man->Religious->Bishop",
+                "Man->Professional Soldier->Captain",
+                "Man->Seafaring->Ship's Captain",
+                "Man->City Dweller->Artisan",
+                "Man->Nomad->Artisan",
+                "Man->City Dweller->Master Craftsman",
+                "Man->Villager->Master Craftsman",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Noble Court->Courtier",
+                "Man->Noble Court->Master of Horses"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "City Dweller",
@@ -4386,7 +5132,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Municipal Minister",
             "physicalPool": 0,
-            "requirements": "Templar, Tax Collector, Knight or Courtier",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Templar",
+                "Man->City Dweller->Tax Collector",
+                "Man->Villager->Tax Collector",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Noble Court->Courtier"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "City Dweller",
@@ -4405,7 +5160,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Artisan",
             "physicalPool": 0,
-            "requirements": "Apprentice Artisan, Engineer or Master Craftsman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Apprentice Artisan",
+                "Man->Professional Soldier->Engineer",
+                "Man->Seafaring->Engineer",
+                "Man->City Dweller->Master Craftsman",
+                "Man->Villager->Master Craftsman"
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "City Dweller",
@@ -4425,7 +5188,28 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master Craftsman",
             "physicalPool": 1,
-            "requirements": "Journeyman and one of the following: Locksmith, Plumber, Engraver, Saddler, Blacksmith, Armorer, Atilliator, Cobbler, Bowyer or Taskmaster",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Locksmith",
+                "Man->City Dweller->Plumber",
+                "Man->City Dweller->Engraver",
+                "Man->City Dweller->Saddler",
+                "Man->City Dweller->Armorer",
+                "Man->Noble Court->Armorer",
+                "Man->Professional Soldier->Armorer",
+                "Man->Noble Court->Atilliator",
+                "Man->Professional Soldier->Atilliator",
+                "Man->Villager->Cobbler",
+                "Man->Villager->Bowyer",
+                "Man->City Dweller->Taskmaster",
+                "Man->Servitude->Taskmaster",
+                "Man->Slave Raider->Taskmaster",
+                "Man->Villager->Taskmaster"
+              ],
+              "AND": [
+                ["Man->City Dweller->Journeyman", "Man->Professional Soldier->Journeyman", "Man->Villager->Journeyman"]
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "City Dweller",
@@ -4445,7 +5229,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Bishop",
             "physicalPool": 0,
-            "requirements": "Archpriest, Canon, Steward, Chamberlain or the Your Grace trait",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Archpriest",
+                "Man->Religious->Canon",
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->Noble Court->Chamberlain",
+                "Trait->Man Lifepath->Your Grace"
+              ]
+            },
             "resources": 60,
             "selectable": true,
             "setting": "City Dweller",
@@ -4465,7 +5258,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Magnate",
             "physicalPool": 0,
-            "requirements": "Merchant or Master of Horses",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Merchant",
+                "Man->Villager->Merchant",
+                "Man->Noble Court->Master of Horses"
+              ]
+            },
             "resources": 75,
             "selectable": true,
             "setting": "City Dweller",
@@ -4485,7 +5284,9 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "City Wife",
             "physicalPool": 0,
-            "requirements": "Players who take the Village Wife lifepath may also choose their husban's lifepath from the Villager setting. The Village Wife may choose from her husband's skills -she gets half of his skill points, rounded down- and she gets half of her husband's Resources.",
+            "requirements": {
+              "TEXT": "Players who take the Village Wife lifepath may also choose their husban's lifepath from the Villager setting. The Village Wife may choose from her husband's skills -she gets half of his skill points, rounded down- and she gets half of her husband's Resources."
+            },
             "resources": 5,
             "selectable": true,
             "setting": "City Dweller",
@@ -4504,7 +5305,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Evangelist",
             "physicalPool": 0,
-            "requirements": "Dilettante, or any summoner or religious lifepath.",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Dilettante",
+                "Man->Religious->1*ANY",
+                "Man->Noble Court->Court Summoner",
+                "Man->College of Magic->Master Summoner",
+                "Man->Outcast->Mad Summoner",
+                "Man->Outcast->Crazy Witch",
+                "Man->Seafaring->Weather Witch"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "City Dweller",
@@ -4532,7 +5343,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Supplicant",
             "physicalPool": 0,
-            "requirements": "Must be second lifepath. May not be taken twice.",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "College of Magic",
@@ -4552,7 +5368,21 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Junior Student",
             "physicalPool": 1,
-            "requirements": "Supplicant, Arcane Devotee, Apt Pupil or Neophyte Sorcerer. May not be taken twice. Coutns as Arcane Devotee and Neophyte Sorcerer for the purposes of other requirements.",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Supplicant",
+                "Man->Noble->Arcane Devotee",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil",
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer"
+              ],
+              "LIMIT": [
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "College of Magic",
@@ -4572,7 +5402,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Senior Student",
             "physicalPool": 0,
-            "requirements": "Junior Student or Sorcerer. May not be taken twice",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Junior Student",
+                "Man->City Dweller->Sorcerer"
+              ],
+              "LIMIT": [
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "College of Magic",
@@ -4592,7 +5430,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Adjunct",
             "physicalPool": 0,
-            "requirements": "Senior Student",
+            "requirements": {
+              "AND": [
+                "Man->College of Magic->Senior Student"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "College of Magic",
@@ -4612,7 +5454,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master Sorcerer",
             "physicalPool": 1,
-            "requirements": "Adjunct or Court Sorcerer",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Adjunct",
+                "Man->Noble Court->Court Sorcerer"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "College of Magic",
@@ -4632,7 +5479,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master Enchanter",
             "physicalPool": 1,
-            "requirements": "Adjunct or Court Enchanter",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Adjunct",
+                "Man->Noble Court->Court Enchanter"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "College of Magic",
@@ -4652,7 +5504,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master Summoner",
             "physicalPool": 1,
-            "requirements": "Adjunct or Court Summoner",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Adjunct",
+                "Man->Noble Court->Court Summoner"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "College of Magic",
@@ -4672,7 +5529,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Researcher",
             "physicalPool": 0,
-            "requirements": "Adjunct or Scholar. May only be taken once",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Adjunct",
+                "Man->City Dweller->Scholar"
+              ],
+              "LIMIT": [
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "College of Magic",
@@ -4692,7 +5557,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Councillor",
             "physicalPool": 0,
-            "requirements": "Master Sorcerer, Master Enchanter or Master Summoner",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Master Sorcerer",
+                "Man->College of Magic->Master Enchanter",
+                "Man->College of Magic->Master Summoner"
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "College of Magic",
@@ -4712,7 +5583,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Headmaster",
             "physicalPool": 0,
-            "requirements": "Councillor",
+            "requirements": {
+              "AND": [
+                "Man->College of Magic->Councillor"
+              ]
+            },
             "resources": 50,
             "selectable": true,
             "setting": "College of Magic",
@@ -4797,7 +5672,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Spy",
             "physicalPool": 0,
-            "requirements": "Cultist or Insurrectionist",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Cultist",
+                "Man->Outcast->Insurrectionist"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Death Cult",
@@ -4817,7 +5697,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Factotum",
             "physicalPool": 0,
-            "requirements": "Spy, Tomb Guard, Deranged, Evangelist or Insurrectionist",
+            "requirements": {
+              "OR": [
+                "Man->Death Cult->Spy",
+                "Man->Professional Soldier->Spy",
+                "Man->Death Cult->Tomb Guard",
+                "Man->Outcast->Deranged",
+                "Man->City Dweller->Evangelist",
+                "Man->Outcast->Insurrectionist"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Death Cult",
@@ -4837,7 +5726,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Tomb Guard",
             "physicalPool": 1,
-            "requirements": "Cultist, Gravedigger, Freebooter or any soldier lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Cultist",
+                "Man->Outcast->Gravedigger",
+                "Man->Outcast->Freebooter",
+                "Man->Professional Soldier->1*ANY"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Death Cult",
@@ -4857,7 +5753,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Death Priest",
             "physicalPool": 0,
-            "requirements": "Venal Priest or Heretic Priest",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Venal Priest",
+                "Man->Outcast->Heretic Priest"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Death Cult",
@@ -4877,7 +5778,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Death Artist",
             "physicalPool": 0,
-            "requirements": "Evil Necromancer, Apt Pupil or Rogue Wizard",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Evil Necromancer",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil",
+                "Man->Outcast->Rogue Wizard"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Death Cult",
@@ -4921,7 +5831,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Taught by the Ghosts of Long Dead Gods",
             "physicalPool": 0,
-            "requirements": "Born Doomed",
+            "requirements": {
+              "OR": [
+                "Man->Lost Atlantean->Born Doomed"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -4941,7 +5855,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Wanderer",
             "physicalPool": 1,
-            "requirements": "Taught by the Ghosts of Long Dead Gods",
+            "requirements": {
+              "OR": [
+                "Man->Lost Atlantean->Taught by the Ghosts of Long Dead Gods"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -4961,7 +5879,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Grave Robber",
             "physicalPool": 0,
-            "requirements": "Taught by the Ghosts of Long Dead Gods",
+            "requirements": {
+              "OR": [
+                "Man->Lost Atlantean->Taught by the Ghosts of Long Dead Gods"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -4981,7 +5903,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Flesh Eater",
             "physicalPool": 0,
-            "requirements": "Taught by the Ghosts of Long Dead Gods",
+            "requirements": {
+              "OR": [
+                "Man->Lost Atlantean->Taught by the Ghosts of Long Dead Gods"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -5001,7 +5927,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Scholar of Ancients",
             "physicalPool": 0,
-            "requirements": "Grave Robber",
+            "requirements": {
+              "OR": [
+                "Man->Death Cult->Grave Robber",
+                "Man->Lost Atlantean->Grave Robber"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -5021,7 +5952,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Reaver",
             "physicalPool": 1,
-            "requirements": "Flesh Eater",
+            "requirements": {
+              "AND": [
+                "Man->Lost Atlantean->Flesh Eater"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -5041,7 +5976,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Warlord",
             "physicalPool": 1,
-            "requirements": "Reaver",
+            "requirements": {
+              "OR": [
+                "Man->Lost Atlantean->Reaver",
+                "Man->Slave Raider->Reaver"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -5061,7 +6001,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Conqueror",
             "physicalPool": 1,
-            "requirements": "Warlord",
+            "requirements": {
+              "AND": [
+                "Man->Lost Atlantean->Warlord"
+              ]
+            },
             "resources": 100,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -5081,7 +6025,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Hedonist",
             "physicalPool": 0,
-            "requirements": "Conqueror, Warlord or Scholar",
+            "requirements": {
+              "OR": [
+                "Man->Lost Atlantean->Conqueror",
+                "Man->Lost Atlantean->Warlord",
+                "Man->City Dweller->Scholar"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -5101,7 +6051,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Demagogue",
             "physicalPool": 0,
-            "requirements": "Conqueror and Scholar",
+            "requirements": {
+              "AND": [
+                "Man->Lost Atlantean->Conqueror",
+                "Man->City Dweller->Scholar"
+              ]
+            },
             "resources": 50,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -5120,7 +6075,21 @@ var db_stocks = {
             "mentalPool": 2,
             "name": "Demi-god",
             "physicalPool": 2,
-            "requirements": "Demi-God requires all of the lifepaths in the setting.",
+            "requirements": {
+              "AND": [
+                "Man->Lost Atlantean->Born Doomed",
+                "Man->Lost Atlantean->Taught by the Ghosts of Long Dead Gods",
+                "Man->Lost Atlantean->Wanderer",
+                "Man->Lost Atlantean->Grave Robber",
+                "Man->Lost Atlantean->Flesh Eater",
+                "Man->Lost Atlantean->Scholar of Ancients",
+                "Man->Lost Atlantean->Reaver",
+                "Man->Lost Atlantean->Warlord",
+                "Man->Lost Atlantean->Conqueror",
+                "Man->Lost Atlantean->Hedonist",
+                "Man->Lost Atlantean->Demagogue"
+              ]
+            },
             "resources": 200,
             "selectable": true,
             "setting": "Lost Atlantean",
@@ -5167,7 +6136,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Caravan Guard",
             "physicalPool": 1,
-            "requirements": "any Guard or Soldier Setting lifepath, or a Bandit lifepath.",
+            "requirements": {
+              "OR": [
+                "Man->Professional Soldier->1*ANY",
+                "Man->Nomad->Bandit",
+                "Man->Outcast->Bandit",
+                "Man->Nomad->Bandit King",
+                "Man->Outcast->Bandit Lord"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Merchant House",
@@ -5186,7 +6163,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Caravan Outrider",
             "physicalPool": 1,
-            "requirements": "a lifepath with the Ride Skill, or Caravan Guard lifepath.",
+            "requirements": {
+              "OR": [
+                "Skill->Any General->Ride",
+                "Skill->Any General->Horse-wise",
+                "Man->Merchant House->Caravan Guard"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Merchant House",
@@ -5205,7 +6188,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Caravan Master",
             "physicalPool": 0,
-            "requirements": "a lifepath with the Ride Skill, or Caravan Guard lifepath.",
+            "requirements": {
+              "OR": [
+                "Skill->Any General->Ride",
+                "Skill->Any General->Horse-wise",
+                "Man->Merchant House->Caravan Guard"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Merchant House",
@@ -5269,7 +6258,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bastard",
             "physicalPool": 0,
-            "requirements": "If chosen, this path must be the character's second lifepath and may only be taken once",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble",
@@ -5289,7 +6282,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Page",
             "physicalPool": 1,
-            "requirements": "If chosen, this path must be the character's second lifepath and may only be taken once",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble",
@@ -5326,7 +6323,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Squire",
             "physicalPool": 1,
-            "requirements": "Page or any Professional Soldier lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Page",
+                "Man->Noble Court->Page",
+                "Man->Professional Soldier->1*ANY"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble",
@@ -5383,7 +6386,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Player of Games",
             "physicalPool": 0,
-            "requirements": "Lord or Lady",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Lord",
+                "Man->Noble->Lady"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Noble",
@@ -5403,7 +6411,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Young Lady",
             "physicalPool": 0,
-            "requirements": "Young Lady may only be taken as the second or third LP for the character and it may only be taken once",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2/3",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Noble",
@@ -5422,7 +6435,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Knight",
             "physicalPool": 1,
-            "requirements": "Squire or Cavalryman",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Professional Soldier->Cavalryman"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Noble",
@@ -5442,7 +6461,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Lady",
             "physicalPool": 0,
-            "requirements": "Young Lady, Courtier, Knight or City Wife with Magnate or Bishop chosen as the Husband's lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady",
+                "Man->Noble Court->Courtier",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->City Dweller->City Wife"
+              ],
+              "TEXT": "If City Wife is chosen, Magnate or Bishop must be the Husband's lifepath."
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Noble",
@@ -5461,7 +6490,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Lord",
             "physicalPool": 0,
-            "requirements": "Knight or the Your Lordship trait",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Trait->Man Lifepath->Your Lordship"
+              ]
+            },
             "resources": 50,
             "selectable": true,
             "setting": "Noble",
@@ -5480,7 +6515,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Dame",
             "physicalPool": 0,
-            "requirements": "Lady, City Wife with Magnate or Bishop as the husband's LP or the Your Lordship trait",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Lady",
+                "Trait->Man Lifepath->Your Lordship",
+                "Man->City Dweller->City Wife"
+              ],
+              "TEXT": "If City Wife is chosen, Magnate or Bishop must be the Husband's lifepath."
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Noble",
@@ -5499,7 +6541,19 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Baron",
             "physicalPool": 0,
-            "requirements": "Baron requires Knight and the Your Lordship trait; or Magnate, Master of Horses, Steward, Lord, Constable or Justiciar",
+            "requirements": {
+              "OR": [
+                ["Man->Noble->Knight", "Trait->Man Lifepath->Your Lordship"],
+                ["Man->Noble Court->Knight", "Trait->Man Lifepath->Your Lordship"],
+                "Man->City Dweller->Magnate",
+                "Man->Noble Court->Master of Horses",
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->Noble->Lord",
+                "Man->Noble Court->Constable",
+                "Man->Noble Court->Justiciar"
+              ]
+            },
             "resources": 60,
             "selectable": true,
             "setting": "Noble",
@@ -5518,7 +6572,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Viscount",
             "physicalPool": 0,
-            "requirements": "Knight and the Your Eminence trait; or Magnate, Baron, Constable or Justiciar",
+            "requirements": {
+              "OR": [
+                ["Man->Noble->Knight", "Trait->Man Lifepath->Your Eminence"],
+                ["Man->Noble Court->Knight", "Trait->Man Lifepath->Your Eminence"],
+                "Man->City Dweller->Magnate",
+                "Man->Noble Court->Constable",
+                "Man->Noble Court->Justiciar",
+                "Man->Noble->Baron"
+              ]
+            },
             "resources": 65,
             "selectable": true,
             "setting": "Noble",
@@ -5537,7 +6600,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Count",
             "physicalPool": 0,
-            "requirements": "Knight and the Your Eminence trait; or Magnate, Constable or Justiciar",
+            "requirements": {
+              "OR": [
+                ["Man->Noble->Knight", "Trait->Man Lifepath->Your Eminence"],
+                ["Man->Noble Court->Knight", "Trait->Man Lifepath->Your Eminence"],
+                "Man->City Dweller->Magnate",
+                "Man->Noble Court->Constable",
+                "Man->Noble Court->Justiciar"
+              ]
+            },
             "resources": 70,
             "selectable": true,
             "setting": "Noble",
@@ -5556,7 +6627,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Duke",
             "physicalPool": 0,
-            "requirements": "Count or Knight and the Your Grace trait",
+            "requirements": {
+              "OR": [
+                ["Man->Noble->Knight", "Trait->Man Lifepath->Your Grace"],
+                ["Man->Noble Court->Knight", "Trait->Man Lifepath->Your Grace"],
+                ["Man->Noble->Count", "Trait->Man Lifepath->Your Grace"]
+              ]
+            },
             "resources": 90,
             "selectable": true,
             "setting": "Noble",
@@ -5575,7 +6652,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Noble Prince",
             "physicalPool": 0,
-            "requirements": "Duke or Knight and the Your Grace trait",
+            "requirements": {
+              "OR": [
+                ["Man->Noble->Knight", "Trait->Man Lifepath->Your Grace"],
+                ["Man->Noble Court->Knight", "Trait->Man Lifepath->Your Grace"],
+                ["Man->Noble->Duke", "Trait->Man Lifepath->Your Grace"]
+              ]
+            },
             "resources": 100,
             "selectable": true,
             "setting": "Noble",
@@ -5594,7 +6677,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Prince of Blood",
             "physicalPool": 0,
-            "requirements": "the Your Grace trait and express permission from the GM and all players in the current game. Players may take the Prince of the Blood lifepath for any appropriate length of time, from 2 years to 20. Subject to GM approval, of course.",
+            "requirements": {
+              "AND": [
+                "Trait->Man Lifepath->Your Grace"
+              ],
+              "TEXT": "Requires express permission from the GM and all players in the current game. Players may take the Prince of the Blood lifepath for any appropriate length of time, from 2 years to 20. Subject to GM approval, of course."
+            },
             "resources": 60,
             "selectable": true,
             "setting": "Noble",
@@ -5621,7 +6709,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Apt Pupil",
             "physicalPool": 0,
-            "requirements": "Must be character's second or third lifepath. It may not be taken twice. For the purposes of other requirements, this lifepath counts as Neophyte Sorcerer.",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2/3",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Noble Court",
@@ -5679,7 +6772,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Court Artist",
             "physicalPool": 0,
-            "requirements": "Court Jester, Painter, Thinker, Scholar or Sculptor",
+            "requirements": {
+              "OR": [
+                "Man->Noble Court->Court Jester",
+                "Man->City Dweller->Painter",
+                "Man->Outcast->Thinker",
+                "Man->City Dweller->Scholar",
+                "Man->City Dweller->Sculptor"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble Court",
@@ -5831,7 +6932,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Page",
             "physicalPool": 1,
-            "requirements": "If chosen, this path must be the character's second lifepath and may only be taken once",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble Court",
@@ -5850,7 +6956,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Man-at-Arms",
             "physicalPool": 1,
-            "requirements": "Page, Squire or any Professional Soldier lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Page",
+                "Man->Noble Court->Page",
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Professional Soldier->1*ANY"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Noble Court",
@@ -5943,7 +7057,18 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Squire",
             "physicalPool": 1,
-            "requirements": "Corrupt Sergeant, Village Sergeant, Sergeant, Veteran, Page or Man-at-Arms",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Corrupt Sergeant",
+                "Man->Villager->Village Sergeant",
+                "Man->Professional Soldier->Sergeant",
+                "Man->Nomad->Veteran",
+                "Man->Professional Soldier->Veteran",
+                "Man->Noble->Page",
+                "Man->Noble Court->Page",
+                "Man->Noble Court->Man-at-Arms"
+              ]
+            },
             "resources": 14,
             "selectable": true,
             "setting": "Noble Court",
@@ -5963,7 +7088,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Young Lady",
             "physicalPool": 0,
-            "requirements": "Young Lady may only be taken as the second or third lifepath, and it may only be taken once",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2/3",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Noble Court",
@@ -5982,7 +7112,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Knight",
             "physicalPool": 1,
-            "requirements": "Squire or Cavalryman",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Professional Soldier->Cavalryman"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Noble Court",
@@ -6021,7 +7157,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Horse Trainer",
             "physicalPool": 1,
-            "requirements": "Groom",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Groom",
+                "Man->Noble Court->Groom",
+                "Man->Villager->Groom"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Noble Court",
@@ -6041,7 +7183,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Hairdresser",
             "physicalPool": 0,
-            "requirements": "Servant",
+            "requirements": {
+              "OR": [
+                "Man->Noble Court->Servant",
+                "Man->Servitude->Servant"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Noble Court",
@@ -6061,7 +7208,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Royal Spymaster",
             "physicalPool": 0,
-            "requirements": "Baron, Viscount, Count, Duke, Noble Prince, or Advisor to the Court",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Baron",
+                "Man->Noble->Viscount",
+                "Man->Noble->Count",
+                "Man->Noble->Duke",
+                "Man->Noble->Noble Prince",
+                "Man->Noble Court->Advisor to the Court"
+              ]
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Noble Court",
@@ -6081,7 +7237,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Governess",
             "physicalPool": 0,
-            "requirements": "Nurse, Midwife, Lady or any Wife lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Noble Court->Nurse",
+                "Man->Peasant->Midwife",
+                "Man->Noble->Lady",
+                "Man->Villager->Village Wife",
+                "Man->Peasant->Country Wife",
+                "Man->City Dweller->City Wife"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Noble Court",
@@ -6101,7 +7266,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Chaplain",
             "physicalPool": 0,
-            "requirements": "Military Order or any priest lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Military Order",
+                "Man->Religious->Priest",
+                "Man->City Dweller->Temple Priest"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Noble Court",
@@ -6120,7 +7291,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Court Sorcerer",
             "physicalPool": 0,
-            "requirements": "Arcane Devotee, Rogue Wizard or Sorcerer",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Arcane Devotee",
+                "Man->Outcast->Rogue Wizard",
+                "Man->City Dweller->Sorcerer"
+              ]
+            },
             "resources": 32,
             "selectable": true,
             "setting": "Noble Court",
@@ -6140,7 +7317,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Court Lawyer",
             "physicalPool": 0,
-            "requirements": "Student or Advocate",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->City Dweller->Advocate"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Noble Court",
@@ -6160,7 +7344,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Court Doctor",
             "physicalPool": 0,
-            "requirements": "Student, Itinerant Monk, Cloistered Nun or Priest",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Religious->Itinerant Monk",
+                "Man->Religious->Cloistered Nun",
+                "Man->Religious->Priest"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Noble Court",
@@ -6180,7 +7373,18 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Chronicler",
             "physicalPool": 0,
-            "requirements": "Student, Custodian, Interpreter, Archivist or Young Lady",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Religious->Custodian",
+                "Man->Religious->Interpreter",
+                "Man->Religious->Archivist",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble Court",
@@ -6200,7 +7404,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Armorer",
             "physicalPool": 1,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Noble Court",
@@ -6220,7 +7430,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Atilliator",
             "physicalPool": 1,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Noble Court",
@@ -6240,7 +7456,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Court Priest",
             "physicalPool": 0,
-            "requirements": "Chaplain, Priest or Religious Acolyte",
+            "requirements": {
+              "OR": [
+                "Man->Noble Court->Chaplain",
+                "Man->Professional Soldier->Chaplain",
+                "Man->Religious->Priest",
+                "Man->Noble->Religious Acolyte"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Noble Court",
@@ -6260,7 +7483,20 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Steward",
             "physicalPool": 0,
-            "requirements": "Town Official, Municipal Minister, Judge, Court Lawyer, Court Doctor, Governess, Young Lady, Magnate or Lord",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Town Official",
+                "Man->City Dweller->Municipal Minister",
+                "Man->City Dweller->Judge",
+                "Man->Noble Court->Court Lawyer",
+                "Man->Noble Court->Court Doctor",
+                "Man->Noble Court->Governess",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady",
+                "Man->City Dweller->Magnate",
+                "Man->Noble->Lord"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble Court",
@@ -6279,7 +7515,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Master of Horses",
             "physicalPool": 0,
-            "requirements": "Captain, Baron, Saddler, Merchant or Magnate",
+            "requirements": {
+              "OR": [
+                "Man->Professional Soldier->Captain",
+                "Man->Noble->Baron",
+                "Man->City Dweller->Saddler",
+                "Man->City Dweller->Merchant",
+                "Man->Villager->Merchant",
+                "Man->City Dweller->Magnate"
+              ]
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Noble Court",
@@ -6299,7 +7544,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Master of Hounds",
             "physicalPool": 0,
-            "requirements": "Captain, Baron, Saddler, Merchant or Magnate",
+            "requirements": {
+              "OR": [
+                "Man->Professional Soldier->Captain",
+                "Man->Noble->Baron",
+                "Man->City Dweller->Saddler",
+                "Man->City Dweller->Merchant",
+                "Man->Villager->Merchant",
+                "Man->City Dweller->Magnate"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Noble Court",
@@ -6319,7 +7573,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master of Messenger Pigeons",
             "physicalPool": 0,
-            "requirements": "Scribe, Student, Falconer or Quartermaster.",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Scribe",
+                "Man->Religious->Scribe",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Noble Court->Falconer",
+                "Man->Professional Soldier->Quartermaster"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble Court",
@@ -6339,7 +7603,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Hostage",
             "physicalPool": 0,
-            "requirements": "any lifepath from the Noble setting. Hostage gives resources points equal to half ot the character's previous lifepath.",
+            "requirements": {
+              "OR": [
+                "Man->Noble->1*ANY"
+              ],
+              "TEXT": "Hostage gives resources points equal to half ot the character's previous lifepath."
+            },
             "resources": "*",
             "selectable": true,
             "setting": "Noble Court",
@@ -6359,7 +7628,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bailiff",
             "physicalPool": 0,
-            "requirements": "Knight or the Your Lordship trait",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Trait->Man Lifepath->Your Lordship"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble Court",
@@ -6379,7 +7654,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Justiciar",
             "physicalPool": 0,
-            "requirements": "Judge, Captain, Bailiff or Lord",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Judge",
+                "Man->Professional Soldier->Captain",
+                "Man->Noble Court->Bailiff",
+                "Man->Noble->Lord"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble Court",
@@ -6399,7 +7681,19 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Coroner",
             "physicalPool": 0,
-            "requirements": "Steward, Town Official, Municipal Minister, Judge, Court Lawyer, Court Doctor, Magnate or Lord",
+            "requirements": {
+              "OR": [
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->Villager->Town Official",
+                "Man->City Dweller->Municipal Minister",
+                "Man->City Dweller->Judge",
+                "Man->Noble Court->Court Lawyer",
+                "Man->Noble Court->Court Doctor",
+                "Man->City Dweller->Magnate",
+                "Man->Noble->Lord"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Noble Court",
@@ -6419,7 +7713,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Constable",
             "physicalPool": 0,
-            "requirements": "Captain, Baron, Viscount, Count, Duke or Prince",
+            "requirements": {
+              "OR": [
+                "Man->Professional Soldier->Captain",
+                "Man->Noble->Baron",
+                "Man->Noble->Viscount",
+                "Man->Noble->Count",
+                "Man->Noble->Duke"
+              ]
+            },
             "resources": 50,
             "selectable": true,
             "setting": "Noble Court",
@@ -6439,7 +7741,24 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Treasurer",
             "physicalPool": 0,
-            "requirements": "Steward, Town Official, Municipal Minister, Judge, Court Lawyer, Court Doctor, Magnate, Baron, Bishop, Viscount, Count or Duke",
+            "requirements": {
+              "OR": [
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->Villager->Town Official",
+                "Man->City Dweller->Municipal Minister",
+                "Man->City Dweller->Judge",
+                "Man->Noble Court->Court Lawyer",
+                "Man->Noble Court->Court Doctor",
+                "Man->City Dweller->Magnate",
+                "Man->Noble->Baron",
+                "Man->City Dweller->Bishop",
+                "Man->Religious->Bishop",
+                "Man->Noble->Viscount",
+                "Man->Noble->Count",
+                "Man->Noble->Duke"
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "Noble Court",
@@ -6459,7 +7778,25 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Chamberlain",
             "physicalPool": 0,
-            "requirements": "Scholar, Steward, Town Official, Municipal Minister, Judge, Court Lawyer, Court Doctor, Magnate, Baron, Bishop, Viscount, Count or Duke",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Scholar",
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->Villager->Town Official",
+                "Man->City Dweller->Municipal Minister",
+                "Man->City Dweller->Judge",
+                "Man->Noble Court->Court Lawyer",
+                "Man->Noble Court->Court Doctor",
+                "Man->City Dweller->Magnate",
+                "Man->Noble->Baron",
+                "Man->City Dweller->Bishop",
+                "Man->Religious->Bishop",
+                "Man->Noble->Viscount",
+                "Man->Noble->Count",
+                "Man->Noble->Duke"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Noble Court",
@@ -6478,7 +7815,29 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Advisor to the Court",
             "physicalPool": 0,
-            "requirements": "Thinker, Captain, Sea Captain, Magnate, Master Craftsman, Artisan, Bishop, Rogue Wizard, Mad Summoner, Heretic Priest, Dame, Baron, Viscount, Count, Duke or Prince. This lifepath can be one to three years long, player chooses tenure. Character gains 1 general skill point and 10 resource points per year. The Stat and trait points are earned once.",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Thinker",
+                "Man->Professional Soldier->Captain",
+                "Man->City Dweller->Magnate",
+                "Man->City Dweller->Master Craftsman",
+                "Man->Villager->Master Craftsman",
+                "Man->City Dweller->Artisan",
+                "Man->Nomad->Artisan",
+                "Man->City Dweller->Bishop",
+                "Man->Religious->Bishop",
+                "Man->Outcast->Rogue Wizard",
+                "Man->Outcast->Mad Summoner",
+                "Man->Outcast->Heretic Priest",
+                "Man->Noble->Dame",
+                "Man->Noble->Baron",
+                "Man->Noble->Viscount", "Man->Noble->Count",
+                "Man->Noble->Duke",
+                "Man->Noble->Prince of Blood",
+                "Man->Noble->Noble Prince"
+              ],
+              "TEXT": "This lifepath can be one to three years long, player chooses tenure. Character gains 1 general skill point and 10 resource points per year. The Stat and trait points are earned once."
+            },
             "resources": "10/yr",
             "selectable": true,
             "setting": "Noble Court",
@@ -6496,7 +7855,18 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Court Enchanter",
             "physicalPool": 0,
-            "requirements": "Senior Student, Neophyte Sorcerer, Apt Pupil or Wizard's Apprentice",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Senior Student",
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil",
+                "Man->Villager->Wizard's Apprentice"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Noble Court",
@@ -6516,7 +7886,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Court Summoner",
             "physicalPool": 0,
-            "requirements": "Senior Student, Mad Summoner, Apt Pupil or Wizard's Apprentice",
+            "requirements": {
+              "OR": [
+                "Man->College of Magic->Senior Student",
+                "Man->Outcast->Mad Summoner",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil",
+                "Man->Villager->Wizard's Apprentice"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Noble Court",
@@ -6693,7 +8073,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Pathfinder",
             "physicalPool": 0,
-            "requirements": "Forager or Hunter.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Forager",
+                "Man->Nomad->Hunter",
+                "Man->Peasant->Hunter"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Nomad",
@@ -6712,7 +8098,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Guide",
             "physicalPool": 0,
-            "requirements": "Cannot be second lifepath.",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Nomad",
@@ -6732,7 +8122,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Peddler",
             "physicalPool": 0,
-            "requirements": "Apprentice, Forager, or Herder.",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Apprentice",
+                "Man->Nomad->Apprentice",
+                "Man->Professional Soldier->Apprentice",
+                "Man->Villager->Apprentice",
+                "Man->Nomad->Forager",
+                "Man->Nomad->Herder"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Nomad",
@@ -6752,7 +8151,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Herd Overseer",
             "physicalPool": 0,
-            "requirements": "Herder lifepath.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Herder"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Nomad",
@@ -6772,7 +8175,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Artisan",
             "physicalPool": 0,
-            "requirements": "Apprentice.",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Apprentice",
+                "Man->Nomad->Apprentice",
+                "Man->Professional Soldier->Apprentice",
+                "Man->Villager->Apprentice"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Nomad",
@@ -6792,7 +8202,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Warrior",
             "physicalPool": 1,
-            "requirements": "Hunter, Herder, or Scavenger.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Hunter",
+                "Man->Peasant->Hunter",
+                "Man->Nomad->Herder",
+                "Man->Nomad->Scavenger",
+                "Man->Outcast->Scavenger"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Nomad",
@@ -6812,7 +8230,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Performer",
             "physicalPool": 0,
-            "requirements": "Cannot be second lifepath.",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Nomad",
@@ -6832,7 +8254,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Storyteller",
             "physicalPool": 0,
-            "requirements": "any Performer, Veteran, or Elder.",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Performer",
+                "Man->Nomad->Performer",
+                "Man->Nomad->Veteran",
+                "Man->Professional Soldier->Veteran",
+                "Man->Nomad->Elder",
+                "Man->Peasant->Elder"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Nomad",
@@ -6852,7 +8283,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Tribal Wife",
             "physicalPool": 1,
-            "requirements": "Cannot be second lifepath. Choose the husband's lifepath from this setting. The character receives half of his skill and resource points (rounded down), and may purchase from his skill list.",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ],
+              "TEXT": "Choose the husband's lifepath from this setting. The character receives half of his skill and resource points (rounded down), and may purchase from his skill list."
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Nomad",
@@ -6872,7 +8308,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Healer",
             "physicalPool": 0,
-            "requirements": "Herder, Shaman, or Veteran.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Herder",
+                "Man->Nomad->Shaman",
+                "Man->Nomad->Veteran",
+                "Man->Professional Soldier->Veteran"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Nomad",
@@ -6892,7 +8335,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Trader",
             "physicalPool": 0,
-            "requirements": "Herd Overseer, Artisan, Raider, or Peddler.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Herd Overseer",
+                "Man->City Dweller->Artisan",
+                "Man->Nomad->Artisan",
+                "Man->Nomad->Raider",
+                "Man->Nomad->Peddler",
+                "Man->Peasant->Peddler"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Nomad",
@@ -6911,7 +8363,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Raider",
             "physicalPool": 1,
-            "requirements": "Warrior, Scout, or Trader.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Warrior",
+                "Man->Professional Soldier->Scout",
+                "Man->Nomad->Trader"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Nomad",
@@ -6931,7 +8389,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Veteran",
             "physicalPool": 0,
-            "requirements": "Warrior or Raider.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Warrior",
+                "Man->Nomad->Raider"
+              ]
+            },
             "resources": 14,
             "selectable": true,
             "setting": "Nomad",
@@ -6951,7 +8414,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Shaman",
             "physicalPool": 0,
-            "requirements": "any Templar lifepath or Strange.",
+            "requirements": {
+              "OR": [
+                "Man->Religious->1*ANY",
+                "Man->Nomad->Strange"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Nomad",
@@ -6971,7 +8439,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Patriarch/Matriarch",
             "physicalPool": 0,
-            "requirements": "Herd Overseer, Veteran, or Artisan.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Herd Overseer",
+                "Man->Nomad->Veteran",
+                "Man->Professional Soldier->Veteran",
+                "Man->City Dweller->Artisan",
+                "Man->Nomad->Artisan"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Nomad",
@@ -6991,7 +8467,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Warleader",
             "physicalPool": 1,
-            "requirements": "Veteran or Headman.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Veteran",
+                "Man->Professional Soldier->Veteran",
+                "Man->Nomad->Headman"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Nomad",
@@ -7011,7 +8493,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Headman",
             "physicalPool": 0,
-            "requirements": "Trader, Warleader, Matriarch, or Ravager.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Trader",
+                "Man->Nomad->Warleader",
+                "Man->Outcast->Ravager",
+                "Man->Nomad->Patriarch/Matriarch"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Nomad",
@@ -7031,7 +8520,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Elder",
             "physicalPool": 0,
-            "requirements": "Character must be at least 45 yrs old.",
+            "requirements": {
+              "LIMIT": [
+                "YEARS->45"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Nomad",
@@ -7088,7 +8581,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bandit King",
             "physicalPool": 0,
-            "requirements": "any Bandit, Sergant, Knight, or Captain.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Bandit",
+                "Man->Outcast->Bandit",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Professional Soldier->Captain"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Nomad",
@@ -7108,7 +8609,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Monster Hunter",
             "physicalPool": 0,
-            "requirements": "at least one Outcast lifepath.",
+            "requirements": {
+              "AND": [
+                "Man->Outcast->1*ANY"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Nomad",
@@ -7166,7 +8671,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Ruin Explorer",
             "physicalPool": 0,
-            "requirements": "Scavenger lifepath.",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Scavenger",
+                "Man->Outcast->Scavenger"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Nomad",
@@ -7194,7 +8704,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Apt Pupil",
             "physicalPool": 0,
-            "requirements": "Must be character's second or third lifepath. It may not be taken twice. For the purposes of other requirements, this lifepath counts as Neophyte Sorcerer.",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2/3",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Outcast",
@@ -7214,7 +8729,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Urchin",
             "physicalPool": 0,
-            "requirements": "must be the second lifepath chosen and may only be taken once",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Outcast",
@@ -7402,7 +8922,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Fence",
             "physicalPool": 0,
-            "requirements": "Shopkeeper, Barkeep, Moneylender or an additional prior Outcast lifepath or criminal-type lifepath from City Dweller",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Shopkeeper",
+                "Man->Villager->Shopkeeper",
+                "Man->City Dweller->Barkeep",
+                "Man->City Dweller->Moneylender",
+                "Man->Outcast->1*ANY",
+                "Man->City Dweller->Street Thug",
+                "Man->City Dweller->Criminal"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Outcast",
@@ -7516,7 +9046,18 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Whoremonger",
             "physicalPool": 0,
-            "requirements": "Corrupt Sargeant, Venal Priest, Shopkeeper, Barkeep, Moneylender or an additional prior Outcast lifepath or criminal-type lifepath from City Dweller",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Venal Priest",
+                "Man->City Dweller->Shopkeeper",
+                "Man->Villager->Shopkeeper",
+                "Man->City Dweller->Barkeep",
+                "Man->City Dweller->Moneylender",
+                "Man->Outcast->1*ANY",
+                "Man->City Dweller->Street Thug",
+                "Man->City Dweller->Criminal"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Outcast",
@@ -7705,7 +9246,21 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Freebooter",
             "physicalPool": 1,
-            "requirements": "Bandit, Smuggler, Squire, Knight, City Guard, Village Guard, Marine Sailor or any Professional Soldier lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Bandit",
+                "Man->Outcast->Bandit",
+                "Man->Outcast->Smuggler",
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->City Dweller->City Guard",
+                "Man->Villager->Village Guard",
+                "Man->Seafaring->Marine",
+                "Man->Professional Soldier->1*ANY"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Outcast",
@@ -7744,7 +9299,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Strider",
             "physicalPool": 1,
-            "requirements": "Born Noble, Hunter, Trapper, Huntsman or Scout",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Born Noble",
+                "Man->Nomad->Hunter",
+                "Man->Peasant->Hunter",
+                "Man->Peasant->Trapper",
+                "Man->Noble Court->Huntsman",
+                "Man->Professional Soldier->Scout"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Outcast",
@@ -7764,7 +9328,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Strider",
             "physicalPool": 1,
-            "requirements": "Born Noble, Hunter, Trapper, Huntsman or Scout",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Born Noble",
+                "Man->Nomad->Hunter",
+                "Man->Peasant->Hunter",
+                "Man->Peasant->Trapper",
+                "Man->Noble Court->Huntsman",
+                "Man->Professional Soldier->Scout"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Outcast",
@@ -7784,7 +9357,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Mad Summoner",
             "physicalPool": 0,
-            "requirements": "Cultist, Augur, Neophyte Sorcerer or Arcane Devotee",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Cultist",
+                "Man->Peasant->Augur",
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer",
+                "Man->Noble->Arcane Devotee"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Outcast",
@@ -7804,7 +9385,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Rogue Wizard",
             "physicalPool": 1,
-            "requirements": "Cultist, Augur, Neophyte Sorcerer or Arcane Devotee",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Cultist",
+                "Man->Peasant->Augur",
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer",
+                "Man->Noble->Arcane Devotee"
+              ]
+            },
             "resources": 24,
             "selectable": true,
             "setting": "Outcast",
@@ -7824,7 +9413,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Crazy Witch",
             "physicalPool": 0,
-            "requirements": "Weather Witch, Young Lady, Augur or Midwife",
+            "requirements": {
+              "OR": [
+                "Man->Seafaring->Weather Witch",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady",
+                "Man->Peasant->Augur",
+                "Man->Peasant->Midwife"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Outcast",
@@ -7844,7 +9441,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Heretic Priest",
             "physicalPool": 0,
-            "requirements": "Acolyte, Cultist, Apostate, Theologian, Venal Priest, Interpreter or Archivist",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Acolyte",
+                "Man->Villager->Acolyte",
+                "Man->Outcast->Cultist",
+                "Man->Outcast->Apostate",
+                "Man->Religious->Theologian",
+                "Man->Villager->Venal Priest", "Man->Religious->Interpreter",
+                "Man->Religious->Archivist"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Outcast",
@@ -7864,7 +9471,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Thinker",
             "physicalPool": 0,
-            "requirements": "Thinker can only be taken if the character's starting age will be 36 years or older",
+            "requirements": {
+              "LIMIT": [
+                "YEARS->36"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Outcast",
@@ -7902,7 +9513,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Defiler",
             "physicalPool": 1,
-            "requirements": "Neophyte Sorcerer",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer"
+              ]
+            },
             "resources": 32,
             "selectable": true,
             "setting": "Outcast",
@@ -7922,7 +9538,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Preserver",
             "physicalPool": 1,
-            "requirements": "Neophyte Sorcerer",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer"
+              ]
+            },
             "resources": 28,
             "selectable": true,
             "setting": "Outcast",
@@ -7960,7 +9581,6 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Oasis Witch",
             "physicalPool": 0,
-            "requirements": "Qualifies for Crazy Witch",
             "resources": 20,
             "selectable": true,
             "setting": "Outcast",
@@ -7999,7 +9619,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Druid",
             "physicalPool": 0,
-            "requirements": "Requires Druidic Initiate.",
+            "requirements": {
+              "AND": [
+                "Man->Outcast->Druid Initiate"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Outcast",
@@ -8019,7 +9643,18 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bandit Lord",
             "physicalPool": 0,
-            "requirements": "Bandit, Freebooter, Ravager, or any Sergeant/Knight/Captain lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Bandit",
+                "Man->Outcast->Bandit",
+                "Man->Outcast->Freebooter",
+                "Man->Outcast->Ravager",
+                "Man->Professional Soldier->Sergeant",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Professional Soldier->Captain"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Outcast",
@@ -8058,7 +9693,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Accepted by the Wastes",
             "physicalPool": 1,
-            "requirements": "Lady",
+            "requirements": {
+              "AND": [
+                "Man->Noble->Lady"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Outcast",
@@ -8078,7 +9717,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Monster Hunter",
             "physicalPool": 0,
-            "requirements": "Hunter, Knight, Champion, or any professional soldier lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Nomad->Hunter",
+                "Man->Peasant->Hunter",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Servitude->Champion",
+                "Man->Professional Soldier->1*ANY"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Outcast",
@@ -8098,7 +9746,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Ravager",
             "physicalPool": 0,
-            "requirements": "Defiler",
+            "requirements": {
+              "AND": [
+                "Man->Outcast->Defiler"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Outcast",
@@ -8118,7 +9770,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Bonecaster",
             "physicalPool": 1,
-            "requirements": "Rogue Wizard, Shaman, or Apt Pupil",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Rogue Wizard",
+                "Man->Nomad->Shaman",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Outcast",
@@ -8138,7 +9799,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Demented Inventor",
             "physicalPool": 0,
-            "requirements": "Rogue Wizard, Apt Pupil or Wizard's Apprentice",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Rogue Wizard",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil",
+                "Man->Villager->Wizard's Apprentice"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Outcast",
@@ -8158,7 +9828,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Evil Necromancer",
             "physicalPool": 1,
-            "requirements": "Coroner, Death Cultist, Cultist or Apt Pupil",
+            "requirements": {
+              "OR": [
+                "Man->Noble Court->Coroner",
+                "Man->Death Cult->Death Cultist",
+                "Man->Outcast->Cultist",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Outcast",
@@ -8221,7 +9901,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Farmer",
             "physicalPool": 1,
-            "requirements": "May not be the character's second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Peasant",
@@ -8241,7 +9925,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Head of Household",
             "physicalPool": 0,
-            "requirements": "Any female gender-specific lifepath (Lady, for example), Farmer or Itinerant Priest",
+            "requirements": {
+              "OR": [
+                "Men->Peasant->Farmer",
+                "Men->Peasant->Itinerant Priest"
+              ],
+              "TEXT": "Otherwise requires a female lifepath."
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Peasant",
@@ -8467,7 +10157,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Elder",
             "physicalPool": 0,
-            "requirements": "The character must have at least four LPs and start the game over 50 years old",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*1/2/3/4",
+                "YEARS->50"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Peasant",
@@ -8487,7 +10182,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Augur",
             "physicalPool": 0,
-            "requirements": "Midwife, Country Wife or must be female and character has no more than three lifepaths total",
+            "requirements": {
+              "OR": [
+                "Men->Peasant->Midwife",
+                "Men->Peasant->Country Wife"
+              ],
+              "TEXT": "Otherwise must be female and no more than three lifepaths."
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Peasant",
@@ -8507,7 +10208,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Itinerant Priest",
             "physicalPool": 0,
-            "requirements": "any Acolyte lp from any setting",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Acolyte",
+                "Men->Villager->Failed Acolyte",
+                "Men->City Dweller->Temple Acolyte",
+                "Men->Noble->Religious Acolyte",
+                "Men->Religious->Temple Acolyte",
+                "Men->Death Cult->Religious Acolyte"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Peasant",
@@ -8527,7 +10237,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Recluse Wizard",
             "physicalPool": 0,
-            "requirements": "a previous lifepath that contains the Sorcery skill",
+            "requirements": {
+              "AND": [
+                "Skill->Men Sorcerous->Sorcery"
+              ]
+            },
             "resources": 28,
             "selectable": true,
             "setting": "Peasant",
@@ -8547,7 +10261,9 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Country Wife",
             "physicalPool": 1,
-            "requirements": "A player who takes the Country Wife lifepath may also choose her husband's lifepath from the Peasant setting and may choose from his skills. She gets half of his skill points, rounded down. She also recieves half of her husband's resource points.",
+            "requirements": {
+              "TEXT": "A player who takes the Country Wife lifepath may also choose her husband's lifepath from the Peasant setting and may choose from his skills. She gets half of his skill points,rounded down. She also recieves half of her husband's resource points."
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Peasant",
@@ -8566,7 +10282,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Mystic",
             "physicalPool": 0,
-            "requirements": "Augur, Thinker, or Elder",
+            "requirements": {
+              "OR": [
+                "Men->Peasant->Augur",
+                "Men->Outcast->Crazy Witch",
+                "Men->Peasant->Elder"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Peasant",
@@ -8586,7 +10308,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Speaker of Names",
             "physicalPool": 0,
-            "requirements": "Augur, Crazy Witch, Neophyte Sorcerer or Elder",
+            "requirements": {
+              "OR": [
+                "Men->Peasant->Augur",
+                "Men->Outcast->Crazy Witch",
+                "Men->City Dweller->Neophyte Sorcerer",
+                "Men->Outcast->Neophyte Sorcerer",
+                "Men->Villager->Wizard's Apprentice",
+                "Men->Peasant->Elder"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Peasant",
@@ -8614,7 +10345,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Apt Pupil",
             "physicalPool": 0,
-            "requirements": "Must be character's second or third lifepath. It may not be taken twice. For the purposes of other requirements, this lifepath counts as Neophyte Sorcerer.",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2/3",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8818,7 +10554,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sergeant",
             "physicalPool": 0,
-            "requirements": "Squire, Village Guard, City Guard or Foot Soldier",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Villager->Village Guard",
+                "Man->City Dweller->City Guard",
+                "Man->Professional Soldier->Foot Soldier"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8837,7 +10581,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sergeant",
             "physicalPool": 0,
-            "requirements": "Templar, Squire, Village Guard, City Guard or Foot Soldier",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Templar",
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Villager->Village Guard",
+                "Man->City Dweller->City Guard",
+                "Man->Professional Soldier->Foot Soldier"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8856,7 +10609,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Spy",
             "physicalPool": 0,
-            "requirements": "Requires a related lifepath such as desperate killer, urchin or something similar.",
+            "requirements": {
+              "OR": [
+                "Man->Outcast->Desperate Killer",
+                "Man->City Dweller->Urchin",
+                "Man->Outcast->Urchin"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8876,7 +10635,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Veteran",
             "physicalPool": 0,
-            "requirements": "Sergeant, Sergeant-at-Arms, Knight, Military Order or Freebooter",
+            "requirements": {
+              "OR": [
+                "Man->Professional Soldier->Sergeant",
+                "Man->City Dweller->Sergeant-at-Arms",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Religious->Military Order",
+                "Man->Outcast->Freebooter"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8896,7 +10664,19 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Cavalryman",
             "physicalPool": 1,
-            "requirements": "a prior lifepath having to do with horses -Knight, Squire, Groom, Master of Horses, etc",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->City Dweller->Groom",
+                "Man->Noble Court->Groom",
+                "Man->Villager->Groom",
+                "Man->Noble Court->Master of Horses"
+              ],
+              "TEXT": "a prior lifepath having to do with horses"
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8915,7 +10695,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Journeyman",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Apprentice",
+                "Man->Nomad->Apprentice",
+                "Man->Professional Soldier->Apprentice", "Man->Villager->Apprentice"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8934,7 +10720,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Armorer",
             "physicalPool": 0,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8953,7 +10745,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Atilliator",
             "physicalPool": 1,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 22,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8972,7 +10770,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Chaplain",
             "physicalPool": 0,
-            "requirements": "any priest lifepath or Military Order",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Temple Priest",
+                "Man->Noble Court->Court Priest",
+                "Man->Religious->Priest",
+                "Man->Religious->Archpriest",
+                "Man->Outcast->Heretic Priest",
+                "Man->City Dweller->Temple Priest",
+                "Man->Religious->Military Order"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -8992,7 +10800,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Engineer",
             "physicalPool": 0,
-            "requirements": "Student, Engineer, Mining Engineer or Artillerist's Hand",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Professional Soldier->Engineer",
+                "Man->Seafaring->Engineer",
+                "Man->Villager->Mining Engineer"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -9012,7 +10829,19 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Battle Mage",
             "physicalPool": 1,
-            "requirements": "Arcane Devotee, Neophyte Sorcerer, Apt Pupil, or Wizard's apprentice and any Professional Soldier lifepath.",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Arcane Devotee",
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil",
+                "Man->Villager->Wizard's Apprentice",
+                "Man->Professional Soldier->1*ANY"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -9032,7 +10861,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Wizard of War",
             "physicalPool": 0,
-            "requirements": "Neophyte Sorcerer, Arcane Devotee, Weather Witch, Rogue Wizard or Mad Summoner",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer",
+                "Man->Noble->Arcane Devotee",
+                "Man->Seafaring->Weather Witch",
+                "Man->Outcast->Rogue Wizard",
+                "Man->Outcast->Mad Summoner"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -9052,7 +10890,22 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Quartermaster",
             "physicalPool": 0,
-            "requirements": "Sergeant, Veteran, Steward, Ship's Captain, Captain of the Guard, Merchant, Man-at-Arms, Smuggler, Constable or Lord",
+            "requirements": {
+              "OR": [
+                "Man->Professional Soldier->Sergeant",
+                "Man->Nomad->Veteran",
+                "Man->Professional Soldier->Veteran",
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->Seafaring->Ship's Captain",
+                "Man->City Dweller->Merchant",
+                "Man->Villager->Merchant",
+                "Man->Noble Court->Man-at-Arms",
+                "Man->Outcast->Smuggler",
+                "Man->Noble Court->Constable",
+                "Man->Noble->Lord"
+              ]
+            },
             "resources": 17,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -9072,7 +10925,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Captain",
             "physicalPool": 1,
-            "requirements": "Captain of the Guard, Knight, Lord, Constable or two Greebooter lifepaths",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Noble->Lord",
+                "Man->Noble Court->Constable",
+                "Man->Outcast->2*Freebooter"
+              ]
+            },
             "resources": 35,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -9092,7 +10953,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Captain",
             "physicalPool": 1,
-            "requirements": "High Templar, Captain of the Guard, Knight, Lord, Constable or two Greebooter lifepaths",
+            "requirements": {
+              "OR": [
+                "Man->Religious->High Templar",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Noble->Lord",
+                "Man->Noble Court->Constable",
+                "Man->Outcast->2*Freebooter"
+              ]
+            },
             "resources": 35,
             "selectable": true,
             "setting": "Professional Soldier",
@@ -9120,7 +10990,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Apt Pupil",
             "physicalPool": 0,
-            "requirements": "Must be character's second or third lifepath. It may not be taken twice. For the purposes of other requirements, this lifepath counts as Neophyte Sorcerer.",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2/3",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Religious",
@@ -9158,7 +11033,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Clerk",
             "physicalPool": 0,
-            "requirements": "Acolyte",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Acolyte",
+                "Man->Villager->Acolyte"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Religious",
@@ -9177,7 +11057,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Scribe",
             "physicalPool": 0,
-            "requirements": "Acolyte",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Acolyte",
+                "Man->Villager->Acolyte"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Religious",
@@ -9254,7 +11139,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Military Order",
             "physicalPool": 1,
-            "requirements": "Knight of a Holy Military Order requires Squire, Knight or any lifepath from Professional Soldier setting",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Squire",
+                "Man->Noble Court->Squire",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Professional Soldier->1*ANY"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Religious",
@@ -9330,7 +11223,22 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Custodian",
             "physicalPool": 0,
-            "requirements": "Student, Young Lady, Cloistered Monk/Nun, Temple Acolyte, Inquisitor, Exorcisto rTheologian",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady",
+                "Man->Religious->Itinerant Monk",
+                "Man->Religious->Cloistered Nun",
+                "Man->City Dweller->Temple Acolyte",
+                "Man->Religious->Temple Acolyte",
+                "Man->Religious->Inquisitor",
+                "Man->Religious->Exorcist",
+                "Man->Religious->Theologian"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Religious",
@@ -9350,7 +11258,19 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Interpreter",
             "physicalPool": 0,
-            "requirements": "Student, Young Lady, Temple Acolyte, Exorcist or Theologian",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Noble->Young Lady",
+                "Man->Noble Court->Young Lady",
+                "Man->City Dweller->Temple Acolyte",
+                "Man->Religious->Temple Acolyte",
+                "Man->Religious->Exorcist",
+                "Man->Religious->Theologian"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Religious",
@@ -9446,7 +11366,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Priest",
             "physicalPool": 0,
-            "requirements": "Temple Acolyte or Religious Acolyte",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Temple Acolyte",
+                "Man->Religious->Temple Acolyte",
+                "Man->Noble->Religious Acolyte"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Religious",
@@ -9466,7 +11392,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Templar",
             "physicalPool": 0,
-            "requirements": "Acolyte. Templar counts as Priest for requirements.",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Acolyte",
+                "Man->Villager->Acolyte"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Religious",
@@ -9486,7 +11417,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Exorcist",
             "physicalPool": 0,
-            "requirements": "Temple Priest, Itinerant Priest, Priest, Court Priest or Archivist",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Temple Priest",
+                "Man->Peasant->Itinerant Priest",
+                "Man->Religious->Priest",
+                "Man->Noble Court->Court Priest",
+                "Man->Religious->Archivist"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Religious",
@@ -9506,7 +11445,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Inquisitor",
             "physicalPool": 0,
-            "requirements": "Temple Priest, Itinerant Priest, Priest, Court Priest, Judge or Justiciar",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Temple Priest",
+                "Man->Peasant->Itinerant Priest",
+                "Man->Religious->Priest",
+                "Man->Noble Court->Court Priest",
+                "Man->City Dweller->Judge",
+                "Man->Noble Court->Justiciar"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Religious",
@@ -9526,7 +11474,20 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Theologian",
             "physicalPool": 0,
-            "requirements": "Scribe, Archivist, Court Lawyer, Advocate, Custodian, Interpreter, Priest or Bishop",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Scribe",
+                "Man->Religious->Scribe",
+                "Man->Religious->Archivist",
+                "Man->Noble Court->Court Lawyer",
+                "Man->City Dweller->Advocate",
+                "Man->Religious->Custodian",
+                "Man->Religious->Interpreter",
+                "Man->Religious->Priest",
+                "Man->City Dweller->Bishop",
+                "Man->Religious->Bishop"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Religious",
@@ -9546,7 +11507,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Archpriest",
             "physicalPool": 0,
-            "requirements": "Temple Priest, Itinerant Priest, Priest, Court Priest or Chaplain",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Temple Priest",
+                "Man->Peasant->Itinerant Priest",
+                "Man->Religious->Priest",
+                "Man->Noble Court->Court Priest",
+                "Man->Noble Court->Chaplain",
+                "Man->Professional Soldier->Chaplain"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Religious",
@@ -9566,7 +11536,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "High Templar",
             "physicalPool": 0,
-            "requirements": "Temple Priest, Itinerant Priest, Priest, Court Priest or Chaplain",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Temple Priest",
+                "Man->Peasant->Itinerant Priest",
+                "Man->Religious->Priest",
+                "Man->Noble Court->Court Priest",
+                "Man->Noble Court->Chaplain",
+                "Man->Professional Soldier->Chaplain"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Religious",
@@ -9586,7 +11565,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Canon",
             "physicalPool": 0,
-            "requirements": "Archpriest, Theologian or Abbot",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Archpriest",
+                "Man->Religious->Theologian",
+                "Man->Religious->Abbot/Abbess"
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "Religious",
@@ -9606,7 +11591,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Abbot/Abbess",
             "physicalPool": 0,
-            "requirements": "Itinerant Monk, CLoistered Nun, Theologian or Vintner",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Itinerant Monk",
+                "Man->Religious->Cloistered Nun",
+                "Man->Religious->Theologian",
+                "Man->Villager->Vintner"
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "Religious",
@@ -9625,7 +11617,18 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bishop",
             "physicalPool": 0,
-            "requirements": "Archpriest, Baron, Viscount, Count, Duke or Prince and the Your Grace trait",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Archpriest",
+                "Man->Noble->Baron",
+                "Man->Noble->Viscount",
+                "Man->Noble->Count",
+                "Man->Noble->Duke"
+              ],
+              "AND": [
+                "Trait->Man Lifepath->Your Grace"
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "Religious",
@@ -9645,7 +11648,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Royal Advisor",
             "physicalPool": 0,
-            "requirements": "Archpriest, Baron, Viscount, Count, Duke or Prince",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Archpriest",
+                "Man->Noble->Baron",
+                "Man->Noble->Viscount",
+                "Man->Noble->Count",
+                "Man->Noble->Duke"
+              ]
+            },
             "resources": 45,
             "selectable": true,
             "setting": "Religious",
@@ -9709,7 +11720,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Boy",
             "physicalPool": 0,
-            "requirements": "If Boy is chosen, it must be the second lifepath taken and may only be taken once",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Seafaring",
@@ -9824,7 +11840,20 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Crazy Old Sailor",
             "physicalPool": 0,
-            "requirements": "Sailor, Pirate or Mercenary Captain and that the character take this path some time in his 40s",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->Outcast->Pirate",
+                "Man->Black Barbarian->Mercenary Captain",
+                "Man->City Dweller->Mercenary Captain"
+              ],
+              "LIMIT": [
+                "YEARS->40"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Seafaring",
@@ -9844,7 +11873,19 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Tattoo Artist",
             "physicalPool": 0,
-            "requirements": "Sailor, Pirate, Smuggler, Freebooter, Ship’s Cook, or Crazy Old Sailor",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->Outcast->Pirate",
+                "Man->Outcast->Smuggler",
+                "Man->Outcast->Freebooter",
+                "Man->Seafaring->Ship's Cook",
+                "Man->Seafaring->Crazy Old Sailor"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Seafaring",
@@ -9864,7 +11905,20 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Purser",
             "physicalPool": 0,
-            "requirements": "Clerk, Student or Sailor",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Clerk",
+                "Man->Religious->Clerk",
+                "Man->Villager->Clerk",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Seafaring",
@@ -9903,7 +11957,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Pilot",
             "physicalPool": 0,
-            "requirements": "Sailor, Pirate or Mercenary Captain",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->Outcast->Pirate",
+                "Man->Black Barbarian->Mercenary Captain",
+                "Man->City Dweller->Mercenary Captain"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Seafaring",
@@ -9923,7 +11987,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Marine",
             "physicalPool": 1,
-            "requirements": "Sailor, Pirate or Mercenary Captain",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->Outcast->Pirate",
+                "Man->Black Barbarian->Mercenary Captain",
+                "Man->City Dweller->Mercenary Captain"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Seafaring",
@@ -9943,7 +12017,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bosun",
             "physicalPool": 0,
-            "requirements": "Sailor, Pirate or Mercenary Captain",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->Outcast->Pirate",
+                "Man->Black Barbarian->Mercenary Captain",
+                "Man->City Dweller->Mercenary Captain"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Seafaring",
@@ -9963,7 +12047,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sailmaker",
             "physicalPool": 1,
-            "requirements": "Sailor, Pirate, Seamstress, Sewing",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->Outcast->Pirate",
+                "Man->City Dweller->Seamstress"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Seafaring",
@@ -9982,7 +12075,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Ship's Doctor",
             "physicalPool": 0,
-            "requirements": "Doctor, Court Doctor, Physician, Barber or Student",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Doctor",
+                "Man->Noble Court->Court Doctor",
+                "Man->City Dweller->Physician",
+                "Man->Villager->Barber",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Seafaring",
@@ -10002,7 +12105,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Ship's Cook",
             "physicalPool": 0,
-            "requirements": "Sailor or Pirate",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->Outcast->Pirate"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Seafaring",
@@ -10022,7 +12133,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Ship's Chaplain",
             "physicalPool": 0,
-            "requirements": "Chaplain, Military Order, Temple Acolyte or Religious Acolyte",
+            "requirements": {
+              "OR": [
+                "Man->Noble Court->Chaplain",
+                "Man->Professional Soldier->Chaplain",
+                "Man->Religious->Military Order",
+                "Man->City Dweller->Temple Acolyte",
+                "Man->Religious->Temple Acolyte",
+                "Man->Noble->Religious Acolyte"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Seafaring",
@@ -10042,7 +12162,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Weather Witch",
             "physicalPool": 0,
-            "requirements": "Augur, Neophyte Sorcerer, Arcane Devotee or Rogue Wizard",
+            "requirements": {
+              "OR": [
+                "Man->Peasant->Augur",
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer",
+                "Man->Noble->Arcane Devotee",
+                "Man->Outcast->Rogue Wizard"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Seafaring",
@@ -10062,7 +12190,20 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Navigator",
             "physicalPool": 0,
-            "requirements": "Pilot, Mercenary Captain, Sailor or Student",
+            "requirements": {
+              "OR": [
+                "Man->Seafaring->Pilot",
+                "Man->Black Barbarian->Mercenary Captain",
+                "Man->City Dweller->Mercenary Captain",
+                "Man->City Dweller->Sailor",
+                "Man->Professional Soldier->Sailor",
+                "Man->Seafaring->Sailor",
+                "Man->Villager->Sailor",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Seafaring",
@@ -10100,7 +12241,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Ship's Carpenter",
             "physicalPool": 1,
-            "requirements": "Apprentice or Carpenter's Mate",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Apprentice",
+                "Man->Nomad->Apprentice",
+                "Man->Professional Soldier->Apprentice",
+                "Man->Villager->Apprentice",
+                "Man->Seafaring->Carpenter's Mate"
+              ]
+            },
             "resources": 16,
             "selectable": true,
             "setting": "Seafaring",
@@ -10139,7 +12288,20 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Engineer",
             "physicalPool": 0,
-            "requirements": "Artillerist's Mate, Student, Ship's Carpenter, Engineer or Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->Seafaring->Artillerist's Mate",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->Seafaring->Ship's Carpenter",
+                "Man->Professional Soldier->Engineer",
+                "Man->Seafaring->Engineer",
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Seafaring",
@@ -10159,7 +12321,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Officer's Mate",
             "physicalPool": 0,
-            "requirements": "Born Noble, Page or Son of a Gun. If chosen, this lifepath must be the character's second or third lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Born Noble",
+                "Man->Noble->Page",
+                "Man->Noble Court->Page",
+                "Man->Seafaring->Son of a Gun"
+              ],
+              "LIMIT": [
+                "IS->LP*2/3"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Seafaring",
@@ -10179,7 +12351,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Steward",
             "physicalPool": 0,
-            "requirements": "Purser, Merchant, Steward or Accountant",
+            "requirements": {
+              "OR": [
+                "Man->Seafaring->Purser",
+                "Man->City Dweller->Merchant",
+                "Man->Villager->Merchant",
+                "Man->Noble Court->Steward",
+                "Man->Seafaring->Steward",
+                "Man->City Dweller->Accountant"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Seafaring",
@@ -10198,7 +12379,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "First Mate",
             "physicalPool": 0,
-            "requirements": "Knight or any two sailor/seafaring lifepaths",
+            "requirements": {
+              "OR": [
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->City Dweller->2*Sailor",
+                "Man->Professional Soldier->2*Sailor",
+                "Man->Villager->2*Sailor",
+                "Man->Seafaring->2*ANY"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Seafaring",
@@ -10217,7 +12407,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Ship's Captain",
             "physicalPool": 0,
-            "requirements": "First Mate, Knight, Knight of a Holy Military Order or two Mercenary Captain lifepath",
+            "requirements": {
+              "OR": [
+                "Man->Seafaring->First Mate",
+                "Man->Noble->Knight",
+                "Man->Noble Court->Knight",
+                "Man->Black Barbarian->2*Mercenary Captain",
+                "Man->City Dweller->2*Mercenary Captain"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Seafaring",
@@ -10414,7 +12612,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Slave Soldier",
             "physicalPool": 1,
-            "requirements": "Any previous Servitude lifepath",
+            "requirements": {
+              "AND": [
+                "Man->Servitude->1*ANY"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Servitude",
@@ -10434,7 +12636,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Mamluk",
             "physicalPool": 0,
-            "requirements": "Slave Soldier or Bondsman",
+            "requirements": {
+              "OR": [
+                "Man->Servitude->Slave Soldier",
+                "Man->Servitude->Bondsman"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Servitude",
@@ -10453,7 +12660,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Child Attendant",
             "physicalPool": 0,
-            "requirements": "must be second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Servitude",
@@ -10473,7 +12684,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Slave Doctor",
             "physicalPool": 0,
-            "requirements": "Castrati or Beast Handler",
+            "requirements": {
+              "OR": [
+                "Man->Religious->Castrati",
+                "Man->Servitude->Beast Handler"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Servitude",
@@ -10531,7 +12747,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Slave Musician",
             "physicalPool": 0,
-            "requirements": "a previous lifepath with the Sing skill",
+            "requirements": {
+              "AND": [
+                "Skill->Any General->Sing"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Servitude",
@@ -10589,7 +12809,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Foreman",
             "physicalPool": 0,
-            "requirements": "Taskmaster or Beast Handler",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Taskmaster",
+                "Man->Servitude->Taskmaster",
+                "Man->Slave Raider->Taskmaster",
+                "Man->Villager->Taskmaster",
+                "Man->Servitude->Beast Handler"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Servitude",
@@ -10628,7 +12856,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Gladiator",
             "physicalPool": 1,
-            "requirements": "Arena Slave or Slave Soldier",
+            "requirements": {
+              "OR": [
+                "Man->Servitude->Arena Slave",
+                "Man->Servitude->Slave Soldier"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Servitude",
@@ -10724,7 +12957,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Beast Handler",
             "physicalPool": 0,
-            "requirements": "Arena Slave or Drover",
+            "requirements": {
+              "OR": [
+                "Man->Servitude->Arena Slave",
+                "Man->Servitude->Drover"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Servitude",
@@ -10763,7 +13001,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Farmer",
             "physicalPool": 1,
-            "requirements": "Field Laborer",
+            "requirements": {
+              "AND": [
+                "Man->Servitude->Field Laborer"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Servitude",
@@ -10783,7 +13025,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Shepherd",
             "physicalPool": 1,
-            "requirements": "Field Laborer",
+            "requirements": {
+              "AND": [
+                "Man->Servitude->Field Laborer"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Servitude",
@@ -10803,7 +13049,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Taskmaster",
             "physicalPool": 0,
-            "requirements": "two other slave lifepaths",
+            "requirements": {
+              "AND": [
+                "Man->Servitude->2*ANY"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Servitude",
@@ -10823,7 +13073,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Concubine",
             "physicalPool": 0,
-            "requirements": "Harem Slave",
+            "requirements": {
+              "AND": [
+                "Man->Death Cult->Harem Slave",
+                "Man->Servitude->Harem Slave"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Servitude",
@@ -10851,7 +13106,9 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bitter Fortune",
             "physicalPool": 0,
-            "requirements": "Characters comnig from Peasant or Villager settings must start from this lifepath.",
+            "requirements": {
+              "TEXT": "Characters coming from Peasant or Villager settings must start from this lifepath."
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Slave Raider",
@@ -10871,7 +13128,9 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Captured and Broken In",
             "physicalPool": 0,
-            "requirements": "Characters comnig from Professional Soldier subsetting must start from this lifepath.",
+            "requirements": {
+              "TEXT": "Characters comnig from Professional Soldier subsetting must start from this lifepath."
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Slave Raider",
@@ -10910,7 +13169,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Wolf Scout",
             "physicalPool": 1,
-            "requirements": "Runner",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Runner",
+                "Man->Professional Soldier->Runner",
+                "Man->Slave Raider->Runner",
+                "Man->Villager->Runner"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Slave Raider",
@@ -10930,7 +13196,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Manhunter",
             "physicalPool": 0,
-            "requirements": "Wolf Scout or Slaver",
+            "requirements": {
+              "OR": [
+                "Man->Slave Raider->Wolf Scout",
+                "Man->Slave Raider->Slaver"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Slave Raider",
@@ -10986,7 +13257,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Slave Hawker",
             "physicalPool": 0,
-            "requirements": "Tout or Manhunter",
+            "requirements": {
+              "OR": [
+                "Man->Slave Raider->Tout",
+                "Man->Slave Raider->Manhunter"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Slave Raider",
@@ -11006,7 +13282,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Slaver",
             "physicalPool": 1,
-            "requirements": "Grunt or Manhunter",
+            "requirements": {
+              "OR": [
+                "Man->Slave Raider->Grunt",
+                "Man->Slave Raider->Manhunter"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Slave Raider",
@@ -11026,7 +13307,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Taskmaster",
             "physicalPool": 1,
-            "requirements": "Slaver or Slave Hawker",
+            "requirements": {
+              "OR": [
+                "Man->Slave Raider->Slaver",
+                "Man->Slave Raider->Slave Hawker"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Slave Raider",
@@ -11046,7 +13332,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Outrider",
             "physicalPool": 1,
-            "requirements": "Grunt",
+            "requirements": {
+              "AND": [
+                "Man->Slave Raider->Grunt"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Slave Raider",
@@ -11066,7 +13356,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Reaver",
             "physicalPool": 0,
-            "requirements": "Outrider",
+            "requirements": {
+              "AND": [
+                "Man->Slave Raider->Outrider"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Slave Raider",
@@ -11086,7 +13380,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Risen Consort",
             "physicalPool": 0,
-            "requirements": "Captured and Broken In",
+            "requirements": {
+              "AND": [
+                "Trait->Any Character->Captured",
+                "Trait->Man Lifepath->Broken In"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Slave Raider",
@@ -11106,7 +13405,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Scourge",
             "physicalPool": 0,
-            "requirements": "Reaver and Taskmaster",
+            "requirements": {
+              "OR": [
+                "Man->Lost Atlantean->Reaver",
+                "Man->Slave Raider->Reaver",
+                "Man->City Dweller->Taskmaster",
+                "Man->Servitude->Taskmaster",
+                "Man->Slave Raider->Taskmaster",
+                "Man->Villager->Taskmaster"
+              ]
+            },
             "resources": 50,
             "selectable": true,
             "setting": "Slave Raider",
@@ -11169,7 +13477,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Kid",
             "physicalPool": 1,
-            "requirements": "If chosen (it's certainly not required), Kid must be the second lifepath chosen and may only be taken once",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Villager",
@@ -11377,7 +13690,18 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Miner",
             "physicalPool": 1,
-            "requirements": "Laborer, COnscript, Farmer or Foot Soldier",
+            "requirements": {
+              "OR": [
+                "Men->City Dweller->Laborer",
+                "Men->Villager->Laborer",
+                "Men->Servitude->Laborer",
+                "Men->Peasant->Conscript",
+                "Men->Villager->Conscript",
+                "Men->Peasant->Farmer",
+                "Men->Servitude->Farmer",
+                "Men->Professional Soldier->Foot Soldier"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Villager",
@@ -11397,7 +13721,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Taskmaster",
             "physicalPool": 0,
-            "requirements": "Village Sergeant or any Soldier lifepath",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Village Sergeant",
+                "Men->Professional Soldier->1*ANY"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Villager",
@@ -11436,7 +13765,7 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Hosteller",
             "physicalPool": 0,
-            "requirements": "may not be the character's second lifepath",
+            "requirements": { "LIMIT": ["NOT->LP*2"] },
             "resources": 15,
             "selectable": true,
             "setting": "Villager",
@@ -11475,7 +13804,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Village Sergeant",
             "physicalPool": 0,
-            "requirements": "Village Guard, Squire, Freebooter, Sergeant-at-Arms or Man-at-Arms",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Village Guard",
+                "Men->Noble->Squire",
+                "Men->Noble Court->Squire",
+                "Men->Outcast->Freebooter",
+                "Men->City->Sergeant-at-Arms",
+                "Men->Noble Court->Man-at-Arms"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Villager",
@@ -11495,7 +13833,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Corrupt Sergeant",
             "physicalPool": 0,
-            "requirements": "Village Guard, Squire, Freebooter, Sergeant-at-Arms or Man-at-Arms",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Village Guard",
+                "Men->Noble->Squire",
+                "Men->Noble Court->Squire",
+                "Men->Outcast->Freebooter",
+                "Men->City->Sergeant-at-Arms",
+                "Men->Noble Court->Man-at-Arms"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Villager",
@@ -11534,7 +13881,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Tax Collector",
             "physicalPool": 0,
-            "requirements": "may not be the character's second lifepath",
+            "requirements": {
+              "LIMIT":
+                [
+                  "NOT->LP*2"
+                ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Villager",
@@ -11554,7 +13906,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Tax Collector",
             "physicalPool": 0,
-            "requirements": "any Templar lifepath",
+            "requirements": {
+              "AND": [
+                "Men->Religious->1*ANY"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Villager",
@@ -11574,7 +13930,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Cobbler",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Apprentice",
+                "Men->Nomad->Apprentice",
+                "Men->Professional Soldier->Apprentice"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Villager",
@@ -11594,7 +13956,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Farrier",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Apprentice",
+                "Men->Nomad->Apprentice",
+                "Men->Professional Soldier->Apprentice"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Villager",
@@ -11709,7 +14077,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Village Priest",
             "physicalPool": 0,
-            "requirements": "Acolyte",
+            "requirements": {
+              "OR": [
+                "Men->Religious->Acolyte",
+                "Men->Villager->Acolyte"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Villager",
@@ -11729,7 +14102,19 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Venal Priest",
             "physicalPool": 0,
-            "requirements": "Acolyte, Clerk, Student or any Religious setting lifepath",
+            "requirements": {
+              "OR": [
+                "Men->Religious->Acolyte",
+                "Men->Villager->Acolyte",
+                "Men->Religious->Clerk",
+                "Men->Villager->Clerk",
+                "Men->City Dweller->Clerk",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Men->Religious->1*ANY"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Villager",
@@ -11768,7 +14153,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Journeyman",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Apprentice",
+                "Men->Nomad->Apprentice",
+                "Men->Professional Soldier->Apprentice"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Villager",
@@ -11788,7 +14179,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Cloth Dyer",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Apprentice",
+                "Men->Nomad->Apprentice",
+                "Men->Professional Soldier->Apprentice"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Villager",
@@ -11808,7 +14205,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bowyer",
             "physicalPool": 0,
-            "requirements": "Apprentice, Huntsman, Forester or Archer",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Apprentice",
+                "Men->Nomad->Apprentice",
+                "Men->Professional Soldier->Apprentice",
+                "Man->Noble Court->Huntsman",
+                "Man->Noble Court->Forester",
+                "Man->Professional Soldier->Archer"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Villager",
@@ -11827,7 +14233,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master Craftsman",
             "physicalPool": 1,
-            "requirements": "Journeyman",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Villager",
@@ -11847,7 +14259,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Vintner",
             "physicalPool": 0,
-            "requirements": "may not be the character's second lifepath",
+            "requirements": {
+              "LIMIT":
+                [
+                  "NOT->LP*2"
+                ]
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Villager",
@@ -11886,7 +14303,20 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Mining Engineer",
             "physicalPool": 0,
-            "requirements": "Apprentice, Miner, Student or Journeyman",
+            "requirements": {
+              "OR": [
+                "Men->Villager->Apprentice",
+                "Men->Nomad->Apprentice",
+                "Men->Professional Soldier->Apprentice",
+                "Man->Villager->Miner",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student",
+                "Man->City Dweller->Journeyman",
+                "Man->Professional Soldier->Journeyman",
+                "Man->Villager->Journeyman"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Villager",
@@ -11906,7 +14336,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Town Official",
             "physicalPool": 0,
-            "requirements": "Clerk, Priest or Student",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Clerk",
+                "Man->Religious->Clerk",
+                "Man->Villager->Clerk",
+                "Man->Religious->Priest",
+                "Man->City Dweller->Student",
+                "Man->Noble->Student",
+                "Man->Noble Court->Student"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Villager",
@@ -11926,7 +14366,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Town Official",
             "physicalPool": 0,
-            "requirements": "any Templar lifepath",
+            "requirements": {
+              "AND": [
+                "Men->Religious->1*ANY"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Villager",
@@ -11946,7 +14390,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Merchant",
             "physicalPool": 0,
-            "requirements": "Accountant, Sea Captain, Shopkeeper, Smuggler, Fence, Vintner or Chemberlain",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Accountant",
+                "Man->Seafaring->Ship's Captain",
+                "Man->City Dweller->Shopkeeper",
+                "Man->Villager->Shopkeeper",
+                "Man->Outcast->Smuggler",
+                "Man->Outcast->Fence",
+                "Man->Villager->Vintner"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Villager",
@@ -11966,7 +14420,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Horse Trainer",
             "physicalPool": 1,
-            "requirements": "Groom",
+            "requirements": {
+              "OR": [
+                "Man->City Dweller->Groom",
+                "Man->Noble Court->Groom",
+                "Man->Villager->Groom"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Villager",
@@ -11986,7 +14446,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Village Champion",
             "physicalPool": 1,
-            "requirements": "Must be character’s second or third lifepath. It may not be taken twice.",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2/3",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Villager",
@@ -12006,7 +14471,9 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Village Wife",
             "physicalPool": 1,
-            "requirements": "Players who take the Village Wife lifepath may also choose their husban's lifepath from the Villager setting. The Village Wife may choose from her husband's skills -she gets half of his skill points, rounded down- and she gets half of her husband's Resources.",
+            "requirements": {
+              "TEXT": "Players who take the Village Wife lifepath may also choose their husban's lifepath from the Villager setting. The Village Wife may choose from her husband's skills -she gets half of his skill points, rounded down- and she gets half of her husband's Resources."
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Villager",
@@ -12025,7 +14492,6 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Wizard's Apprentice",
             "physicalPool": 0,
-            "requirements": "For the purposes of other requirements, this lifepath counts as Neophyte Sorcerer.",
             "resources": 10,
             "selectable": true,
             "setting": "Villager",
@@ -12045,7 +14511,21 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Hedge Wizard",
             "physicalPool": 1,
-            "requirements": "Wizard's Apprentice, Neophyte Sorcerer, Apt Pupil or Junior Student. This character may not have the Mark of Privilege.",
+            "requirements": {
+              "OR": [
+                "Man->Villager->Wizard's Apprentice",
+                "Man->City Dweller->Neophyte Sorcerer",
+                "Man->Outcast->Neophyte Sorcerer",
+                "Man->Noble Court->Apt Pupil",
+                "Man->Outcast->Apt Pupil",
+                "Man->Professional Soldier->Apt Pupil",
+                "Man->Religious->Apt Pupil",
+                "Man->College of Magic->Junior Student"
+              ],
+              "NOTAND": [
+                "Trait->Man Lifepath->Mark of Privilege"
+              ]
+            },
             "resources": 24,
             "selectable": true,
             "setting": "Villager",
@@ -12083,7 +14563,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Goblin",
             "physicalPool": 1,
-            "requirements": "Born Great Orcs may not take this path",
+            "requirements": {
+              "NOTAND": [
+                "Orc->Great and Black->Born Great"
+              ]
+            },
             "resources": 2,
             "selectable": true,
             "setting": "Black Legion",
@@ -12103,7 +14587,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sun Blotter",
             "physicalPool": 1,
-            "requirements": "Born Great Orcs may not take this path",
+            "requirements": {
+              "NOTAND": [
+                "Orc->Great and Black->Born Great"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Black Legion",
@@ -12123,7 +14611,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Nightseeker",
             "physicalPool": 1,
-            "requirements": "Born Great Orcs may not take this path",
+            "requirements": {
+              "NOTAND": [
+                "Orc->Great and Black->Born Great"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Black Legion",
@@ -12143,7 +14635,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Legioner",
             "physicalPool": 1,
-            "requirements": "Born Great Orcs may not take this path",
+            "requirements": {
+              "NOTAND": [
+                "Orc->Great and Black->Born Great"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Black Legion",
@@ -12162,7 +14658,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Hatred Bearer",
             "physicalPool": 1,
-            "requirements": "The Rites, Legioner or Whipmaster",
+            "requirements": {
+              "OR": [
+                "Orc->Great and Black->The Rites",
+                "Orc->Black Legion->Legioner",
+                "Orc->Chattel->Whipmaster"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Black Legion",
@@ -12182,7 +14684,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Despair Shouter",
             "physicalPool": 1,
-            "requirements": "The Rites, Legioner or Whipmaster",
+            "requirements": {
+              "OR": [
+                "Orc->Great and Black->The Rites",
+                "Orc->Black Legion->Legioner",
+                "Orc->Chattel->Whipmaster"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Black Legion",
@@ -12202,7 +14710,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Black Hunter",
             "physicalPool": 1,
-            "requirements": "He Who is Fell and Stalks the Night requires Follower, Ravager or Nightseeker",
+            "requirements": {
+              "OR": [
+                "Orc->Great and Black->Follower",
+                "Orc->Chattel->Ravager",
+                "Orc->Black Legion->Nightseeker"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Black Legion",
@@ -12222,7 +14736,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Astride the Beast",
             "physicalPool": 1,
-            "requirements": "He Who Sits Astride the Howling Black Beast requires Black Hunter or Follower",
+            "requirements": {
+              "OR": [
+                "Orc->Black Legion->Black Hunter",
+                "Orc->Great and Black->Follower"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Black Legion",
@@ -12242,7 +14761,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Bears the Lash",
             "physicalPool": 0,
-            "requirements": "He Who Bears the Lash and Drives Us Ever On requires Whipmaster, Black Hunter, Astride the Beast or The Rites",
+            "requirements": {
+              "OR": [
+                "Orc->Chattel->Whipmaster",
+                "Orc->Black Legion->Black Hunter",
+                "Orc->Black Legion->Astride the Beast",
+                "Orc->Great and Black->The Rites"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Black Legion",
@@ -12262,7 +14788,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Packmaster",
             "physicalPool": 0,
-            "requirements": "He Who Rules the Black Wolf Pack requires Bears the Lash, Follower, Whipmaster, Master of Eight or Knower of Secrets",
+            "requirements": {
+              "OR": [
+                "Orc->Black Legion->Bears the Lash",
+                "Orc->Great and Black->Follower",
+                "Orc->Chattel->Whipmaster",
+                "Orc->Servant of the Dark Blood->Master of Eight",
+                "Orc->Servant of the Dark Blood->Knower of Secrets"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Black Legion",
@@ -12282,7 +14816,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Head Taker",
             "physicalPool": 1,
-            "requirements": "He Who Cleaves the Heads of His Enemies From Their Shoulders and Sets Them Upon Stakes for All See requires Bears the Lash, Black Destroyer or Named",
+            "requirements": {
+              "OR": [
+                "Orc->Black Legion->Bears the Lash",
+                "Orc->Great and Black->Black Destroyer",
+                "Orc->Great and Black->Named"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Black Legion",
@@ -12302,7 +14842,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Troll Lord",
             "physicalPool": 1,
-            "requirements": "Bears the Lash, Pack Master or Named",
+            "requirements": {
+              "OR": [
+                // TODO: Missing "pack master" lifepath?
+                "Orc->Black Legion->Bears the Lash",
+                "Orc->Great and Black->Named"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Black Legion",
@@ -12474,7 +15020,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Woodcutter",
             "physicalPool": 0,
-            "requirements": "Cutter Slave",
+            "requirements": {
+              "OR": [
+                "Orc->Chattel->Cutter Slave"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Chattel",
@@ -12492,7 +15042,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Butcher",
             "physicalPool": 0,
-            "requirements": "Cattle Slave",
+            "requirements": {
+              "AND": [
+                "Orc->Chattel->Cattle Slave"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Chattel",
@@ -12510,7 +15064,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Forger",
             "physicalPool": 0,
-            "requirements": "Forge Slave",
+            "requirements": {
+              "AND": [
+                "Orc->Chattel->Forge Slave"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Chattel",
@@ -12529,7 +15087,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Pitwright",
             "physicalPool": 0,
-            "requirements": "Tunneler",
+            "requirements": {
+              "AND": [
+                "Orc->Chattel->Tunneler"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Chattel",
@@ -12549,7 +15111,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Edge Grinder",
             "physicalPool": 0,
-            "requirements": "He Who Grinds the Edges of Our Axes to Glinting Sharpness requires Forger",
+            "requirements": {
+              "AND": [
+                "Orc->Chattel->Forger"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Chattel",
@@ -12569,7 +15135,18 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Whipmaster",
             "physicalPool": 0,
-            "requirements": "Pitwright, Forger, four slave lifepaths or any Great and Black or Legion lifepath",
+            "requirements": {
+              "OR": [
+                "Orc->Chattel->Pitwright",
+                "Orc->Chattel->Forger",
+                "Orc->Great and Black->1*ANY",
+                "Orc->Black Legion->1*ANY",
+                // TODO: this is wrong, it is actually "four slave lifepaths"
+                "Orc->Chattel->4*Cutter Slave",
+                "Orc->Chattel->4*Forge Slave",
+                "Orc->Chattel->4*Cattle Slave"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Chattel",
@@ -12615,7 +15192,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "The Rites",
             "physicalPool": 1,
-            "requirements": "The Rites may only be taken once and it must be the character's second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Great and Black",
@@ -12654,7 +15236,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Follower",
             "physicalPool": 1,
-            "requirements": "He Who Walks in the Named's Shadow requires The Rites or Astride the Beast",
+            "requirements": {
+              "OR": [
+                "Orc->Great and Black->The Rites",
+                "Orc->Black Legion->Astride the Beast"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Great and Black",
@@ -12674,7 +15261,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Black Destroyer",
             "physicalPool": 1,
-            "requirements": "He Whose Skin Is like Winter Night, Whose Mere Presence Causes Those Beneath Him to Shiver in Terror and Cower Beneath His Wicked Blade requires Follower, Astride the Beast or Head Taker",
+            "requirements": {
+              "OR": [
+                "Orc->Great and Black->Follower",
+                "Orc->Black Legion->Astride the Beast",
+                "Orc->Black Legion->Head Taker"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Great and Black",
@@ -12694,7 +15287,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Named",
             "physicalPool": 1,
-            "requirements": "He Who is Mighty and Earned the Ancient Right to Be Named requires Black Destroyer, Troll Lord or Head Taker",
+            "requirements": {
+              "OR": [
+                "Orc->Great and Black->Black Destroyer",
+                "Orc->Black Legion->Troll Lord",
+                "Orc->Black Legion->Head Taker"
+              ]
+            },
             "resources": 25,
             "selectable": true,
             "setting": "Great and Black",
@@ -12714,7 +15313,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Siege Master",
             "physicalPool": 0,
-            "requirements": "Servant of the Gate",
+            "requirements": {
+              "AND": [
+                "Orc->Great and Black->Servant of the Gate"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Great and Black",
@@ -12734,7 +15337,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Gate Forger",
             "physicalPool": 0,
-            "requirements": "Siege Master",
+            "requirements": {
+              "AND": [
+                "Orc->Great and Black->Siege Master"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Great and Black",
@@ -12754,7 +15361,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Whisperer",
             "physicalPool": 0,
-            "requirements": "Slave to the Dark, Whipmaster, Gate Forger or Bears the Lash",
+            "requirements": {
+              "OR": [
+                "Orc->Servant of the Dark Blood->Slave to the Dark",
+                "Orc->Chattel->Whipmaster",
+                "Orc->Great and Black->Gate Forger",
+                "Orc->Black Legion->Bears the Lash"
+              ]
+            },
             "resources": 40,
             "selectable": true,
             "setting": "Great and Black",
@@ -12773,7 +15387,12 @@ var db_stocks = {
             "mentalPool": 2,
             "name": "Great One",
             "physicalPool": 2,
-            "requirements": "Named and the Born to Rule Them All trait",
+            "requirements": {
+              "AND": [
+                "Orc->Great and Black->Named",
+                "Trait->Orc Lifepath->Born to Rule Them All"
+              ]
+            },
             "resources": 60,
             "selectable": true,
             "setting": "Great and Black",
@@ -12820,7 +15439,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Drinker of the Dark",
             "physicalPool": 1,
-            "requirements": "Slave to the Dark",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Slave to the Dark"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12840,7 +15463,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Bloodletter",
             "physicalPool": 1,
-            "requirements": "Drinker ofthe Dark",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Drinker of the Dark"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12859,7 +15486,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Knower of Secrets",
             "physicalPool": 0,
-            "requirements": "Drinker ofthe Dark",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Drinker of the Dark"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12878,7 +15509,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Master of Eight",
             "physicalPool": 0,
-            "requirements": "Knower of Secrets",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Knower of Secrets"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12897,7 +15532,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Master of Blood",
             "physicalPool": 0,
-            "requirements": "Bloodletter",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Bloodletter"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12916,7 +15555,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Master of Darkness",
             "physicalPool": 0,
-            "requirements": "Knower of Secrets",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Knower of Secrets"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12934,7 +15577,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Dark Summoner",
             "physicalPool": 0,
-            "requirements": "Master of Darkness",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Master of Darkness"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12952,7 +15599,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Blood Summoner",
             "physicalPool": 0,
-            "requirements": "Master of Blood",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Master of Blood"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12970,7 +15621,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Servant",
             "physicalPool": 0,
-            "requirements": "the Born to Rule Them All trait and Dark Summoner or Blood Summoner",
+            "requirements": {
+              "OR": [
+                "Orc->Servant of the Dark Blood->Dark Summoner",
+                "Orc->Servant of the Dark Blood->Blood Summoner"
+              ],
+              "AND": [
+                "Trait->Orc Lifepath->Born to Rule Them All"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -12988,7 +15647,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Master of the Weak",
             "physicalPool": 0,
-            "requirements": "Knower of Secrets",
+            "requirements": {
+              "AND": [
+                "Orc->Servant of the Dark Blood->Knower of Secrets"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Servant of the Dark Blood",
@@ -13007,6 +15670,8 @@ var db_stocks = {
     },
     "stride": 7
   },
+
+  // Codex Stocks
   "Roden": {
     "agepool": [[5, 0, 6, 10], [9, 6, 7, 13], [15, 10, 7, 14], [24, 16, 8, 15], [30, 25, 8, 14], [36, 31, 7, 13], [40, 37, 7, 12], [45, 41, 7, 11], [49, 46, 6, 10]],
     "allowed": ["bwc"],
@@ -13137,7 +15802,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Apprentice",
             "physicalPool": 1,
-            "requirements": "The Gauntlet",
+            "requirements": {
+              "AND": [
+                "Roden->Below->The Gauntlet"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Below",
@@ -13157,7 +15826,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Kidnapper",
             "physicalPool": 0,
-            "requirements": "The Gauntlet",
+            "requirements": {
+              "AND": [
+                "Roden->Below->The Gauntlet"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Below",
@@ -13177,7 +15850,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Fingers",
             "physicalPool": 1,
-            "requirements": "The Gauntlet",
+            "requirements": {
+              "AND": [
+                "Roden->Below->The Gauntlet"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Below",
@@ -13196,7 +15873,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sneak Thief",
             "physicalPool": 0,
-            "requirements": "The Gauntlet",
+            "requirements": {
+              "AND": [
+                "Roden->Below->The Gauntlet"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Below",
@@ -13216,7 +15897,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bladesmith",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Roden->Below->Apprentice",
+                "Roden->Field->Apprentice"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Below",
@@ -13235,7 +15921,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Burglar",
             "physicalPool": 0,
-            "requirements": "Fingers, Sneak Thief, Shadow, Corsair or Bushwhacker",
+            "requirements": {
+              "OR": [
+                "Roden->Below->Fingers",
+                "Roden->Below->Sneak Thief",
+                "Roden->Society->Shadow",
+                "Roden->Exile->Corsair",
+                "Roden->Exile->Bushwhacker"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Below",
@@ -13255,7 +15949,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bruiser",
             "physicalPool": 1,
-            "requirements": "The Gauntlet",
+            "requirements": {
+              "AND": [
+                "Roden->Below->The Gauntlet"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Below",
@@ -13274,7 +15972,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Fence",
             "physicalPool": 0,
-            "requirements": "Scavanger, Snitch or Sneak-Thief",
+            "requirements": {
+              "OR": [
+                "Roden->Below->Scavenger",
+                "Roden->Below->Snitch",
+                "Roden->Below->Sneak Thief"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Below",
@@ -13294,7 +15998,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sawbones",
             "physicalPool": 0,
-            "requirements": "Poisoner, Albino, Healer or Pinky",
+            "requirements": {
+              "OR": [
+                "Roden->Society->Poisoner",
+                "Roden->Exile->Albino",
+                "Roden->Field->Healer",
+                "Roden->Below->Pinky"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Below",
@@ -13314,7 +16025,16 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Negotiator",
             "physicalPool": 0,
-            "requirements": "Kidnapper, Deputy, Corsair, Missionary, Fence or Perverter",
+            "requirements": {
+              "OR": [
+                "Roden->Below->Kidnapper",
+                "Roden->Field->Deputy",
+                "Roden->Exile->Corsair",
+                "Roden->Field->Missionary",
+                "Roden->Below->Fence",
+                "Roden->Society->Perverter"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Below",
@@ -13334,7 +16054,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "The Brain",
             "physicalPool": 0,
-            "requirements": "Hermit, Mayor or Scratcher",
+            "requirements": {
+              "OR": [
+                "Roden->Exile->Hermit",
+                "Roden->Field->Mayor",
+                "Roden->Below->Scratcher"
+              ]
+            },
             "resources": 13,
             "selectable": true,
             "setting": "Below",
@@ -13353,7 +16079,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Mastermind",
             "physicalPool": 1,
-            "requirements": "Negotiator, The Brain, Bandit King or Abbot/Abbess",
+            "requirements": {
+              "OR": [
+                "Roden->Below->Negotiator",
+                "Roden->Below->The Brain",
+                "Roden->Exile->Bandit King",
+                "Roden->Field->Abbot/Abbess"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Below",
@@ -13372,7 +16105,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "The Pope",
             "physicalPool": 1,
-            "requirements": "Father/Mother or Visionary",
+            "requirements": {
+              "OR": [
+                "Roden->Field->Father/Mother",
+                "Roden->Society->Visionary"
+              ]
+            },
             "resources": 75,
             "selectable": true,
             "setting": "Below",
@@ -13400,7 +16138,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Carnivore",
             "physicalPool": 1,
-            "requirements": "Born to the Fields",
+            "requirements": {
+              "AND": [
+                "Roden->Field->Born to the Fields"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Exile",
@@ -13420,7 +16162,11 @@ var db_stocks = {
             "mentalPool": -1,
             "name": "Serub",
             "physicalPool": -1,
-            "requirements": "Born Below",
+            "requirements": {
+              "AND": [
+                "Roden->Below->Born Below"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Exile",
@@ -13478,7 +16224,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Corsair",
             "physicalPool": 0,
-            "requirements": "Bushwhackeri Sheriff, Bandit King, Trader, Negotiator or Bruiser",
+            "requirements": {
+              "OR": [
+                "Roden->Exile->Bushwhacker",
+                "Roden->Field->Sheriff",
+                "Roden->Exile->Bandit King",
+                "Roden->Field->Trader",
+                "Roden->Below->Negotiator",
+                "Roden->Below->Bruiser"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Exile",
@@ -13498,7 +16253,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bandit King",
             "physicalPool": 0,
-            "requirements": "Bushwhacker, Sheriff or Bruiser",
+            "requirements": {
+              "OR": [
+                "Roden->Exile->Bushwhacker",
+                "Roden->Field->Sheriff",
+                "Roden->Below->Bruiser"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Exile",
@@ -13654,7 +16415,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Beekeeper",
             "physicalPool": 0,
-            "requirements": "Woodsen, Gatherer, Farmer, Apprentice or Hand",
+            "requirements": {
+              "OR": [
+                "Roden->Field->Woodsen",
+                "Roden->Field->Gatherer",
+                "Roden->Field->Farmer",
+                "Roden->Below->Apprentice",
+                "Roden->Field->Apprentice",
+                "Roden->Field->Hand"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Field",
@@ -13673,7 +16443,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Miller",
             "physicalPool": 0,
-            "requirements": "Woodsen, Gatherer, Farmer, Apprentice or Hand",
+            "requirements": {
+              "OR": [
+                "Roden->Field->Woodsen",
+                "Roden->Field->Gatherer",
+                "Roden->Field->Farmer",
+                "Roden->Below->Apprentice",
+                "Roden->Field->Apprentice",
+                "Roden->Field->Hand"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Field",
@@ -13692,7 +16471,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Meadmaker",
             "physicalPool": 0,
-            "requirements": "Meadmaker requires Beekeeper",
+            "requirements": {
+              "OR": [
+                "Roden->Field->Beekeeper"
+              ]
+            },
             "resources": 14,
             "selectable": true,
             "setting": "Field",
@@ -13710,7 +16493,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Baker",
             "physicalPool": 0,
-            "requirements": "Hand, Miller or Beekeeper",
+            "requirements": {
+              "OR": [
+                "Roden->Field->Hand",
+                "Roden->Field->Miller",
+                "Roden->Field->Beekeeper"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Field",
@@ -13729,7 +16518,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Weaver",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Roden->Below->Apprentice",
+                "Roden->Field->Apprentice"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Field",
@@ -13748,7 +16542,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Crafter",
             "physicalPool": 0,
-            "requirements": "Apprentice",
+            "requirements": {
+              "OR": [
+                "Roden->Below->Apprentice",
+                "Roden->Field->Apprentice"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Field",
@@ -13767,7 +16566,18 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Healer",
             "physicalPool": 0,
-            "requirements": "Philosopher, Albino, Sawbones, Hand, Woodsen, Farmer or Beekeeper",
+            "requirements": {
+              "OR": [
+                // TODO: Missing "Philosopher" lifepath, added hermit instead
+                "Roden->Exile->Hermit",
+                "Roden->Exile->Albino",
+                "Roden->Below->Sawbones",
+                "Roden->Field->Hand",
+                "Roden->Field->Woodsen",
+                "Roden->Field->Farmer",
+                "Roden->Field->Beekeeper"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Field",
@@ -13787,7 +16597,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Trader",
             "physicalPool": 0,
-            "requirements": "Trader may not be your second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 16,
             "selectable": true,
             "setting": "Field",
@@ -13807,7 +16621,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Deputy",
             "physicalPool": 1,
-            "requirements": "Deputy may not be your second lifepath.",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Field",
@@ -13826,7 +16644,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sheriff",
             "physicalPool": 0,
-            "requirements": "Deputy, Bandit King, Bruiser or Mastermind",
+            "requirements": {
+              "OR": [
+                "Roden->Field->Deputy",
+                "Roden->Exile->Bandit King",
+                "Roden->Below->Bruiser",
+                "Roden->Below->Mastermind"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Field",
@@ -13844,7 +16669,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Mayor",
             "physicalPool": 0,
-            "requirements": "Sheriff, Healer, Baker, Meadmaker, Negotiator or Philosopher",
+            "requirements": {
+              "OR": [
+                "Roden->Field->Sheriff",
+                "Roden->Field->Healer",
+                "Roden->Field->Baker",
+                "Roden->Field->Meadmaker",
+                "Roden->Below->Negotiator",
+                // TODO: No philosopher so added hermit
+                "Roden->Exile->Hermit"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Field",
@@ -13883,7 +16718,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Missionary",
             "physicalPool": 1,
-            "requirements": "Brother/Sister",
+            "requirements": {
+              "AND": [
+                "Roden->Field->Brother/Sister"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Field",
@@ -13902,7 +16741,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Father/Mother",
             "physicalPool": 0,
-            "requirements": "Brother/Sister",
+            "requirements": {
+              "AND": [
+                "Roden->Field->Brother/Sister"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Field",
@@ -13921,7 +16764,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Abbot/Abbess",
             "physicalPool": 0,
-            "requirements": "Father/Mother ",
+            "requirements": {
+              "AND": [
+                "Roden->Field->Father/Mother"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Field",
@@ -13967,7 +16814,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Cultist",
             "physicalPool": 0,
-            "requirements": "Initiate",
+            "requirements": {
+              "AND": [
+                "Roden->Society->Initiate"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Society",
@@ -13986,7 +16837,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Shadow",
             "physicalPool": 1,
-            "requirements": "Initiate",
+            "requirements": {
+              "AND": [
+                "Roden->Society->Initiate"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Society",
@@ -14005,7 +16860,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Arsonist",
             "physicalPool": 0,
-            "requirements": "Initiate",
+            "requirements": {
+              "AND": [
+                "Roden->Society->Initiate"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Society",
@@ -14024,7 +16883,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Murderer",
             "physicalPool": 1,
-            "requirements": "Initiate",
+            "requirements": {
+              "AND": [
+                "Roden->Society->Initiate"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Society",
@@ -14043,7 +16906,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Willard",
             "physicalPool": 0,
-            "requirements": "Initiate",
+            "requirements": {
+              "AND": [
+                "Roden->Society->Initiate"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Society",
@@ -14063,7 +16930,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Perverter",
             "physicalPool": 0,
-            "requirements": "The Brain, Cultist or Missionary",
+            "requirements": {
+              "OR": [
+                "Roden->Below->The Brain",
+                "Roden->Society->Cultist",
+                "Roden->Field->Missionary"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Society",
@@ -14082,7 +16955,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Poisoner",
             "physicalPool": 0,
-            "requirements": "Initiate",
+            "requirements": {
+              "AND": [
+                "Roden->Society->Initiate"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Society",
@@ -14101,7 +16978,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Guardian",
             "physicalPool": 1,
-            "requirements": "Murderer, Willard or Perverter",
+            "requirements": {
+              "OR": [
+                "Roden->Society->Murderer",
+                "Roden->Society->Willard",
+                "Roden->Society->Perverter"
+              ]
+            },
             "resources": 9,
             "selectable": true,
             "setting": "Society",
@@ -14120,7 +17003,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Preacher",
             "physicalPool": 0,
-            "requirements": "Cultist, Missionary or Philosopher",
+            "requirements": {
+              "OR": [
+                "Roden->Society->Cultist",
+                "Roden->Field->Missionary",
+                // TODO: NO philosopher so added hermit
+                "Roden->Exile->Hermit"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Society",
@@ -14140,7 +17030,14 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Visionary",
             "physicalPool": 0,
-            "requirements": "Albino, Preacher, Abbot/Abbess or Mastermind",
+            "requirements": {
+              "OR": [
+                "Roden->Exile->Albino",
+                "Roden->Society->Preacher",
+                "Roden->Field->Abbot/Abbess",
+                "Roden->Below->Mastermind"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Society",
@@ -14249,7 +17146,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Dread Stone",
             "physicalPool": 2,
-            "requirements": "Mine Haunt or Dwarf Hunter",
+            "requirements": {
+              "OR": [
+                "Troll->Cavedweller->Mine Haunt",
+                "Troll->Cavedweller->Dwarf Hunter"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Cavedweller",
@@ -14348,7 +17250,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Mattock",
             "physicalPool": 1,
-            "requirements": "Ox, Battering Ram, Dwarf Hunter, Manhunder or Brute",
+            "requirements": {
+              "OR": [
+                "Troll->Pit->Ox",
+                "Troll->Pit->Battering Ram",
+                "Troll->Cavedweller->Dwarf Hunter",
+                "Troll->Wild->Manhunter",
+                "Troll->Wild->Brute"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Pit",
@@ -14368,7 +17278,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Ironshield",
             "physicalPool": 0,
-            "requirements": "Mattock or Brute",
+            "requirements": {
+              "OR": [
+                "Troll->Pit->Mattock",
+                "Troll->Wild->Brute"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Pit",
@@ -14387,7 +17302,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Bellower",
             "physicalPool": 1,
-            "requirements": "Bull or Ironshield",
+            "requirements": {
+              "OR": [
+                "Troll->Wild->Bull",
+                "Troll->Pit->Ironshield"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Pit",
@@ -14406,7 +17326,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Warlord",
             "physicalPool": 1,
-            "requirements": "Bellower",
+            "requirements": {
+              "OR": [
+                "Troll->Pit->Bellower"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Pit",
@@ -14522,7 +17446,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Brute",
             "physicalPool": 2,
-            "requirements": "Bridge Haunt, Mine Haunt, Manhunder, Dwarf Hunter, Battering Ram or Mattock",
+            "requirements": {
+              "OR": [
+                "Troll->Wild->Bridgehaunt",
+                "Troll->Cavedweller->Mine Haunt",
+                "Troll->Wild->Manhunter",
+                "Troll->Cavedweller->Dwarf Hunter",
+                "Troll->Pit->Battering Ram",
+                "Troll->Pit->Mattock"
+              ]
+            },
             "resources": 2,
             "selectable": true,
             "setting": "Wild",
@@ -14542,7 +17475,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Brood Mother",
             "physicalPool": 1,
-            "requirements": "Brute, Dread Stone or Bellower",
+            "requirements": {
+              "OR": [
+                "Troll->Wild->Brute",
+                "Troll->Cavedweller->Dread Stone",
+                "Troll->Pit->Bellower"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Wild",
@@ -14562,7 +17501,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Bull",
             "physicalPool": 1,
-            "requirements": "Brute or Ironshield",
+            "requirements": {
+              "OR": [
+                "Troll->Wild->Brute",
+                "Troll->Pit->Ironshield"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Wild",
@@ -14627,7 +17571,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Wandering Lost",
             "physicalPool": 0,
-            "requirements": "Last Wolf and Lone Wolf",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Wild Pack->Last Wolf",
+                "Great Wolf->Outcast Wolf->Lone Wolf"
+              ]
+            },
             "resources": 0,
             "selectable": true,
             "setting": "Ghost of the Deeping Wood",
@@ -14645,7 +17594,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Dire Haunt",
             "physicalPool": 1,
-            "requirements": "Wandering Lost",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Ghost of the Deeping Wood->Wandering Lost"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Ghost of the Deeping Wood",
@@ -14664,7 +17617,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Ancient Journeyer",
             "physicalPool": 0,
-            "requirements": "Wandering Lost",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Ghost of the Deeping Wood->Wandering Lost"
+              ]
+            },
             "resources": 0,
             "selectable": true,
             "setting": "Ghost of the Deeping Wood",
@@ -14682,7 +17639,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Fell Ancient",
             "physicalPool": 1,
-            "requirements": "Ancient Journeyer",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Ghost of the Deeping Wood->Ancient Journeyer"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Ghost of the Deeping Wood",
@@ -14701,7 +17662,12 @@ var db_stocks = {
             "mentalPool": 2,
             "name": "Ghost of the Wood",
             "physicalPool": 0,
-            "requirements": "Dire Haunt and Fell Ancient",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Ghost of the Deeping Wood->Dire Haunt",
+                "Great Wolf->Ghost of the Deeping Wood->Fell Ancient"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Ghost of the Deeping Wood",
@@ -14729,7 +17695,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Lone Wolf",
             "physicalPool": 0,
-            "requirements": "Yearling, Last Wolf, Captive, Wandering Lost, Ancient Journeyer, Wayward or Dark Friend",
+            "requirements": {
+              "OR": [
+                "Great Wolf->Wild Pack->Yearling",
+                "Great Wolf->Wild Pack->Last Wolf",
+                "Great Wolf->Captive->Captive",
+                "Great Wolf->Ghost of the Deeping Wood->Wandering Lost",
+                "Great Wolf->Ghost of the Deeping Wood->Ancient Journeyer",
+                "Great Wolf->Slave to the Legion->Wayward",
+                "Great Wolf->Slave to the Legion->Dark Friend"
+              ]
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Outcast Wolf",
@@ -14749,7 +17725,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Scavenger",
             "physicalPool": 0,
-            "requirements": "Lone Wolf, Captive or Caged and Beaten",
+            "requirements": {
+              "OR": [
+                "Great Wolf->Outcast Wolf->Lone Wolf",
+                "Great Wolf->Captive->Captive",
+                "Great Wolf->Slave to the Legion->Caged and Beaten"
+              ]
+            },
             "resources": 2,
             "selectable": true,
             "setting": "Outcast Wolf",
@@ -14833,7 +17815,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Wayward",
             "physicalPool": 0,
-            "requirements": "Shadow Chaser or Caged and Beaten",
+            "requirements": {
+              "OR": [
+                "Great Wolf->Slave to the Legion->Shadow Chaser",
+                "Great Wolf->Slave to the Legion->Caged and Beaten"
+              ]
+            },
             "resources": 2,
             "selectable": true,
             "setting": "Slave to the Legion",
@@ -14851,7 +17838,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bitch",
             "physicalPool": 0,
-            "requirements": "Characters taking this lifepath must be at least two years old.",
+            "requirements": {
+              "LIMIT": [
+                "YEARS->2"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Slave to the Legion",
@@ -14870,7 +17861,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Howling Beast",
             "physicalPool": 1,
-            "requirements": "Shadow Chaser",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Slave to the Legion->Shadow Chaser"
+              ]
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Slave to the Legion",
@@ -14889,7 +17884,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Black Destroyer",
             "physicalPool": 1,
-            "requirements": "Howling Beast or Ebon Tyrant",
+            "requirements": {
+              "OR": [
+                "Great Wolf->Slave to the Legion->Howling Beast",
+                "Great Wolf->Slave to the Legion->Ebon Tyrant"
+              ]
+            },
             "resources": 2,
             "selectable": true,
             "setting": "Slave to the Legion",
@@ -14908,7 +17908,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Ebon Tyrant",
             "physicalPool": 1,
-            "requirements": "Shadow Chaser or Black Destroyer",
+            "requirements": {
+              "OR": [
+                "Great Wolf->Slave to the Legion->Shadow Chaser",
+                "Great Wolf->Slave to the Legion->Black Destroyer"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Slave to the Legion",
@@ -14928,7 +17933,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Dark Friend",
             "physicalPool": 0,
-            "requirements": "Caged and Beaten",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Slave to the Legion->Caged and Beaten"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Slave to the Legion",
@@ -14956,7 +17965,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Spirit Chaser",
             "physicalPool": 1,
-            "requirements": "Lone Wolf and the Spirit Marked trait",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Outcast Wolf->Lone Wolf",
+                "Trait->Great Wolf Lifepath->Spirit Marked"
+              ]
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Spirit Hunter",
@@ -14974,7 +17988,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Spirit Howler",
             "physicalPool": 0,
-            "requirements": "Spirit Chaser",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Spirit Hunter->Spirit Chaser"
+              ]
+            },
             "resources": 2,
             "selectable": true,
             "setting": "Spirit Hunter",
@@ -14994,7 +18012,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Spirit Hunter",
             "physicalPool": 1,
-            "requirements": "Spirit Howler",
+            "requirements": {
+              "AND": [
+                "Great Wolf->Spirit Hunter->Spirit Howler"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Spirit Hunter",
@@ -15040,7 +18062,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Yearling",
             "physicalPool": 1,
-            "requirements": "Must be second lifepath, May not be taken twice.",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2",
+                "IS->UNIQUE"
+              ]
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Wild Pack",
@@ -15078,7 +18105,15 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Dominant",
             "physicalPool": 1,
-            "requirements": "Yearling, Aunt, Uncle or Last Wolf. Dominant wolves are the pack leaders.",
+            "requirements": {
+              "OR": [
+                "Great Wolf->Wild Pack->Yearling",
+                "Great Wolf->Wild Pack->Aunt",
+                "Great Wolf->Wild Pack->Uncle",
+                "Great Wolf->Wild Pack->Last Wolf"
+              ],
+              "TEXT": "Dominant wolves are the pack leaders."
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Wild Pack",
@@ -15136,7 +18171,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Elder",
             "physicalPool": 0,
-            "requirements": "Must be 7 years or older to take this lifepath.",
+            "requirements": {
+              "LIMIT": [
+                "YEARS->7"
+              ]
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Wild Pack",
@@ -15174,6 +18213,8 @@ var db_stocks = {
     },
     "stride": 11
   },
+
+  // Sun Stocks
   "Anakhi": {
     "agepool": [[15, 0, 7, 10], [25, 16, 8, 11], [35, 26, 9, 12], [45, 36, 9, 13], [52, 46, 10, 15], [72, 53, 11, 16], [90, 73, 10, 15], [110, 91, 9, 14], [130, 111, 8, 12]],
     "hasSetting": true,
@@ -15221,7 +18262,9 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Born Mule",
             "physicalPool": 1,
-            "requirements": "Born Mule counts as Born Slave for requirements. Mules cannot ever lead to Noble or Templar settings.",
+            "requirements": {
+              "TEXT": "Mules cannot ever lead to Noble or Templar settings."
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Servitude",
@@ -15238,6 +18281,8 @@ var db_stocks = {
     },
     "stride": 7
   },
+
+  // Additional Stocks
   "Changeling": {
     "agepool": [[10, 0, 2, 0], [25, 11, 4, 0], [45, 36, 6, 0], [70, 46, 8, 0], [100, 71, 10, 0], [135, 101, 12, 0], [175, 136, 14, 0], [220, 176, 16, 0]],
     "allowed": ["chang"],
@@ -15257,7 +18302,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Cobble-Hob",
             "physicalPool": 0,
-            "requirements": "may be PC’s second lifepath only",
+            "requirements": {
+              "LIMIT": [
+                "IS->LP*2"
+              ]
+            },
             "resources": 1,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15296,7 +18345,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Pyre-Tender",
             "physicalPool": 0,
-            "requirements": "Firekeeper,Twig-Picker,or Hack",
+            "requirements": {
+              "OR": [
+                "Changeling->Fog->Fire-Keeper",
+                "Changeling->Fog->Twig-Picker",
+                "Changeling->Fog->Hack"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15315,7 +18370,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Signaller",
             "physicalPool": 0,
-            "requirements": "Fire-Keeper,Pyre-Tender,Mouth,or Hack",
+            "requirements": {
+              "OR": [
+                "Changeling->Fog->Fire-Keeper",
+                "Changeling->Crumbling Ruins->Pyre-Tender",
+                "Changeling->Fog->Hack"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15371,7 +18432,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Archivist",
             "physicalPool": 0,
-            "requirements": "Catalogue or Familiar",
+            "requirements": {
+              "OR": [
+                "Changeling->Crumbling Ruins->Catalogue",
+                "Changeling->Interloper->Familiar"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15390,7 +18456,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Reliquary",
             "physicalPool": 0,
-            "requirements": "Catalogue",
+            "requirements": {
+              "AND": [
+                "Changeling->Crumbling Ruins->Catalogue"
+              ]
+            },
             "resources": 26,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15427,7 +18497,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Recitations",
             "physicalPool": 0,
-            "requirements": "May not be the character’s second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15464,7 +18538,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Catalogue",
             "physicalPool": 0,
-            "requirements": "Guide,Signaller,Mouth,Wisp-Keeper,or Gopher",
+            "requirements": {
+              "OR": [
+                "Changeling->Fog->Guide",
+                "Changeling->Crumbling Ruins->Signaller",
+                "Changeling->Fog->Wisp-Keeper",
+                "Changeling->Crumbling Ruins->Gopher"
+              ]
+            },
             "resources": 30,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15502,7 +18583,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Advocate",
             "physicalPool": 0,
-            "requirements": "Mouth,Dorian,or Sweet Nothings",
+            "requirements": {
+              "OR": [
+                "Changeling->Interloper->Dorian",
+                "Changeling->Interloper->Sweet Nothings"
+              ]
+            },
             "resources": 38,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15521,7 +18607,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Broker",
             "physicalPool": 0,
-            "requirements": "Archivist or Reliquary",
+            "requirements": {
+              "OR": [
+                "Changeling->Crumbling Ruins->Archivist",
+                "Changeling->Crumbling Ruins->Reliquary"
+              ]
+            },
             "resources": 66,
             "selectable": true,
             "setting": "Crumbling Ruins",
@@ -15583,7 +18674,16 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Fire-Keeper",
             "physicalPool": 0,
-            "requirements": "Guide,Fog-Bottler,Wisp-Keeper,Pyre-Keeper,Signaller,or at least one Interloper lifepath.",
+            "requirements": {
+              "OR": [
+                "Changeling->Fog->Guide",
+                "Changeling->Fog->Fog-Bottler",
+                "Changeling->Fog->Wisp-Keeper",
+                "Changeling->Crumbling Ruins->Pyre-Tender",
+                "Changeling->Crumbling Ruins->Signaller",
+                "Changeling->Interloper->1*ANY"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Fog",
@@ -15657,7 +18757,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Fog-Bottler",
             "physicalPool": 0,
-            "requirements": "Fire-Keeper,Twig-Picker,Distiller or Wisp-Keeper",
+            "requirements": {
+              "OR": [
+                "Changeling->Fog->Fire-Keeper",
+                "Changeling->Fog->Twig-Picker",
+                "Changeling->Fog->Distiller",
+                "Changeling->Fog->Wisp-Keeper"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Fog",
@@ -15676,7 +18783,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Distiller",
             "physicalPool": 0,
-            "requirements": "Fog-Bottler or Reliquary",
+            "requirements": {
+              "OR": [
+                "Changeling->Fog->Fog-Bottler",
+                "Changeling->Crumbling Ruins->Reliquary"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Fog",
@@ -15695,7 +18807,14 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Wisp-Keeper",
             "physicalPool": 0,
-            "requirements": "Firekeeper,Fog-Bottler,Distiller or Nursery",
+            "requirements": {
+              "OR": [
+                "Changeling->Fog->Fire-Keeper",
+                "Changeling->Fog->Fog-Bottler",
+                "Changeling->Fog->Distiller",
+                "Changeling->Crumbling Ruins->Nursery"
+              ]
+            },
             "resources": 13,
             "selectable": true,
             "setting": "Fog",
@@ -15760,7 +18879,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Pretender",
             "physicalPool": 0,
-            "requirements": "At least two Ruins lifepaths or Analogue,Bogey,or Mouth",
+            "requirements": {
+              "OR": [
+                "Changeling->Crumbling Ruins->2*ANY",
+                "Changeling->Crumbling Ruins->Analogue",
+                "Changeling->Interloper->Bogey"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Interloper",
@@ -15780,7 +18905,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Enemite",
             "physicalPool": 0,
-            "requirements": "Pretender",
+            "requirements": {
+              "AND": [
+                "Changeling->Interloper->Pretender"
+              ]
+            },
             "resources": 4,
             "selectable": true,
             "setting": "Interloper",
@@ -15800,7 +18929,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Songthief",
             "physicalPool": 0,
-            "requirements": "Pretender",
+            "requirements": {
+              "AND": [
+                "Changeling->Interloper->Pretender"
+              ]
+            },
             "resources": 5,
             "selectable": true,
             "setting": "Interloper",
@@ -15820,7 +18953,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Sweet Nothings",
             "physicalPool": 0,
-            "requirements": "Portrait or Pretender",
+            "requirements": {
+              "OR": [
+                "Changeling->Crumbling Ruins->Portrait",
+                "Changeling->Interloper->Pretender"
+              ]
+            },
             "resources": 7,
             "selectable": true,
             "setting": "Interloper",
@@ -15840,7 +18978,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Dorian",
             "physicalPool": 0,
-            "requirements": "Portrait and either Sweet Nothings or Songthief",
+            "requirements": {
+              "OR": [
+                "Changeling->Interloper->Sweet Nothings",
+                "Changeling->Interloper->Songthief"
+              ],
+              "AND": [
+                "Changeling->Crumbling Ruins->Portrait"
+              ]
+            },
             "resources": 48,
             "selectable": true,
             "setting": "Interloper",
@@ -15859,7 +19005,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Inferni",
             "physicalPool": 0,
-            "requirements": "Mouth or Dorian",
+            "requirements": {
+              "AND": [
+                "Changeling->Interloper->Dorian"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Interloper",
@@ -15898,7 +19048,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Muse",
             "physicalPool": 0,
-            "requirements": "Portrait,Candelabrum or Dorian",
+            "requirements": {
+              "OR": [
+                "Changeling->Crumbling Ruins->Portrait",
+                "Changeling->Crumbling Ruins->Candelabrum",
+                "Changeling->Interloper->Dorian"
+              ]
+            },
             "resources": 24,
             "selectable": true,
             "setting": "Interloper",
@@ -15926,7 +19082,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Lost",
             "physicalPool": 0,
-            "requirements": "May not be the character’s second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 2,
             "selectable": true,
             "setting": "Outcast",
@@ -15946,7 +19106,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Cacophanie",
             "physicalPool": 0,
-            "requirements": "Songthief",
+            "requirements": {
+              "AND": [
+                "Changeling->Interloper->Songthief"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Outcast",
@@ -15954,7 +19118,7 @@ var db_stocks = {
             "skills": ["Any Wise->Entropy-wise", "Any General->Musical Composition"],
             "stock": "Changeling",
             "traitPool": 2,
-            "traits": ["Changeling Lifepath->Robber’s Tongue", "Changeling Lifepath->Incessant Off-Key Humming"],
+            "traits": ["Changeling Lifepath->Robber's Tongue", "Changeling Lifepath->Incessant Off-Key Humming"],
             "years": 20
           },
           {
@@ -15966,7 +19130,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Burnout",
             "physicalPool": 0,
-            "requirements": "At least one Interloper lifepath",
+            "requirements": {
+              "AND": [
+                "Changeling->Interloper->1*ANY"
+              ]
+            },
             "resources": 3,
             "selectable": true,
             "setting": "Outcast",
@@ -15986,7 +19154,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Libertine",
             "physicalPool": 0,
-            "requirements": "At least one Interloper lifepath",
+            "requirements": {
+              "AND": [
+                "Changeling->Interloper->1*ANY"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Outcast",
@@ -16006,7 +19178,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Relic Thief",
             "physicalPool": 0,
-            "requirements": "Catalogue or Reliquary",
+            "requirements": {
+              "OR": [
+                "Changeling->Crumbling Ruins->Catalogue",
+                "Changeling->Crumbling Ruins->Reliquary"
+              ]
+            },
             "resources": 35,
             "selectable": true,
             "setting": "Outcast",
@@ -16043,7 +19220,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Ideologue",
             "physicalPool": 0,
-            "requirements": "Degeneracy trait",
+            "requirements": {
+              "AND": [
+                "Trait->Changeling Lifepath->Degeneracy"
+              ]
+            },
             "resources": 52,
             "selectable": true,
             "setting": "Outcast",
@@ -16062,7 +19243,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Bleak",
             "physicalPool": 0,
-            "requirements": "Lost,Anathema,or Fog-Bottler",
+            "requirements": {
+              "OR": [
+                "Changeling->Outcast->Lost",
+                "Changeling->Outcast->Anathema",
+                "Changeling->Fog->Fog-Bottler"
+              ]
+            },
             "resources": 16,
             "selectable": true,
             "setting": "Outcast",
@@ -16082,7 +19269,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Cradle Fawn",
             "physicalPool": 0,
-            "requirements": "At least one lifepath from Interloper",
+            "requirements": {
+              "AND": [
+                "Changeling->Interloper->1*ANY"
+              ]
+            },
             "resources": 18,
             "selectable": true,
             "setting": "Outcast",
@@ -16110,7 +19301,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Inductee",
             "physicalPool": 0,
-            "requirements": "At least 3 lifepaths in the Interloper setting.",
+            "requirements": {
+              "AND": [
+                "Changeling->Interloper->3*ANY"
+              ]
+            },
             "resources": 22,
             "selectable": true,
             "setting": "Primarchy",
@@ -16130,7 +19325,17 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Balor",
             "physicalPool": 0,
-            "requirements": "Bogey,Enemite,Stoic,or Inferti,and Liminal Aura",
+            "requirements": {
+              "OR": [
+                "Changeling->Interloper->Bogey",
+                "Changeling->Interloper->Enemite",
+                "Changeling->Crumbling Ruins->Stoic",
+                "Changeling->Interloper->Inferni"
+              ],
+              "AND": [
+                "Trait->Changeling Lifepath->Liminal Aura"
+              ]
+            },
             "resources": 44,
             "selectable": true,
             "setting": "Primarchy",
@@ -16149,7 +19354,15 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Ameliorator",
             "physicalPool": 0,
-            "requirements": "Balor or Stoic and Liminal Aura",
+            "requirements": {
+              "OR": [
+                "Changeling->Crumbling Ruins->Stoic",
+                "Changeling->Primarchy->Balor"
+              ],
+              "AND": [
+                "Trait->Changeling Lifepath->Liminal Aura"
+              ]
+            },
             "resources": 66,
             "selectable": true,
             "setting": "Primarchy",
@@ -16169,7 +19382,17 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Mastermind",
             "physicalPool": 0,
-            "requirements": "Liminal Aura and at least six Primarchy/Interloper/Ruins lifepaths",
+            "requirements": {
+              "OR": [
+                // TODO: This is wrong, original: at least six Primarchy/Interloper/Ruins lifepaths
+                "Changeling->Crumbling Ruins->6*ANY",
+                "Changeling->Interloper->6*ANY",
+                "Changeling->Primarchy->6*ANY"
+              ],
+              "AND": [
+                "Trait->Changeling Lifepath->Liminal Aura"
+              ]
+            },
             "resources": 77,
             "selectable": true,
             "setting": "Primarchy",
@@ -16189,7 +19412,18 @@ var db_stocks = {
             "mentalPool": 2,
             "name": "Demarch",
             "physicalPool": 0,
-            "requirements": "Liminal Aura and either Mastermind or at least eight Primarchy/Interloper/Ruins lifepaths",
+            "requirements": {
+              "OR": [
+                "Changeling->Primarchy->Mastermind",
+                // TODO: This is wrong, original: at least six Primarchy/Interloper/Ruins lifepaths
+                "Changeling->Crumbling Ruins->8*ANY",
+                "Changeling->Interloper->8*ANY",
+                "Changeling->Primarchy->8*ANY"
+              ],
+              "AND": [
+                "Trait->Changeling Lifepath->Liminal Aura"
+              ]
+            },
             "resources": 99,
             "selectable": true,
             "setting": "Primarchy",
@@ -16208,7 +19442,13 @@ var db_stocks = {
             "mentalPool": 3,
             "name": "Primarch",
             "physicalPool": 0,
-            "requirements": "Liminal Aura,Extreme Irrevocable Paranoia and Demarch",
+            "requirements": {
+              "AND": [
+                "Changeling->Primarchy->Demarch",
+                "Trait->Changeling Lifepath->Liminal Aura",
+                "Trait->Changeling Lifepath->Extreme Irrevocable Paranoia"
+              ]
+            },
             "resources": 111,
             "selectable": true,
             "setting": "Primarchy",
@@ -16356,7 +19596,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Surgeon",
             "physicalPool": 0,
-            "requirements": "Apprentice lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Big Cities->Apprentice"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Big Cities",
@@ -16395,7 +19639,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Vintner",
             "physicalPool": 0,
-            "requirements": "Tavern Keeper or Miller lifepath",
+            "requirements": {
+              "OR": [
+                "Halfling->Big Cities->Tavern Keeper",
+                "Halfling->Underhill->Miller"
+              ]
+            },
             "resources": 26,
             "selectable": true,
             "setting": "Big Cities",
@@ -16414,7 +19663,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Master Chef",
             "physicalPool": 0,
-            "requirements": "Tavern Keeper or Mushroom Farmer lifepath",
+            "requirements": {
+              "OR": [
+                "Halfling->Big Cities->Tavern Keeper",
+                "Halfling->Underhill->Mushroom Farmer"
+              ]
+            },
             "resources": 26,
             "selectable": true,
             "setting": "Big Cities",
@@ -16434,7 +19688,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Merchant",
             "physicalPool": 0,
-            "requirements": "Cannot be character’s second lifepath",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 35,
             "selectable": true,
             "setting": "Big Cities",
@@ -16454,7 +19712,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Banker",
             "physicalPool": 0,
-            "requirements": "Merchant lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Big Cities->Merchant"
+              ]
+            },
             "resources": 48,
             "selectable": true,
             "setting": "Big Cities",
@@ -16474,7 +19736,13 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Steward",
             "physicalPool": 0,
-            "requirements": "Clerk, Master Chef or Vintner lifepath",
+            "requirements": {
+              "OR": [
+                "Halfling->Big Cities->Clerk",
+                "Halfling->Big Cities->Master Chef",
+                "Halfling->Big Cities->Vintner"
+              ]
+            },
             "resources": 15,
             "selectable": true,
             "setting": "Big Cities",
@@ -16520,7 +19788,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Leprechaun",
             "physicalPool": 0,
-            "requirements": "Born Among Little Folk lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Forgotten Cousins->Born Among Little Folk"
+              ]
+            },
             "resources": 20,
             "selectable": true,
             "setting": "Forgotten Cousins",
@@ -16540,7 +19812,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Gnome",
             "physicalPool": 0,
-            "requirements": "Born Among Little Folk lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Forgotten Cousins->Born Among Little Folk"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Forgotten Cousins",
@@ -16560,7 +19836,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Savage Halfling",
             "physicalPool": 1,
-            "requirements": "Born Among Little Folk lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Forgotten Cousins->Born Among Little Folk"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Forgotten Cousins",
@@ -16580,7 +19860,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Gremlin",
             "physicalPool": 0,
-            "requirements": "Born Among Little Folk lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Forgotten Cousins->Born Among Little Folk"
+              ]
+            },
             "resources": 8,
             "selectable": true,
             "setting": "Forgotten Cousins",
@@ -16600,7 +19884,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Daft Punk",
             "physicalPool": 0,
-            "requirements": "Gone Crazy trait",
+            "requirements": {
+              "AND": [
+                "Trait->Halfling Lifepath->Gone Crazy"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Forgotten Cousins",
@@ -16723,7 +20011,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Crazy Ol'Fella",
             "physicalPool": 0,
-            "requirements": "Odd Halfling lifepath or any two Odd Fellows lifepaths",
+            "requirements": {
+              "OR": [
+                "Halfling->Odd Fellows->Odd Halfling",
+                "Halfling->Odd Fellows->2*ANY"
+              ]
+            },
             "resources": 11,
             "selectable": true,
             "setting": "Odd Fellows",
@@ -16743,7 +20036,12 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Restless Wanderer",
             "physicalPool": 1,
-            "requirements": "Trapper or Lake Sailor lifepath",
+            "requirements": {
+              "OR": [
+                "Halfling->Odd Fellows->Trapper",
+                "Halfling->Odd Fellows->Lake Sailor"
+              ]
+            },
             "resources": 6,
             "selectable": true,
             "setting": "Odd Fellows",
@@ -16762,7 +20060,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Ex-Adventurer",
             "physicalPool": 0,
-            "requirements": "Any Unexpected Journey lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Unexpected Journey->1*ANY"
+              ]
+            },
             "resources": 14,
             "selectable": true,
             "setting": "Odd Fellows",
@@ -16866,7 +20168,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Husband/Wife",
             "physicalPool": 0,
-            "requirements": "Cannot be character’s second lifepath.",
+            "requirements": {
+              "LIMIT": [
+                "NOT->LP*2"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Underhill",
@@ -16924,7 +20230,11 @@ var db_stocks = {
             "mentalPool": 2,
             "name": "Elder",
             "physicalPool": 0,
-            "requirements": "Husband/Wife lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Underhill->Husband/Wife"
+              ]
+            },
             "resources": 28,
             "selectable": true,
             "setting": "Underhill",
@@ -16944,7 +20254,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Mayor",
             "physicalPool": 0,
-            "requirements": "Elder lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Underhill->Elder"
+              ]
+            },
             "resources": 12,
             "selectable": true,
             "setting": "Underhill",
@@ -17104,7 +20418,12 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Pony Outrider",
             "physicalPool": 0,
-            "requirements": "Pony Breeder or any Unexpected Journey lifepath",
+            "requirements": {
+              "OR": [
+                "Halfling->Odd Fellows->Pony Breeder",
+                "Halfling->Unexpected Journey->1*ANY"
+              ]
+            },
             "resources": 14,
             "selectable": true,
             "setting": "Unexpected Journey",
@@ -17124,7 +20443,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Soldier of Fortune",
             "physicalPool": 0,
-            "requirements": "Mercenary, Pony Outrider or Freebooter lifepath",
+            "requirements": {
+              "OR": [
+                "Halfling->Unexpected Journey->Mercenary",
+                "Halfling->Unexpected Journey->Pony Outrider",
+                "Halfling->Unexpected Journey->Freebooter"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Unexpected Journey",
@@ -17143,7 +20468,11 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Witch Hunter",
             "physicalPool": 0,
-            "requirements": "Soldier of Fortune",
+            "requirements": {
+              "AND": [
+                "Halfling->Unexpected Journey->Soldier of Fortune"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Unexpected Journey",
@@ -17163,7 +20492,13 @@ var db_stocks = {
             "mentalPool": 0,
             "name": "Freebooter",
             "physicalPool": 1,
-            "requirements": "Lake Sailor, Mercenary or any Forgotten Cousins lifepath",
+            "requirements": {
+              "OR": [
+                "Halfling->Odd Fellows->Lake Sailor",
+                "Halfling->Unexpected Journey->Mercenary",
+                "Halfling->Forgotten Cousins->1*ANY"
+              ]
+            },
             "resources": 14,
             "selectable": true,
             "setting": "Unexpected Journey",
@@ -17183,7 +20518,11 @@ var db_stocks = {
             "mentalPool": 1,
             "name": "Religious Bigot",
             "physicalPool": 0,
-            "requirements": "Raised Among Humans lifepath",
+            "requirements": {
+              "AND": [
+                "Halfling->Big Cities->Raised Among Humans"
+              ]
+            },
             "resources": 10,
             "selectable": true,
             "setting": "Unexpected Journey",
@@ -17201,5 +20540,5 @@ var db_stocks = {
       }
     },
     "stride": 7
-  },
+  }
 }

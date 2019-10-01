@@ -16,25 +16,28 @@
 		<script src="db_stocks.js" defer></script>
 		<script src="db_skills.js" defer></script>
 		<script src="db_traits.js" defer></script>
-		<script src="game.js" defer></script>
+		<script src="c_game.js" defer></script>
+		<script src="c_char.js" defer></script>
 		<script src="bw.js" defer></script>
 	</head>
 
 	<body>
 		<h1>Burning Wheel</h1>
 
-		<div id="topMenu">
-			Show me settings for:
-			<select id="SettingOptions" onchange="current_game.updateLeftMenu();">
-				<option value=""></option>
-			</select>
-		</div>
+		<div id="leftMenu">
+			<div id="topMenu">
+				Show me settings for:
+				<select id="SettingOptions" onchange="current_game.updateLeftMenu();">
+					<option value=""></option>
+				</select>
+			</div>
 
-		<div id="explorerWrapper">
-		</div>
+			<div id="explorerWrapper">
+			</div>
 
-		<div id="revealerWrapper">
-			<div id="content"></div>
+			<div id="revealerWrapper">
+				<div id="content"></div>
+			</div>
 		</div>
 
 		<div id="adjusterWrapper">

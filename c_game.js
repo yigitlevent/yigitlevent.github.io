@@ -4,7 +4,7 @@ class game {
 		this.title = "Burning Wheel Gold";
 		this.game_type = {
 			"main": "bwc",
-			"mods": ["dregs"],
+			"mods": ["dregs", "chang", "halfl"],
 			"extr": ["bountyhunter", "druid", "masterpigeon", "soldierspy"]
 		};
 		this.current_revealer = "";
@@ -17,7 +17,7 @@ class game {
 		let optionString = "<option value=''></option>";
 		for (let stock_name in db_stocks) {
 			if (this.checkValidity(getDataByID(stock_name, "stock").allowed)) {
-				optionString += "<option value=" + stock_name + ">" + stock_name + "</option>";
+				optionString += "<option value=\"" + stock_name + "\">" + stock_name + "</option>";
 			}
 		}
 
@@ -95,7 +95,7 @@ class game {
 	}
 
 	// Content
-	showSettingContent(lead, char = false) {
+	showSettingContent(lead) {
 		this.current_revealer = lead;
 
 		let setting_data = getDataByID(lead, "setting");
@@ -189,18 +189,7 @@ class game {
 				else if (lifepath_data.traitPool == 0) { lp_trait_points = "" }
 
 				// Check if there is lp requirements
-				let lifepath_requirements = "";
-				if ("requirements" in lifepath_data) {
-					if ("OR" in lifepath_data.requirements) {
-						lifepath_requirements += "<div id='lifepathRequirements'>Or requirements: " + lifepath_data.requirements.OR + "</div>";
-					}
-					if ("AND" in lifepath_data) {
-						lifepath_requirements += "<div id='lifepathRequirements'>Must-have requirements: " + lifepath_data.requirements.AND + "</div>";
-					}
-					if ("LIMIT" in lifepath_data) {
-						lifepath_requirements += "<div id='lifepathRequirements'>Restrictions: " + lifepath_data.requirements.LIMIT + "</div>";
-					}
-				}
+				let lifepath_requirements = this.requirementStringifier(lifepath_data);
 
 				// Construct Skills list
 				let lp_skills_list = "";
@@ -455,6 +444,128 @@ class game {
 	}
 
 	// Minor Methods
+	requirementsSplitFormat(str) {
+		let split = str.split("->");
+
+		let s = split[2];
+		if (split[0] == "Skill") { s += " skill"; }
+		else if (split[0] == "Trait") { s += " trait"; }
+
+		return s;
+	}
+
+	requirementStringifierBasic(lpr, type, eArrS) {
+		console.log(lpr)
+
+
+		let temp_obj = {};
+		for (let i = 0; i < lpr[type].length; i++) {
+			// [lpname, lpname]
+			if (Array.isArray(lpr[type][i])) {
+				let s = this.requirementsSplitFormat(lpr[type][i][0]) + " " + eArrS + " " + this.requirementsSplitFormat(lpr[type][i][1]);
+				temp_obj[s] = "";
+			}
+			else {
+				let a = lpr[type][i].split("->");
+				// #*ANY, #*lpname
+				if (a[2].split("*").length > 1) {
+					let p = a[2].split("*");
+					if (p[1] == "ANY") {
+						let s = "";
+						if (p[0] > 1) { s += "any " + p[0] + " " + a[1] + " lifepaths"; }
+						else { s += "any " + a[1] + " lifepath"; }
+						temp_obj[s] = "";
+					}
+					else {
+						let s = "";
+						if (p[0] > 1) { s += p[0] + " " + a[1] + " lifepaths"; }
+						else { s += a[1] + " lifepath"; }
+						temp_obj[s] = "";
+					}
+				}
+				// lpname
+				else {
+					let s = this.requirementsSplitFormat(lpr[type][i]) + "";
+					temp_obj[s] = "";
+				}
+			}
+		}
+		let temp_obj_length = Object.keys(temp_obj).length;
+		let t_str = "";
+		for (let i = 0; i < temp_obj_length; i++) {
+			t_str += Object.keys(temp_obj)[i];
+			if (i < temp_obj_length - 1) { t_str += ", "; }
+			if (i == temp_obj_length - 2) { t_str += type.toLowerCase() + " "; }
+		}
+		return t_str;
+	}
+
+	requirementStringifier(reqObj) {
+		let reqStr = "<div id='lifepathRequirements'>";
+		if ("requirements" in reqObj) {
+			reqStr += "Requirements: <br>";
+			let lpr = reqObj.requirements;
+			if ("OR" in lpr) {
+				reqStr += "Any: " + this.requirementStringifierBasic(lpr, "OR", "and");
+			}
+			if ("AND" in lpr) {
+				if ("OR" in lpr) { reqStr += "<br>" }
+				reqStr += "All: " + this.requirementStringifierBasic(lpr, "AND", "or");
+			}
+			// TODO: NOTAND
+			if ("LIMIT" in lpr) {
+				if ("OR" in lpr || "AND" in lpr) { reqStr += "<br>" }
+
+				reqStr += "Restrictions: ";
+				for (let i = 0; i < lpr.LIMIT.length; i++) {
+					let a = lpr.LIMIT[i].split("->");
+					if (a[0] == "YEARS") {
+						reqStr += "Character must be at least " + a[1] + " years old.";
+					}
+					else if (a[0] == "GENDER") {
+						reqStr += "Character must be " + a[1].toLowerCase() + ".";
+					}
+					else if (a[0] == "IS") {
+						if (a[1] == "UNIQUE") { reqStr += "This lifepath can only be taken once."; }
+						else if (a[1].startsWith("LP*")) {
+							let b = a[1].slice(3);
+
+							let ending = "";
+							if (b.endsWith("1")) { ending = "st" }
+							else if (b.endsWith("2")) { ending = "nd" }
+							else if (b.endsWith("3")) { ending = "rd" }
+							else { ending = "th" }
+
+							reqStr += "This lifepath must be " + b + ending + " lifepath.";
+						}
+					}
+					else if (a[0] == "NOT") {
+						if (a[1] == "UNIQUE") { reqStr += "This lifepath cannot only be taken once."; }
+						else if (a[1].startsWith("LP*")) {
+							let b = a[1].slice(3);
+
+							let ending = "";
+							if (b.endsWith("1")) { ending = "st" }
+							else if (b.endsWith("2")) { ending = "nd" }
+							else if (b.endsWith("3")) { ending = "rd" }
+							else { ending = "th" }
+
+							reqStr += "This lifepath cannot be " + b + ending + " lifepath.";
+						}
+					}
+					if (i < lpr.LIMIT.length - 1) { reqStr += " "; }
+				}
+			}
+			if ("TEXT" in lpr) {
+				if ("OR" in lpr || "AND" in lpr || "LIMIT" in lpr) { reqStr += "<br>" }
+				reqStr += "Notes: " + lpr.TEXT;
+			}
+		}
+
+		reqStr += "</div>";
+		return reqStr;
+	}
+
 	changeTab(box) {
 		document.querySelectorAll(".midTitle").forEach(function (element) { element.classList.remove("chosenTab"); });
 		document.querySelectorAll("#explorerWrapper, #chroniclerWrapper, #burnerWrapper, #adjusterWrapper, #practicerWrapper, #observerWrapper")

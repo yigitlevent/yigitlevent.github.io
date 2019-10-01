@@ -65,6 +65,7 @@ tr:nth-child(even){background:#333333;}
 .skill,.trait,.lead{display:inline-block;cursor:pointer;}
 /********* adjuster *********/
 #adjusterWrapper{display:none;overflow-y:auto;}
+/********* media *********/
 @media only screen and (max-width: 600px) {
 	#infoBox {
 	  position: absolute;
@@ -73,3 +74,8 @@ tr:nth-child(even){background:#333333;}
 	  width: 100%;
 	}
   }
+
+/********* asd *********/
+#leftMenu {
+	width: 50%;
+}
