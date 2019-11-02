@@ -1,81 +1,306 @@
 /********* basics *********/
-*{box-sizing:border-box;scrollbar-color:rgba(255,255,255,.5) #555555;scrollbar-width:thin;}
-@font-face{font-family:BWG-Font;src:url(./inc/PostMediaeval-Regular.otf);}
-html,body{width:100%;height:100%;padding:0;margin:auto;background:#2d2d2d;color:#cccccc;}
-html{overflow:hidden;font-family:BWG-Font;font-weight:normal;font-size:.93em;}
-body{letter-spacing:.2px;}
-::-webkit-scrollbar{width:8px;height:4px;}
-::-webkit-scrollbar-track{background:#555555;border-radius:0;margin:0;}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,.5);border-radius:0;}
-::-webkit-scrollbar-corner{background:transparent;}
+* {
+	box-sizing: border-box;
+	scrollbar-color: rgba(255, 255, 255, 0.5) #555555;
+	scrollbar-width: thin;
+}
+@font-face {
+	font-family: BWG-Font;
+	src: url(./inc/PostMediaeval-Regular.otf);
+}
+html,
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: auto;
+	background: #2d2d2d;
+	color: #cccccc;
+}
+html {
+	overflow: hidden;
+	font-family: BWG-Font;
+	font-weight: normal;
+	font-size: 0.93em;
+}
+body {
+	letter-spacing: 0.2px;
+}
+::-webkit-scrollbar {
+	width: 8px;
+	height: 4px;
+}
+::-webkit-scrollbar-track {
+	background: #555555;
+	border-radius: 0;
+	margin: 0;
+}
+::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 0;
+}
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
 /********* headers *********/
-h1{font-size:3em;text-align: center;margin:6px 0 2px;padding:0 0 0 6px;}
-h2{font-size:2.6em;margin:6px 0 2px;padding:0 0 0 6px;}
-h3{margin-left:0 23px 6px 0;}
-h4{padding:4px 7px;margin:0;}
+h1 {
+	font-size: 3em;
+	text-align: center;
+	margin: 6px 0 2px;
+	padding: 0 0 0 6px;
+}
+h2 {
+	font-size: 2.6em;
+	margin: 6px 0 2px;
+	padding: 0 0 0 6px;
+}
+h3 {
+	margin-left: 0 23px 6px 0;
+}
+h4 {
+	padding: 4px 7px;
+	margin: 0;
+}
+
 /********* lists *********/
-ul{padding:0;margin:0;}
-ul>li{display:inline-block;padding:2px 4px;margin:0 5px 6px;background:#3d3d3d;}
-li>.skill,li>.trait{padding-left:0;}
-#listSearch{margin:5px 23px;}
-#search{margin:10px 0;height:18px;}
+ul {
+	padding: 0;
+	margin: 0;
+}
+ul > li {
+	display: inline-block;
+	padding: 2px 4px;
+	margin: 0 5px 6px;
+	background: #3d3d3d;
+}
+li > .skill,
+li > .trait {
+	padding-left: 0;
+}
+#listSearch {
+	margin: 5px 23px;
+}
+#search {
+	margin: 10px 0;
+	height: 18px;
+}
+
 /********* links *********/
-a,.settingLink,.listLink,.skill,.trait,.lead{text-decoration:none;color:#c54949;cursor: pointer;}
-a:hover,.settingLink:hover,.listLink:hover,.skill:hover,.trait:hover,.lead:hover{color:#a03c3c;cursor:pointer;}
+a,
+.settingLink,
+.listLink,
+.skill,
+.trait,
+.lead {
+	text-decoration: none;
+	color: #c54949;
+	cursor: pointer;
+}
+a:hover,
+.settingLink:hover,
+.listLink:hover,
+.skill:hover,
+.trait:hover,
+.lead:hover {
+	color: #a03c3c;
+	cursor: pointer;
+}
+
 /********* input *********/
-input{height:10px;margin:0;}
-input[type=checkbox]{width:11px;height:11px;-webkit-appearance:none;border:1px #666666 solid;}
-input[type=checkbox]:checked{background:#cccccc;}
-select{height:20px;width:100px;margin:0 4px 0 0;padding:0;appearance:none;-webkit-appearance:none;-moz-appearance:none;background:#2d2d2d;color:#cccccc;border:1px #666666 solid;}
-select>option{background:#2d2d2d;color:#cccccc;}
+input {
+	height: 10px;
+	margin: 0;
+}
+input[type="checkbox"] {
+	width: 11px;
+	height: 11px;
+	-webkit-appearance: none;
+	border: 1px #666666 solid;
+}
+input[type="checkbox"]:checked {
+	background: #cccccc;
+}
+select {
+	height: 20px;
+	width: 100px;
+	margin: 0 4px 0 0;
+	padding: 0;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: #2d2d2d;
+	color: #cccccc;
+	border: 1px #666666 solid;
+}
+select > option {
+	background: #2d2d2d;
+	color: #cccccc;
+}
+
 /********* tables *********/
-table{text-align:center;border:none;border-spacing:0;}
-td{width:24px;background:none;}
-tr{height:24px;}
-td:nth-child(1),tr:nth-child(2),tr:nth-child(1){background:#3b3b3b!important;}
-td:nth-child(odd){border-right:1px #545454 dotted;}
-td:nth-child(1),td:last-child{border:none;}
-tr:nth-child(odd){background:#373737;}
-tr:nth-child(even){background:#333333;}
+table {
+	text-align: center;
+	border: none;
+	border-spacing: 0;
+}
+td {
+	width: 24px;
+	background: none;
+}
+tr {
+	height: 24px;
+}
+td:nth-child(1),
+tr:nth-child(2),
+tr:nth-child(1) {
+	background: #3b3b3b !important;
+}
+td:nth-child(odd) {
+	border-right: 1px #545454 dotted;
+}
+td:nth-child(1),
+td:last-child {
+	border: none;
+}
+tr:nth-child(odd) {
+	background: #373737;
+}
+tr:nth-child(even) {
+	background: #333333;
+}
+
 /********* info box *********/
-#infoBox{border:2px #262626 solid;background:#2d2d2d;font-size:.9em;
-	display:none;position:absolute;width:400px;left:0;top:0;min-height:50px;z-index:100;margin:5px;}
-#infoBoxContent{font-size:.9em;margin:5px;}
-/********* top menu *********/
-#topMenu{width:100%;height:30px;padding:6px;}
-/********* explorer *********/
-#explorerWrapper{margin:20px 4px;}
+#infoBox {
+	border: 2px #262626 solid;
+	background: #2d2d2d;
+	font-size: 0.9em;
+	display: none;
+	position: absolute;
+	width: 400px;
+	left: 0;
+	top: 0;
+	min-height: 50px;
+	z-index: 100;
+	margin: 5px;
+}
+#infoBoxContent {
+	font-size: 0.9em;
+	margin: 5px;
+}
+
+/********* grid *********/
+#gridContainer {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: [column-start] 10px [column-mid-left] 1fr [column-mid] 1fr [column-mid-right] 10px [column-end];
+	grid-template-rows: [title-start] 56px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] auto [row-end];
+	justify-content: start;
+	align-content: start;	
+}
+#title {
+	grid-column: column-mid-left / column-mid-right;
+	grid-row: title-start / title-end;
+}
+#optionWrapper {
+	grid-column: column-mid-left / column-mid;
+	grid-row: menu-start / menu-end;
+}
+#explorerWrapper {
+	grid-column: column-mid-left / column-mid;
+	grid-row: row-start / row-mid-top;
+}
+#revealerWrapper {
+	grid-column: column-mid-left / column-mid;
+	grid-row: row-mid-bottom / row-end;
+	overflow: auto;
+}
+
 /********* revealer *********/
-#revealerWrapper{overflow-y:auto;height:85%;}
-.midTitle{margin-top:20px;font-weight:900;display:inline-block;cursor:pointer;font-size:1.8em;background:#2d2d2d;}
-#innerTitle,.smallTitle{margin-top:0;font-weight:bolder;}
-#innerTitle{margin:0 0 0 10px;font-size:2em;}
-.smallTitle{padding-left:26px;font-size:1.6em;cursor:pointer;}
-#content{padding-bottom:100px;}
-#contentTop{top:0;position:sticky;background:#2d2d2d;}
-#lifepathTopTitles{background:#3d3d3d;padding:2px 4px;margin: 0 0 -10px 0;}
-.lifepathBox{padding:10px 0;}
-#lifepathTop{padding:2px 4px;background:#383838;}
-#lifepathSkills,#lifepathTraits,#lifepathRequirements{padding:4px 4px 0;}
-#lifepathRequirements{font-style:italic;font-size:.9em;}
-.lifepathLeadsTop{padding-left:2px;max-width:51%;}
-.lifepathName{width:20%;display:inline-block;}
-.lifepathLeads{width:56%;padding-left:3px;}
-.lifepathYears,.lifepathResources,.lifepathStats{width:8%;text-align:center;display:inline-block;}
-.skill,.trait,.lead{display:inline-block;cursor:pointer;}
-/********* adjuster *********/
-#adjusterWrapper{display:none;overflow-y:auto;}
+.midTitle {
+	margin-top: 20px;
+	font-weight: 900;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 1.8em;
+	background: #2d2d2d;
+}
+#innerTitle,
+.smallTitle {
+	margin-top: 0;
+	font-weight: bolder;
+}
+#innerTitle {
+	margin: 0 0 0 10px;
+	font-size: 2em;
+}
+.smallTitle {
+	padding-left: 26px;
+	font-size: 1.6em;
+	cursor: pointer;
+}
+#content {
+	padding-bottom: 100px;
+}
+#contentTop {
+	top: 0;
+	position: sticky;
+	background: #2d2d2d;
+}
+#lifepathTopTitles {
+	background: #3d3d3d;
+	padding: 2px 4px;
+	margin: 0 0 -10px 0;
+}
+.lifepathBox {
+	padding: 10px 0;
+}
+#lifepathTop {
+	padding: 2px 4px;
+	background: #383838;
+}
+#lifepathSkills,
+#lifepathTraits,
+#lifepathRequirements {
+	padding: 4px 4px 0;
+}
+#lifepathRequirements {
+	font-style: italic;
+	font-size: 0.9em;
+}
+.lifepathLeadsTop {
+	padding-left: 2px;
+	max-width: 51%;
+}
+.lifepathName {
+	width: 20%;
+	display: inline-block;
+}
+.lifepathLeads {
+	width: 56%;
+	padding-left: 3px;
+}
+.lifepathYears,
+.lifepathResources,
+.lifepathStats {
+	width: 8%;
+	text-align: center;
+	display: inline-block;
+}
+.skill,
+.trait,
+.lead {
+	display: inline-block;
+	cursor: pointer;
+}
+
 /********* media *********/
 @media only screen and (max-width: 600px) {
 	#infoBox {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
 	}
-  }
-
-/********* asd *********/
-#leftMenu {
-	width: 50%;
 }

@@ -12,7 +12,7 @@ class game {
 
 	// Base
 	updateAvailableSettings() {
-		document.getElementById("SettingOptions").innerHTML = "";
+		document.getElementById("settingOptions").innerHTML = "";
 
 		let optionString = "<option value=''></option>";
 		for (let stock_name in db_stocks) {
@@ -23,13 +23,13 @@ class game {
 
 		optionString += "<option value='References'>References</option>";
 
-		document.getElementById("SettingOptions").innerHTML = optionString;
+		document.getElementById("settingOptions").innerHTML = optionString;
 	}
 
 	updateLeftMenu() {
 		document.title = this.title;
 
-		let current_name = document.getElementById("SettingOptions").value;
+		let current_name = document.getElementById("settingOptions").value;
 
 		if (current_name == "References") {
 			document.getElementById("explorerWrapper").innerHTML = "<div id='references'><h2>Reference</h2>Lists: "
