@@ -212,7 +212,7 @@ tr:nth-child(even) {
 	grid-row: row-start / row-mid-top;
 }
 #revealerWrapper {
-	grid-column: column-mid-left / column-mid;
+	grid-column: column-mid-left / column-mid-right;
 	grid-row: row-mid-bottom / row-end;
 	overflow: auto;
 }
