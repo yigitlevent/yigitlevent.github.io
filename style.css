@@ -47,8 +47,7 @@ body {
 h1 {
 	font-size: 3em;
 	text-align: center;
-	margin: 6px 0 2px;
-	padding: 0 0 0 6px;
+	margin: 15px 0px 2px;
 }
 h2 {
 	font-size: 2.6em;
@@ -195,9 +194,9 @@ tr:nth-child(even) {
 	width: 100%;
 	display: grid;
 	grid-template-columns: [column-start] 10px [column-mid-left] 1fr [column-mid] 1fr [column-mid-right] 10px [column-end];
-	grid-template-rows: [title-start] 56px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] auto [row-end];
+	grid-template-rows: [title-start] 70px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] auto [row-end];
 	justify-content: start;
-	align-content: start;	
+	align-content: start;
 }
 #title {
 	grid-column: column-mid-left / column-mid-right;
@@ -215,6 +214,83 @@ tr:nth-child(even) {
 	grid-column: column-mid-left / column-mid;
 	grid-row: row-mid-bottom / row-end;
 	overflow: auto;
+}
+
+/********* revealer *********/
+#contentTop {
+	top: 0;
+	position: sticky;
+	background: #2d2d2d;
+}
+.lp-grid {
+	width: 100%;
+	padding: 12px 0px;
+	display: grid;
+	grid-template-columns:
+		[column-start-1] 55% [column-end-1
+		column-start-2] 15% [column-end-2
+		column-start-3] 15% [column-end-3
+		column-start-4] 15% [column-end-4];
+	grid-template-rows:
+		[title-start] auto [title-end
+		leads-start] auto [leads-end
+		skills-start] auto [skills-end
+		traits-start] auto [traits-end
+		requirements-start] auto [requirements-end
+		restrictions-start] auto [restrictions-end];
+}
+.lp-top {
+	background: #3d3d3d;
+	padding: 2px 4px;
+	margin: 0 0 -10px -1px;
+}
+.lp-entry {
+	background: #353535;
+	padding: 2px;
+	margin: 1px 1px 1px 0px;
+}
+.lp-name {
+	grid-column: column-start-1 / column-end-1;
+	grid-row: title-start / title-end;
+}
+.lp-time {
+	text-align: center;
+	grid-column: column-start-2 / column-end-2;
+	grid-row: title-start / title-end;
+}
+.lp-resources {
+	text-align: center;
+	grid-column: column-start-3 / column-end-3;
+	grid-row: title-start / title-end;
+}
+.lp-stats {
+	text-align: center;
+	grid-column: column-start-4 / column-end-4;
+	grid-row: title-start / title-end;
+}
+.lp-leads {
+	grid-column: column-start-1 / column-end-4;
+	grid-row: leads-start / leads-end;
+	padding: 2px;
+	border-bottom: 1px#3B3B3B dashed;
+}
+.lp-skills {
+	grid-column: column-start-1 / column-end-4;
+	grid-row: skills-start / skills-end;
+	padding: 2px;
+	border-bottom: 1px#3B3B3B dashed;
+}
+.lp-traits {
+	grid-column: column-start-1 / column-end-4;
+	grid-row: traits-start / traits-end;
+	padding: 2px;
+}
+.lp-requirements {
+	grid-column: column-start-1 / column-end-4;
+	grid-row: requirements-start / requirements-end;
+	padding: 2px;
+	border-top: 1px#3B3B3B dashed;
+	font-size: 0.9em;
 }
 
 /********* revealer *********/
@@ -242,16 +318,6 @@ tr:nth-child(even) {
 }
 #content {
 	padding-bottom: 100px;
-}
-#contentTop {
-	top: 0;
-	position: sticky;
-	background: #2d2d2d;
-}
-#lifepathTopTitles {
-	background: #3d3d3d;
-	padding: 2px 4px;
-	margin: 0 0 -10px 0;
 }
 .lifepathBox {
 	padding: 10px 0;
@@ -302,5 +368,11 @@ tr:nth-child(even) {
 		top: 0;
 		left: 0;
 		width: 100%;
+	}
+	#gridContainer {
+		grid-template-columns: [column-start] 10px [column-mid-left] 1fr [column-mid] 10px [column-end];
+		grid-template-rows: [title-start] 70px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] auto [row-end];
+		justify-content: start;
+		align-content: start;
 	}
 }

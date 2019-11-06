@@ -102,14 +102,13 @@ class game {
 
 		let a = "<div id='contentTop'>"
 			+ "<div id='innerTitle'>" + setting_data.name + " " + setting_data.type + "</div>"
-			+ "<div id='lifepathTopTitles'>"
-			+ "<span class='lifepathName'>Lifepath</span>"
-			+ "<span class='lifepathYears'>Time</span>"
-			+ "<span class='lifepathResources'>Res</span>"
-			+ "<span class='lifepathStats'>Stat</span>"
-			+ "<span class='lifepathLeads'>Leads</span>"
+			+ "<div class='lp-grid lp-top'>"
+				+ "<span class='lp-name'>Lifepath</span>"
+				+ "<span class='lp-time'>Time</span>"
+				+ "<span class='lp-resources'>Res</span>"
+				+ "<span class='lp-stats'>Stat</span>"
 			+ "</div>"
-			+ "</div>";
+		+ "</div>";
 
 
 		for (let lifepath_index in setting_data.lifepaths) {
@@ -216,16 +215,14 @@ class game {
 					}
 				}
 
-				a += "<div class='lifepathBox'>"
-					+ "<div id='lifepathTop'>"
-					+ "<span class='lifepathName'>" + lifepath_data.name + "</span>"
-					+ "<span class='lifepathYears'>" + lifepath_data.years + "</span>"
-					+ "<span class='lifepathResources'>" + lifepath_data.resources + "</span>"
-					+ "<span class='lifepathStats'>" + lp_stats + "</span>"
-					+ "<span class='lifepathLeads'>" + lp_lead_list + "</span>"
-					+ "</div>"
-					+ "<div id='lifepathSkills'>Skills: " + lp_skill_points + " " + lp_skills_list + "</div>"
-					+ "<div id='lifepathTraits'>Traits: " + lp_trait_points + " " + lp_traits_list + "</div>"
+				a += "<div class='lp-grid'>"
+					+ "<span class='lp-name lp-entry'>" + lifepath_data.name + "</span>"
+					+ "<span class='lp-time lp-entry'>" + lifepath_data.years + "</span>"
+					+ "<span class='lp-resources lp-entry'>" + lifepath_data.resources + "</span>"
+					+ "<span class='lp-stats lp-entry'>" + lp_stats + "</span>"
+					+ "<span class='lp-leads'>Leads: " + lp_lead_list + "</span>"
+					+ "<span class='lp-skills'>Skills: " + lp_skill_points + " " + lp_skills_list + "</span>"
+					+ "<span class='lp-traits'>Traits: " + lp_trait_points + " " + lp_traits_list + "</span>"
 					+ lifepath_requirements
 					+ "</div>";
 			}
@@ -455,9 +452,6 @@ class game {
 	}
 
 	requirementStringifierBasic(lpr, type, eArrS) {
-		console.log(lpr)
-
-
 		let temp_obj = {};
 		for (let i = 0; i < lpr[type].length; i++) {
 			// [lpname, lpname]
@@ -501,7 +495,7 @@ class game {
 	}
 
 	requirementStringifier(reqObj) {
-		let reqStr = "<div id='lifepathRequirements'>";
+		let reqStr = "<span class='lp-requirements'>";
 		if ("requirements" in reqObj) {
 			reqStr += "Requirements: <br>";
 			let lpr = reqObj.requirements;
@@ -562,7 +556,7 @@ class game {
 			}
 		}
 
-		reqStr += "</div>";
+		reqStr += "</span>";
 		return reqStr;
 	}
 
