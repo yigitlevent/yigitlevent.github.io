@@ -204,7 +204,7 @@ tr:nth-child(even) {
 	grid-row: title-start / title-end;
 }
 #optionWrapper {
-	grid-column: column-mid-left / column-mid;
+	grid-column: column-mid-left / column-mid-right; /*delete right here*/
 	grid-row: menu-start / menu-end;
 }
 #explorerWrapper {
