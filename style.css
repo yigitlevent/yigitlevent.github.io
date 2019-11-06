@@ -203,15 +203,15 @@ tr:nth-child(even) {
 	grid-row: title-start / title-end;
 }
 #optionWrapper {
-	grid-column: column-mid-left / column-mid-right; /*delete right here*/
+	grid-column: column-mid-left / column-mid;
 	grid-row: menu-start / menu-end;
 }
 #explorerWrapper {
-	grid-column: column-mid-left / column-mid-right;
+	grid-column: column-mid-left / column-mid;
 	grid-row: row-start / row-mid-top;
 }
 #revealerWrapper {
-	grid-column: column-mid-left / column-mid-right;
+	grid-column: column-mid-left / column-mid;
 	grid-row: row-mid-bottom / row-end;
 	overflow: auto;
 }
