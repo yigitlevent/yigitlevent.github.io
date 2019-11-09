@@ -12,6 +12,12 @@
 var current_game;
 var current_char;
 
+var appr_weapons = new Sortable(appropriateWeapons, {
+	animation: 150,
+	draggable: ".weapon",
+	onEnd: function (evt) { current_char.updateAppropriateWeaponsList(); }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
 	current_game = new game();
 	current_game.updateAvailableSettings();
@@ -53,6 +59,9 @@ function getDataByID(id, category) {
 		return traits_array[traits_array.findIndex(x => x.name === id_name)];
 	}
 }
+
+function openOptions() { document.getElementById("generalOptions").style.display = "grid"; }
+function closeOptions() { document.getElementById("generalOptions").style.display = "none"; }
 
 /*function fDT(stockName, search) {
 	let stock = db_stocks[stockName];

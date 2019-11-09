@@ -11,6 +11,7 @@
 		<title>Burning Wheel Gold Revised</title>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="style.css" async />
+		<script src="./libs/Sortable.min.js" defer></script>
 		<script src="db.js" defer></script>
 		<script src="db_stocks.js" defer></script>
 		<script src="db_skills.js" defer></script>
@@ -24,17 +25,330 @@
 		<div id="gridContainer">
 			<h1 id="title">Burning Wheel</h1>
 
-			<div id="optionWrapper">
+			<div id="stockWrapper">
 				Show me settings for:
 				<select id="settingOptions" onchange="current_game.updateLeftMenu();">
 					<option value=""></option>
 				</select>
 			</div>
 
-			<div id="explorerWrapper"></div>
+			<div id="settingsWrapper"></div>
 
-			<div id="revealerWrapper">
+			<div id="lifepathsWrapper">
 				<div id="content"></div>
+			</div>
+
+			<div id="panelWrapper">
+				Show me a second panel for:
+				<select id="panelOptions" onchange="//current_game.updateLeftMenu();">
+					<option value="Character">Character</option>
+				</select>
+				<span id="genOptOpenIcon" title="Open Options" onclick="openOptions();"></span>
+			</div>
+
+			<div id="characterTitle">
+				<h2>Character</h2>
+			</div>
+
+			<div id="characterWrapper">
+				<div id="char-lp-box"></div>
+			</div>
+		</div>
+
+		<div id="generalOptions">
+			<span id="genOptCloseIcon" title="Close Options" onclick="closeOptions();"></span>
+
+			<div id="appropriateWeapons" class="list-group col">
+				<h2>Appropriate Weapons</h2>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Axe"> Axe</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Bow"> Bow</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Cudgel"> Cudgel</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Crossbow"> Crossbow</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Firearms"> Firearms</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any Monstrous->Firebombs"> Firebombs</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Hammer"> Hammer</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Knives"> Knives</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Lance"> Lance</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Mace"> Mace</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Polearm"> Polearm</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Spear"> Spear</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Staff"> Staff</div>
+				<div class="weapon"><input type="checkbox" class="appWeaCheck" value="Any General->Sword"> Sword</div>
+			</div>
+			<div id="characterQuestions">
+				<div id="settingCharQuestions" class="questionBox">
+					<h2>General Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q1">
+						Does the character live in squalor and filth?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q2">
+						Is the character frail or sickly?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q3">
+						Was the character severely wounded in the past?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q4">
+						Has the character been tortured and enslaved?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q5">
+						Are you a Dwarf, Elf or Orc?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q6">
+						Is the character athletic and active?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q7">
+						Does the character live in a really clean and happy place, like the hills in The Sound of Music?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q8">
+						Has the character taken a conscript, soldier, bandit, squire or knight type lifepath?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q9">
+						Has the character ever been severely wounded?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q10">
+						Has the character ever murdered or killed more than once with his own hand?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q11">
+						Has the character been beaten terribly over	time?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q12">
+						Has the character led a sheltered life, free from violence and pain?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q13">
+						Has the character been raised in a competitive (but non—violent) culture —sports, debate, strategy games, courting?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q14">
+						Has the character given birth to a child?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="Q15">
+						Is the character Gifted or Faithful or an equivalent?
+					</div>
+				</div>
+				<div id="settingCorruptionQuestions" class="questionBox">
+					<h2>Corruption Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="C1">
+						Have you ever prayed alone at night to remote, unholy gods to aid you?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="C2">
+						Have you ever entered into a pact with a demon?
+					</div>
+				</div>
+				<div id="settingFaithQuestions" class="questionBox">
+					<h2>Faith Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="F1">
+						Do you trust the God most?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="F2">
+						When in danger, do you consult God for aid?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="F3">
+						Ultimately, do you think you best serve your allies with your faith in God?
+					</div>
+				</div>
+				<div id="settingGreedQuestions" class="questionBox">
+					<h2>Greed Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="G1">
+						Have you ever coveted something owned by another?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="G2">
+						Have you ever stolen something he coveted?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="G3">
+						Have you ever had his prized treasure stolen from him?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="G4">
+						Have you ever been in the presence of the master craftsmanship of the Dwarven Fathers?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="G5">
+						Have you ever witnessed an outsider (Elf, Man, Orc, Roden, etc.) in possession of a work of Dwarven Art?
+					</div>
+				</div>
+				<div id="settingGriefQuestions" class="questionBox">
+					<h2>Grief Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="GF1">
+						Does your history include tragedy?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="GF2">
+						Did you lived among non-Elven people?
+					</div>
+				</div>
+				<div id="settingHatredQuestions" class="questionBox">
+					<h2>Hatred Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H1">
+						Have you ever been horribly wounded?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H2">
+						Have you ever been tortured?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H3">
+						Have you ever been a slave to another?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H4">
+						Have your character ever killed his superior or parents?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H5">
+						Have you ever attempted to command a unit of goblins in battle?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H6">
+						Have you rolled 1 on 5th Lifepath's Brutal Life die of fate?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H7">
+						Have you rolled 1 on 6th Lifepath's Brutal Life die of fate?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H8">
+						Have you rolled 1 on 7th Lifepath's Brutal Life die of fate?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H9">
+						Have you rolled 1 on 8th Lifepath's Brutal Life die of fate?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H10">
+						Have you rolled 1 on 9th Lifepath's Brutal Life die of fate?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="H11">
+						Have you rolled 1 or 2 on 10th Lifepath's Brutal Life die of fate?
+					</div>
+				</div>
+				<div id="settingRestlessnessQuestions" class="questionBox">
+					<h2>Restlessness Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="RS1">
+						Do you have relationships with other races?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="RS2">
+						Did anything mysterious happened to you?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="RS3">
+						Have you ever uncovered -accidentally or not- someone's treasure?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="RS4">
+						Have you ever ever wondered "what that lever might be here for?"
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="RS5">
+						Do you have any trait related to travelling or adventuring?
+					</div>
+				</div>
+				<div id="settingSpiteQuestions" class="questionBox">
+					<h2>Spite Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="S1">
+						Have you ever been betrayed by his friends?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="S2">
+						Are you lovesick or broken hearted? 
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="S3">
+						Have you been abandoned by those you held dear?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="S4">
+						Has the character been abused or tortured?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="S5">
+						Do you still respect or admire someone on the other side?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="S6">
+						Do you still love someone on the other side?
+					</div>
+				</div>
+				<div id="settingVoidEmbraceQuestions" class="questionBox">
+					<h2>Void Embrace Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="VE1">
+						Is thy master The God of Darkness and Blood?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="VE2">
+						Does the Darkness and the Blood control thy fate?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="VE3">
+						Is Darkness and Blood the wellspring of thy power?
+					</div>
+				</div>
+				<div id="settingFavoredQuestions" class="questionBox">
+					<h2>King's Favor Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="KF1">
+						Have you spent 15 or more on reputations, affiliations, or relationships within the templars?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="KF2">
+						Have you spent 30 or more on reputations, affiliations, or relationships within the templars?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="KF3">
+						Have you spent 45 or more on reputations, affiliations, or relationships within the templars?
+					</div>
+				</div>
+				<div id="settingPathQuestions" class="questionBox">
+					<h2>Path Questions</h2>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="FO1">
+						Have you lived under the leash?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="FO2">
+						Have you ever created a great work?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="FO3">
+						Have you ever had your work stolen?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="FO4">
+						Have you ever been in the presence of a great craftsmapship?
+					</div>
+					<div class="checkboxBoxWider">
+						<input type="checkbox" class="questionCheckbox" name="FO5">
+						Have you ever witnessed an outsider in possession of a work of Dwarven art?
+					</div>
+				</div>
 			</div>
 		</div>
 

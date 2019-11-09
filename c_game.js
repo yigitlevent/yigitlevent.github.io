@@ -32,13 +32,13 @@ class game {
 		let current_name = document.getElementById("settingOptions").value;
 
 		if (current_name == "References") {
-			document.getElementById("explorerWrapper").innerHTML = "<div id='references'><h2>Reference</h2>Lists: "
+			document.getElementById("settingsWrapper").innerHTML = "<div id='references'><h2>Reference</h2>Lists: "
 				+ "<span class='listLink' onclick='current_game.showListContent(\"skillList\")'>Skills</span>, "
 				+ "<span class='listLink' onclick='current_game.showListContent(\"traitList\")'>Traits</span></div>";
 		}
 		else if (current_name == "") { }
 		else {
-			document.getElementById("explorerWrapper").innerHTML = "<div id='stocks'></div>";
+			document.getElementById("settingsWrapper").innerHTML = "<div id='stocks'></div>";
 			document.getElementById("stocks").innerHTML = "";
 
 			let stock_name = current_name;
@@ -103,132 +103,139 @@ class game {
 		let a = "<div id='contentTop'>"
 			+ "<div id='innerTitle'>" + setting_data.name + " " + setting_data.type + "</div>"
 			+ "<div class='lp-grid lp-top'>"
-				+ "<span class='lp-name'>Lifepath</span>"
-				+ "<span class='lp-time'>Time</span>"
-				+ "<span class='lp-resources'>Res</span>"
-				+ "<span class='lp-stats'>Stat</span>"
+			+ "<span class='lp-name'>Lifepath</span>"
+			+ "<span class='lp-time'>Time</span>"
+			+ "<span class='lp-resources'>Res</span>"
+			+ "<span class='lp-stats'>Stat</span>"
 			+ "</div>"
-		+ "</div>";
-
+			+ "</div>";
 
 		for (let lifepath_index in setting_data.lifepaths) {
 			let lifepath_data = setting_data.lifepaths[lifepath_index];
-
 			if (this.checkValidity(lifepath_data.allowed)) {
-				// Stat String
-				let lp_stats;
-				if (lifepath_data.eitherPool > 0) {  // Any Positive
-					lp_stats = "+" + lifepath_data.eitherPool + " M/P"
-				}
-				else if (lifepath_data.eitherPool < 0) {  // Any Negative
-					lp_stats = lifepath_data.eitherPool + " M/P"
-				}
-				else if (lifepath_data.mentalPool > 0 && lifepath_data.physicalPool > 0) { // Both Positive
-					lp_stats = "+" + lifepath_data.mentalPool + " M,P";
-				}
-				else if (lifepath_data.mentalPool < 0 && lifepath_data.physicalPool < 0) { // Both Negative
-					lp_stats = lifepath_data.mentalPool + " M,P";
-				}
-				else if (lifepath_data.mentalPool > 0 && lifepath_data.physicalPool == 0) { // Only Mental Positive
-					lp_stats = "+" + lifepath_data.mentalPool + " M";
-				}
-				else if (lifepath_data.mentalPool < 0 && lifepath_data.physicalPool == 0) {  // Only Mental Negative
-					lp_stats = lifepath_data.mentalPool + " M";
-				}
-				else if (lifepath_data.mentalPool == 0 && lifepath_data.physicalPool > 0) {  // Only Physical Positive
-					lp_stats = "+" + lifepath_data.physicalPool + " P";
-				}
-				else if (lifepath_data.mentalPool == 0 && lifepath_data.physicalPool < 0) {  // Only Physical Negative
-					lp_stats = lifepath_data.physicalPool + " P";
-				}
-				else if (lifepath_data.mentalPool < 0 && lifepath_data.physicalPool > 0) {  // Mental Neg, Physical Pos
-					lp_stats = lifepath_data.mentalPool + " M, +" + lifepath_data.physicalPool + " P";
-				}
-				else if (lifepath_data.mentalPool > 0 && lifepath_data.physicalPool < 0) {  // Mental Pos, Physical Neg
-					lp_stats = "+" + lifepath_data.physicalPool + " M, " + lifepath_data.mentalPool + " P";
-				}
-				else if (lifepath_data.mentalPool == 0 && lifepath_data.physicalPool == 0) {   // None
-					lp_stats = "—";
-				}
-				else { lp_stats = "something is really wrong here"; }
-
-				// Output Skill Points string
-				let lp_skill_points;
-				let general_points;
-				let lifepath_points;
-				if (lifepath_data.generalSkillPool > 0) {
-					let generalString = "<span class='skill'" + this.createBoxLink("Any General->General") + ">General</span>";
-					if (lifepath_data.generalSkillPool > 1) {
-						general_points = lifepath_data.generalSkillPool + " pts: " + generalString + "; ";
-					}
-					else if (lifepath_data.generalSkillPool == 1) {
-						general_points = "1 pt: " + generalString + "; ";
-					}
-				}
-				else { general_points = ""; }
-				if (lifepath_data.skillPool > 1) {
-					lifepath_points = lifepath_data.skillPool + " pts:";
-				}
-				else if (lifepath_data.skillPool == 1) {
-					lifepath_points = "1 pt:";
-				}
-				else { lifepath_points = ""; }
-				lp_skill_points = general_points + lifepath_points;
-
-				// Output Trait Points string
-				let lp_trait_points;
-				if (lifepath_data.traitPool > 1) {
-					if (typeof (lifepath_data.traits) !== "undefined" && lifepath_data.traits.length > 0) { lp_trait_points = lifepath_data.traitPool + " pts:" }
-					else { lp_trait_points = lifepath_data.traitPool + " pts: -" }
-				}
-				else if (lifepath_data.traitPool == 1) {
-					if (typeof (lifepath_data.traits) !== "undefined" && lifepath_data.traits.length > 0) { lp_trait_points = lifepath_data.traitPool + " pt:" }
-					else { lp_trait_points = lifepath_data.traitPool + " pt: -" }
-				}
-				else if (lifepath_data.traitPool == 0) { lp_trait_points = "" }
-
-				// Check if there is lp requirements
-				let lifepath_requirements = this.requirementStringifier(lifepath_data);
-
-				// Construct Skills list
-				let lp_skills_list = "";
-				if (typeof (lifepath_data.skills) !== "undefined") { lp_skills_list = this.makeArrayValuesString(lifepath_data.skills, "skill"); }
-
-				// Construct Traits list
-				let lp_traits_list = "";
-				if (typeof (lifepath_data.traits) !== "undefined") { lp_traits_list = this.makeArrayValuesString(lifepath_data.traits, "trait"); }
-
-				// Construct Leads list
-				let lp_lead_list = "";
-				if (typeof (lifepath_data.leads) !== "undefined") {
-					for (var i = 0; i < lifepath_data.leads.length; i++) {
-						if (this.checkValidity(getDataByID(lifepath_data.leads[i], "setting").allowed)) {
-							if (i > 0 && this.checkValidity(getDataByID(lifepath_data.leads[i - 1], "setting").allowed)) {
-								lp_lead_list += (", ");
-							}
-
-							let a = lifepath_data.leads[i].split("->");
-							let lead_stock_name = a[0];
-							let lead_setting_name = a[1];
-							lp_lead_list += ("<span class='lead' onclick='current_game.showSettingContent(\"" + lead_stock_name + "->" + lead_setting_name + "\")'>" + lead_setting_name + "</span>");
-						}
-					}
-				}
-
-				a += "<div class='lp-grid'>"
-					+ "<span class='lp-name lp-entry'>" + lifepath_data.name + "</span>"
-					+ "<span class='lp-time lp-entry'>" + lifepath_data.years + "</span>"
-					+ "<span class='lp-resources lp-entry'>" + lifepath_data.resources + "</span>"
-					+ "<span class='lp-stats lp-entry'>" + lp_stats + "</span>"
-					+ "<span class='lp-leads'>Leads: " + lp_lead_list + "</span>"
-					+ "<span class='lp-skills'>Skills: " + lp_skill_points + " " + lp_skills_list + "</span>"
-					+ "<span class='lp-traits'>Traits: " + lp_trait_points + " " + lp_traits_list + "</span>"
-					+ lifepath_requirements
-					+ "</div>";
+				a += this.getLifepath(lead, lifepath_data);
 			}
 		}
 
 		document.getElementById("content").innerHTML = a;
+	}
+
+	getLifepath(lead, lifepath_data, type = 0) {
+		// Stat String
+		let lp_stats;
+		if (lifepath_data.eitherPool > 0) {  // Any Positive
+			lp_stats = "+" + lifepath_data.eitherPool + " M/P"
+		}
+		else if (lifepath_data.eitherPool < 0) {  // Any Negative
+			lp_stats = lifepath_data.eitherPool + " M/P"
+		}
+		else if (lifepath_data.mentalPool > 0 && lifepath_data.physicalPool > 0) { // Both Positive
+			lp_stats = "+" + lifepath_data.mentalPool + " M,P";
+		}
+		else if (lifepath_data.mentalPool < 0 && lifepath_data.physicalPool < 0) { // Both Negative
+			lp_stats = lifepath_data.mentalPool + " M,P";
+		}
+		else if (lifepath_data.mentalPool > 0 && lifepath_data.physicalPool == 0) { // Only Mental Positive
+			lp_stats = "+" + lifepath_data.mentalPool + " M";
+		}
+		else if (lifepath_data.mentalPool < 0 && lifepath_data.physicalPool == 0) {  // Only Mental Negative
+			lp_stats = lifepath_data.mentalPool + " M";
+		}
+		else if (lifepath_data.mentalPool == 0 && lifepath_data.physicalPool > 0) {  // Only Physical Positive
+			lp_stats = "+" + lifepath_data.physicalPool + " P";
+		}
+		else if (lifepath_data.mentalPool == 0 && lifepath_data.physicalPool < 0) {  // Only Physical Negative
+			lp_stats = lifepath_data.physicalPool + " P";
+		}
+		else if (lifepath_data.mentalPool < 0 && lifepath_data.physicalPool > 0) {  // Mental Neg, Physical Pos
+			lp_stats = lifepath_data.mentalPool + " M, +" + lifepath_data.physicalPool + " P";
+		}
+		else if (lifepath_data.mentalPool > 0 && lifepath_data.physicalPool < 0) {  // Mental Pos, Physical Neg
+			lp_stats = "+" + lifepath_data.physicalPool + " M, " + lifepath_data.mentalPool + " P";
+		}
+		else if (lifepath_data.mentalPool == 0 && lifepath_data.physicalPool == 0) {   // None
+			lp_stats = "—";
+		}
+		else { lp_stats = "something is really wrong here"; }
+
+		// Output Skill Points string
+		let lp_skill_points;
+		let general_points;
+		let lifepath_points;
+		if (lifepath_data.generalSkillPool > 0) {
+			let generalString = "<span class='skill'" + this.createBoxLink("Any General->General") + ">General</span>";
+			if (lifepath_data.generalSkillPool > 1) {
+				general_points = lifepath_data.generalSkillPool + " pts: " + generalString + "; ";
+			}
+			else if (lifepath_data.generalSkillPool == 1) {
+				general_points = "1 pt: " + generalString + "; ";
+			}
+		}
+		else { general_points = ""; }
+		if (lifepath_data.skillPool > 1) {
+			lifepath_points = lifepath_data.skillPool + " pts:";
+		}
+		else if (lifepath_data.skillPool == 1) {
+			lifepath_points = "1 pt:";
+		}
+		else { lifepath_points = ""; }
+		lp_skill_points = general_points + lifepath_points;
+
+		// Output Trait Points string
+		let lp_trait_points;
+		if (lifepath_data.traitPool > 1) {
+			if (typeof (lifepath_data.traits) !== "undefined" && lifepath_data.traits.length > 0) { lp_trait_points = lifepath_data.traitPool + " pts:" }
+			else { lp_trait_points = lifepath_data.traitPool + " pts: -" }
+		}
+		else if (lifepath_data.traitPool == 1) {
+			if (typeof (lifepath_data.traits) !== "undefined" && lifepath_data.traits.length > 0) { lp_trait_points = lifepath_data.traitPool + " pt:" }
+			else { lp_trait_points = lifepath_data.traitPool + " pt: -" }
+		}
+		else if (lifepath_data.traitPool == 0) { lp_trait_points = "" }
+
+		// Check if there is lp requirements
+		let lifepath_requirements = this.requirementStringifier(lifepath_data);
+
+		// Construct Skills list
+		let lp_skills_list = "";
+		if (typeof (lifepath_data.skills) !== "undefined") { lp_skills_list = this.makeArrayValuesString(lifepath_data.skills, "skill"); }
+
+		// Construct Traits list
+		let lp_traits_list = "";
+		if (typeof (lifepath_data.traits) !== "undefined") { lp_traits_list = this.makeArrayValuesString(lifepath_data.traits, "trait"); }
+
+		// Construct Leads list
+		let lp_lead_list = "";
+		if (typeof (lifepath_data.leads) !== "undefined") {
+			for (var i = 0; i < lifepath_data.leads.length; i++) {
+				if (this.checkValidity(getDataByID(lifepath_data.leads[i], "setting").allowed)) {
+					if (i > 0 && this.checkValidity(getDataByID(lifepath_data.leads[i - 1], "setting").allowed)) {
+						lp_lead_list += (", ");
+					}
+
+					let a = lifepath_data.leads[i].split("->");
+					let lead_stock_name = a[0];
+					let lead_setting_name = a[1];
+					lp_lead_list += ("<span class='lead' onclick='current_game.showSettingContent(\"" + lead_stock_name + "->" + lead_setting_name + "\")'>" + lead_setting_name + "</span>");
+				}
+			}
+		}
+
+		let onClick = "onclick = 'current_char.addLifepath(this)'";
+		if (type == 1) { onClick = "onclick = 'current_char.removeLifepath(this)'" }
+
+		let a = "<div class='lp-grid'>"
+			+ "<span class='lp-name lp-entry' data-lead=" + escape(lead) + " title='click to add as a lifepath to the character' " + onClick + " >" + lifepath_data.name + "</span>"
+			+ "<span class='lp-time lp-entry'>" + lifepath_data.years + "</span>"
+			+ "<span class='lp-resources lp-entry'>" + lifepath_data.resources + "</span>"
+			+ "<span class='lp-stats lp-entry'>" + lp_stats + "</span>"
+			+ "<span class='lp-leads'>Leads: " + lp_lead_list + "</span>"
+			+ "<span class='lp-skills'>Skills: " + lp_skill_points + " " + lp_skills_list + "</span>"
+			+ "<span class='lp-traits'>Traits: " + lp_trait_points + " " + lp_traits_list + "</span>"
+			+ lifepath_requirements
+			+ "</div>";
+
+		return a;
 	}
 
 	showListContent(list_type) {
@@ -361,7 +368,7 @@ class game {
 		let offset_top = box.getBoundingClientRect().top;
 
 		let client_width = document.documentElement.clientWidth;
-		let infobox_element = document.getElementById("infoBox");
+		var infobox_element = document.getElementById("infoBox");
 		let infobox_width = 400;
 
 		// Vertical Position
@@ -378,10 +385,9 @@ class game {
 
 		// Set the box and empty it
 		infobox_element.innerHTML = "";
-		if (offset_width <= 600) { infobox_element.style.display = "absolute"; }
-		else { infobox_element.style.display = "block"; }
-		infobox_element.style.left = infobox_x + "px";
-		infobox_element.style.top = infobox_y + "px";
+		infobox_element.style.display = "block";
+		infobox_element.style.left = "" + infobox_x + "px";
+		infobox_element.style.top = "" + infobox_y + "px";
 
 		let target_class = box.getAttribute("class").split(" ")[0];
 
@@ -558,65 +564,6 @@ class game {
 
 		reqStr += "</span>";
 		return reqStr;
-	}
-
-	changeTab(box) {
-		document.querySelectorAll(".midTitle").forEach(function (element) { element.classList.remove("chosenTab"); });
-		document.querySelectorAll("#explorerWrapper, #chroniclerWrapper, #burnerWrapper, #adjusterWrapper, #practicerWrapper, #observerWrapper")
-			.forEach(function (element) {
-				element.style.display = "none";
-			});
-
-		box.classList.add("chosenTab");
-		document.querySelector("#" + box.getAttribute("name") + "Wrapper").style.display = "block";
-	}
-
-	switchTypes(box, type) {
-		if (type == "main") {
-			let setting_selection_elements = document.getElementsByClassName("settingSelect");
-			for (let i = 0; i < setting_selection_elements.length; i++) { setting_selection_elements[i].classList.remove("added"); }
-			box.classList.add("added");
-			this.game_type.main = box.getAttribute("name");
-		}
-		else {
-			if (box.classList.contains("added")) {
-				box.classList.remove("added");
-				if (type == "mods") {
-					let index = this.game_type.mods.indexOf(box.getAttribute("name"));
-					this.game_type.mods.splice(index, 1);
-				}
-				if (type == "extr") {
-					let index = this.game_type.extr.indexOf(box.getAttribute("name"));
-					this.game_type.extr.splice(index, 1);
-				}
-			}
-			else {
-				box.classList.add("added");
-				if (type == "mods") {
-					this.game_type.mods.push(box.getAttribute("name"));
-				}
-				if (type == "extr") {
-					this.game_type.extr.push(box.getAttribute("name"));
-				}
-			}
-		}
-		this.reloadCurrentRevealer();
-		this.updateLeftMenu();
-	}
-
-	reloadCurrentRevealer() {
-		document.getElementById("content").innerHTML = "";
-
-		if (this.current_revealer.length > 0) {
-			if (this.current_revealer == "skillList" || this.current_revealer == "traitList") {
-				this.showListContent(this.current_revealer);
-			}
-			else {
-				if (this.checkValidity(getDataByID(this.current_revealer, "setting").allowed)) {
-					this.showSettingContent(this.current_revealer);
-				}
-			}
-		}
 	}
 
 	switchNextElement(box) {

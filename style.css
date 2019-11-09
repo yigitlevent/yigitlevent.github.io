@@ -91,17 +91,18 @@ a,
 .listLink,
 .skill,
 .trait,
-.lead {
-	text-decoration: none;
+.lead,
+.lp-name.lp-entry {
 	color: #c54949;
-	cursor: pointer;
+	text-decoration: none;
 }
 a:hover,
 .settingLink:hover,
 .listLink:hover,
 .skill:hover,
 .trait:hover,
-.lead:hover {
+.lead:hover,
+.lp-name.lp-entry:hover {
 	color: #a03c3c;
 	cursor: pointer;
 }
@@ -176,7 +177,7 @@ tr:nth-child(even) {
 	font-size: 0.9em;
 	display: none;
 	position: absolute;
-	width: 400px;
+	width: 300px;
 	left: 0;
 	top: 0;
 	min-height: 50px;
@@ -194,7 +195,7 @@ tr:nth-child(even) {
 	width: 100%;
 	display: grid;
 	grid-template-columns: [column-start] 10px [column-mid-left] 1fr [column-mid] 1fr [column-mid-right] 10px [column-end];
-	grid-template-rows: [title-start] 70px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] auto [row-end];
+	grid-template-rows: [title-start] 70px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] auto [row-end] 10px;
 	justify-content: start;
 	align-content: start;
 }
@@ -202,21 +203,65 @@ tr:nth-child(even) {
 	grid-column: column-mid-left / column-mid-right;
 	grid-row: title-start / title-end;
 }
-#optionWrapper {
+#stockWrapper {
 	grid-column: column-mid-left / column-mid;
 	grid-row: menu-start / menu-end;
 }
-#explorerWrapper {
+#settingsWrapper {
 	grid-column: column-mid-left / column-mid;
 	grid-row: row-start / row-mid-top;
 }
-#revealerWrapper {
+#lifepathsWrapper {
 	grid-column: column-mid-left / column-mid;
 	grid-row: row-mid-bottom / row-end;
 	overflow: auto;
 }
+#panelWrapper {
+	grid-column: column-mid / column-mid-right;
+	grid-row: menu-start / menu-end;
+}
+#characterTitle {
+	grid-column: column-mid / column-mid-right;
+	grid-row: row-start / row-mid-top;
+}
+#characterWrapper {
+	grid-column: column-mid / column-mid-right;
+	grid-row: row-mid-bottom / row-end;
+	overflow: auto;
+	display: grid;
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: [column-start] 1fr [column-end];
+	grid-template-rows: [char-lp-start] 400px [char-lp-end];
+	justify-content: start;
+	align-content: start;
+}
 
-/********* revealer *********/
+/********* titles *********/
+#innerTitle,
+.smallTitle {
+	margin-top: 0;
+	font-weight: bolder;
+}
+#innerTitle {
+	margin: 0 0 0 10px;
+	font-size: 2em;
+}
+.smallTitle {
+	padding-left: 26px;
+	font-size: 1.6em;
+	cursor: pointer;
+}
+
+/********* character panel *********/
+#char-lp-box {
+	grid-column: column-start / column-end;
+	grid-row: char-lp-start / char-lp-end;
+	overflow: auto;
+}
+
+/********* lifepaths *********/
 #contentTop {
 	top: 0;
 	position: sticky;
@@ -273,6 +318,7 @@ tr:nth-child(even) {
 	grid-row: leads-start / leads-end;
 	padding: 2px;
 	border-bottom: 1px#3B3B3B dashed;
+	background: #353535;
 }
 .lp-skills {
 	grid-column: column-start-1 / column-end-4;
@@ -293,71 +339,59 @@ tr:nth-child(even) {
 	font-size: 0.9em;
 }
 
-/********* revealer *********/
-.midTitle {
-	margin-top: 20px;
-	font-weight: 900;
-	display: inline-block;
-	cursor: pointer;
-	font-size: 1.8em;
+/********* options *********/
+#generalOptions {
+	display: none;
+	position: absolute;
+	z-index: 1234567890;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: auto;
 	background: #2d2d2d;
+	grid-template-columns:
+		10px
+		[column-start-1] 1fr [column-end-1
+		column-start-2] 1fr [column-end-2]
+		10px;
+	grid-template-rows:
+		10px
+		[row-start-1] 1fr [row-end-1
+		row-start-2] 1fr [row-end-2]
+		10px;
 }
-#innerTitle,
-.smallTitle {
-	margin-top: 0;
-	font-weight: bolder;
+#characterQuestions {
+	grid-column: column-start-1 / column-end-1;
+	grid-row: row-start-1 / row-end-2;
+	overflow: auto;
 }
-#innerTitle {
-	margin: 0 0 0 10px;
-	font-size: 2em;
+#appropriateWeapons {
+	grid-column: column-start-2 / column-end-2;
+	grid-row: row-start-1 / row-end-1;
 }
-.smallTitle {
-	padding-left: 26px;
-	font-size: 1.6em;
+
+/********* icons *********/
+#genOptOpenIcon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url("./inc/icon_settings.png") no-repeat center top;
+	background-size: 20px 20px;
+	margin-bottom: -4px;
 	cursor: pointer;
 }
-#content {
-	padding-bottom: 100px;
-}
-.lifepathBox {
-	padding: 10px 0;
-}
-#lifepathTop {
-	padding: 2px 4px;
-	background: #383838;
-}
-#lifepathSkills,
-#lifepathTraits,
-#lifepathRequirements {
-	padding: 4px 4px 0;
-}
-#lifepathRequirements {
-	font-style: italic;
-	font-size: 0.9em;
-}
-.lifepathLeadsTop {
-	padding-left: 2px;
-	max-width: 51%;
-}
-.lifepathName {
-	width: 20%;
-	display: inline-block;
-}
-.lifepathLeads {
-	width: 56%;
-	padding-left: 3px;
-}
-.lifepathYears,
-.lifepathResources,
-.lifepathStats {
-	width: 8%;
-	text-align: center;
-	display: inline-block;
-}
-.skill,
-.trait,
-.lead {
-	display: inline-block;
+
+#genOptCloseIcon {
+	display: block;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	width: 20px;
+	height: 20px;
+	background: url("./inc/icon_close.png") no-repeat center top;
+	background-size: 20px 20px;
 	cursor: pointer;
 }
 
