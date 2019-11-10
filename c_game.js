@@ -380,7 +380,7 @@ class game {
 			infobox_x = offset_left + offset_width + 0;
 		}
 		else {
-			infobox_x = offset_left - infobox_width - 8;
+			infobox_x = offset_left - infobox_width + 92;
 		}
 
 		// Set the box and empty it
@@ -388,6 +388,13 @@ class game {
 		infobox_element.style.display = "block";
 		infobox_element.style.left = "" + infobox_x + "px";
 		infobox_element.style.top = "" + infobox_y + "px";
+
+		if(client_width < 600) {
+			infobox_element.style.left = 0;
+			infobox_element.style.top = 0;
+			infobox_element.style.position = "absolute";
+			infobox_element.style.width = "100%";
+		}
 
 		let target_class = box.getAttribute("class").split(" ")[0];
 

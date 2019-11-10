@@ -66,7 +66,7 @@ class char {
 			let lifepath = this.lifepaths[i];
 			a += current_game.getLifepath(lifepath["stock"] + "->" + lifepath["setting"], lifepath, 1);
 		}
-		document.getElementById("char-lp-box").innerHTML = a;
+		document.getElementById("char-lp").innerHTML = a;
 	}
 
 	addLifepath(object) {

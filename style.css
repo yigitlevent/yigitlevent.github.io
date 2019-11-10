@@ -55,7 +55,8 @@ h2 {
 	padding: 0 0 0 6px;
 }
 h3 {
-	margin-left: 0 23px 6px 0;
+	font-size: 2em;
+	margin: 2px 8px;
 }
 h4 {
 	padding: 4px 7px;
@@ -138,38 +139,6 @@ select > option {
 	color: #cccccc;
 }
 
-/********* tables *********/
-table {
-	text-align: center;
-	border: none;
-	border-spacing: 0;
-}
-td {
-	width: 24px;
-	background: none;
-}
-tr {
-	height: 24px;
-}
-td:nth-child(1),
-tr:nth-child(2),
-tr:nth-child(1) {
-	background: #3b3b3b !important;
-}
-td:nth-child(odd) {
-	border-right: 1px #545454 dotted;
-}
-td:nth-child(1),
-td:last-child {
-	border: none;
-}
-tr:nth-child(odd) {
-	background: #373737;
-}
-tr:nth-child(even) {
-	background: #333333;
-}
-
 /********* info box *********/
 #infoBox {
 	border: 2px #262626 solid;
@@ -183,6 +152,10 @@ tr:nth-child(even) {
 	min-height: 50px;
 	z-index: 100;
 	margin: 5px;
+	text-align: justify;
+	text-overflow: ellipsis;
+	padding: 0;
+	margin: 0;
 }
 #infoBoxContent {
 	font-size: 0.9em;
@@ -195,7 +168,7 @@ tr:nth-child(even) {
 	width: 100%;
 	display: grid;
 	grid-template-columns: [column-start] 10px [column-mid-left] 1fr [column-mid] 1fr [column-mid-right] 10px [column-end];
-	grid-template-rows: [title-start] 70px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] auto [row-end] 10px;
+	grid-template-rows: [title-start] 70px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] 1fr [row-end] 10px;
 	justify-content: start;
 	align-content: start;
 }
@@ -210,6 +183,7 @@ tr:nth-child(even) {
 #settingsWrapper {
 	grid-column: column-mid-left / column-mid;
 	grid-row: row-start / row-mid-top;
+	min-height: 95px;
 }
 #lifepathsWrapper {
 	grid-column: column-mid-left / column-mid;
@@ -233,7 +207,11 @@ tr:nth-child(even) {
 	width: 100%;
 	display: grid;
 	grid-template-columns: [column-start] 1fr [column-end];
-	grid-template-rows: [char-lp-start] 400px [char-lp-end];
+	grid-template-rows:
+		[char-lph-start] auto [char-lph-end
+		char-lp-start] auto [char-lp-end
+		char-sth-start] auto [char-sth-end
+		char-st-start] auto [char-st-end];
 	justify-content: start;
 	align-content: start;
 }
@@ -255,9 +233,24 @@ tr:nth-child(even) {
 }
 
 /********* character panel *********/
-#char-lp-box {
+#char-lp-h {
+	grid-column: column-start / column-end;
+	grid-row: char-lph-start / char-lph-end;
+	overflow: auto;
+}
+#char-lp {
 	grid-column: column-start / column-end;
 	grid-row: char-lp-start / char-lp-end;
+	overflow: auto;
+}
+#char-stats {
+	grid-column: column-start / column-end;
+	grid-row: char-sth-start / char-sth-end;
+	overflow: auto;
+}
+#char-stats {
+	grid-column: column-start / column-end;
+	grid-row: char-st / char-st;
 	overflow: auto;
 }
 
@@ -395,6 +388,37 @@ tr:nth-child(even) {
 	cursor: pointer;
 }
 
+/********* buttons *********/
+.stat {
+	width: 31%;
+	margin: 4px 4px;
+}
+.stat,
+.shade,
+.exponent,
+.stat-name {
+	display: inline-block;
+}
+.data {
+	text-align: center;
+	border: 2px #555555 solid;
+	margin: 2px 2px 0px 2px;
+}
+.up {
+	background: url("./inc/arrow_up.png") no-repeat;
+}
+.down {
+	background: url("./inc/arrow_down.png") no-repeat;
+}
+.up,
+.down {
+	background-size: 70% 80%;
+	cursor: pointer;
+	height: 10px;
+	width: 24px;
+	background-position: bottom;
+}
+
 /********* media *********/
 @media only screen and (max-width: 600px) {
 	#infoBox {
@@ -408,5 +432,10 @@ tr:nth-child(even) {
 		grid-template-rows: [title-start] 70px [title-end menu-start] 30px [menu-end row-start] auto [row-mid-top] 10px [row-mid-bottom] auto [row-end];
 		justify-content: start;
 		align-content: start;
+	}
+	#panelWrapper,
+	#characterTitle,
+	#characterWrapper {
+		display: none;
 	}
 }
