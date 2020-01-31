@@ -295,16 +295,16 @@ class char {
 		if (this.stock != "Man" && this.stock != "n/a") {
 			let ctListIndex = this.stock + " Common";
 
-			for (var ct = 0; ct < currentGame.traitLists[ctListIndex].traits.length; ct++) {
-				if (!currentGame.traitLists[ctListIndex].traits[ct].disabled) {
-					let t = currentGame.traitLists[ctListIndex].traits[ct];
+			for (var ct = 0; ct < db_traits[ctListIndex].traits.length; ct++) {
+				if (!db_traits[ctListIndex].traits[ct].disabled) {
+					let t = db_traits[ctListIndex].traits[ct];
 
 					t.nonLifepath = false;
 					t.common = true;
 					t.mandatory = true;
 					t.opened = true;
 					t.openCost = 0;
-					t.dataCode = currentGame.traitLists[ctListIndex].name + "->" + currentGame.traitLists[ctListIndex].traits[ct].name;
+					t.dataCode = db_traits[ctListIndex].name + "->" + db_traits[ctListIndex].traits[ct].name;
 
 					commonTraits[t.name] = t;
 					this.traits[t.name] = t;

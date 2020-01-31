@@ -1,0 +1,51 @@
+html,
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+#map {
+	height: 100%;
+	width: 100%;
+	background: #222222;
+	cursor: pointer;
+}
+
+#controls {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 99115712;
+	padding: 3px;
+	background: #222222;
+	border: 1px #181818 solid;
+}
+.control {
+	background: #222222;
+	padding: 2px 6px;
+	color: #aaaaaa;
+	cursor: pointer;
+}
+.control:hover {
+	color: #cccccc;
+}
+.control:visited {
+	color: #aaaaaa;
+}
+
+.mapboxgl-canvas-container.mapboxgl-interactive {
+	cursor: default;
+}
+.mapboxgl-marker {
+	background-size: cover;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	-webkit-filter: drop-shadow(0 0 1px #9fcccc);
+	filter: drop-shadow(0 0 1px #9fcccc);
+}
+.mapboxgl-popup {
+	max-width: 200px;
+}
