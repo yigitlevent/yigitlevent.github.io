@@ -134,7 +134,7 @@ textarea {
 }
 
 #spellDownload {
-    background: url(../inc/icon_downChar.png) no-repeat center top;
+    background: url(../assets/icons/icon_downChar.png) no-repeat center top;
     background-size: 30px 30px;
     position: absolute;
     top: 40px;

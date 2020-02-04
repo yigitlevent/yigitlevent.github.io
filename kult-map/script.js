@@ -218,7 +218,7 @@ function setMarkers() {
 			e.id = marker;
 			e.classList.add(markers[marker].type);
 			e.title = marker;
-			e.style.backgroundImage = "url(./images/icons/" + markers[marker].type + ".svg)";
+			e.style.backgroundImage = "url(../assets/markers/" + markers[marker].type + ".svg)";
 			currentMarkers.push(
 				new mapboxgl.Marker(e)
 					.setLngLat(markers[marker].pos)
