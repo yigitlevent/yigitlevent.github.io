@@ -268,7 +268,7 @@ var Deck = {
 
 document.addEventListener("DOMContentLoaded", () => {
 	document.querySelectorAll(".card").forEach(function(el) {
-		el.addEventListener("dblclick", function() {
+		el.addEventListener("click", function() {
 			drawCard(el);
 		});
 	});
