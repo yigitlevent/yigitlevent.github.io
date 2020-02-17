@@ -294,6 +294,6 @@ function drawCard(obj) {
 		}
 	}
 	pickedCards[obj.id] = random;
-	obj.style.backgroundImage = "url('../assets/images/tarot/Tarot Deck-" + random + ".png')";
+	obj.style.backgroundImage = "url('../assets/images/tarot/Tarot Deck-" + random + ".jpg')";
 	obj.title = Deck[random].number + ". " + Deck[random].name;
 }
