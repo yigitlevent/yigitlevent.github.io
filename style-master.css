@@ -11,6 +11,10 @@
 	font-family: Kult-Font;
 	src: url("./assets/fonts/JMH-Typewriter.otf");
 }
+@font-face {
+	font-family: Kult-Font2;
+	src: url("./assets/fonts/Gravity-Regular.otf");
+}
 html,
 body {
 	width: 100%;
