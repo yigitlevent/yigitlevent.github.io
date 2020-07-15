@@ -183,7 +183,7 @@ function begin() {
 	mapboxgl.accessToken = "pk.eyJ1Ijoic2lmYXVzIiwiYSI6ImNrNXc3eHhjMjBsajUzbXBvNnFsNnJqdnAifQ.uNPep4IGoA7jm5uytd4T8g";
 	map = new mapboxgl.Map({
 		container: "map",
-		style: "mapbox://styles/sifaus/ck5w870qy773r1ismbv1fa3na",
+		style: "mapbox://styles/yigitlevent/ck5w870qy773r1ismbv1fa3na",
 		center: [-95.37000102894808, 29.74935969587223],
 		zoom: 12.9,
 		antialias: true,

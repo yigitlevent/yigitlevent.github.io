@@ -1,4 +1,4 @@
-// BURNING WHEEL GOLD by github.com/Sifaus
+// BURNING WHEEL GOLD by github.com/yigitlevent
 // additional thanks to Samson for helping out with lifepaths, skills and traits
 // loosely based on bwlp -well, the design is kinda same but "backend" %99 different
 // icons from https://material.io/

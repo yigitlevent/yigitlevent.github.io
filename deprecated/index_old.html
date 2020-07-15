@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<title>Burning Wheel</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="style.css" async>
+		<script src="Sortable.min.js" defer></script>
+		<script src="interact.min.js" defer></script>
+		<script src="bw.js" defer></script>
+		<script src="database.js" defer></script>
+	</head>
+	<body>
+		<div id="leftMenu">
+
+
+			
+			<div id="observerWrapper">
+				<div id="helpWrapper">
+					<h1>How? What? Where?</h1>
+					<div class="smallTitle helpBox">What is this place?</div>
+					<div class="helpText">This is a static website to browse <a href="https://www.burningwheel.com/" target="_blank">Burning Wheel</a> lifepaths, skills, traits and all that stuff. It was originally hosted on <a href="https://www.janklabs.com/" target="_blank">Janklabs</a> (which is now completely empty). Before it went down, I took the code and database, completely refactored/recoded everything, and hosted on static github pages.</div>
+
+					<div class="smallTitle helpBox">So what can it do?</div>
+					<div class="helpText">You can check lifepaths, skills, and traits on the <b>Explorer</b>, you can choose lifepaths if you click the plus icon, and you can play around with your character's numbers on <b>Burner</b>. There are some additional options and all that in this tab, <b>Adjuster</b>.</div>
+
+					<div class="smallTitle helpBox">Is this open source?</div>
+					<div class="helpText">Yeah, you can check the code on <a href="https://github.com/yigitlevent/yigitlevent.github.io" target="_blank">The Source™</a>, which can be browsed fairly easily, i think. The code lacks comments though, sorry for that.</div>
+
+					<div class="smallTitle helpBox">Can I help?</div>
+					<div class="helpText">Yeah, unless you have any idea how can I make this faster to load, biggest help would be testing out stuff and telling me if the character generation is actually working correctly. Also checking if all the traits, traits, and skills are included correctly would be great too. Let me know if anything is missing, open an issue on <a href="https://github.com/yigitlevent/yigitlevent.github.io" target="_blank">The Source™</a>.</div>
+
+					<div class="smallTitle helpBox">Can I just download the source?</div>
+					<div class="helpText">Yeah, you are completely free to do whatever. You also should be able to run this offline, just download the files and run index file.</div>
+
+					<div class="smallTitle helpBox">You are also adding fan-made stuff in?</div>
+					<div class="helpText">Yup. I love some of those stuff. I might not always add them as they are written, but hey, you are free to take my code and do whatever with it.</div>
+
+					<div class="smallTitle helpBox">Something doesn't work?</div>
+					<div class="helpText">Just head over to <a href="https://github.com/yigitlevent/yigitlevent.github.io" target="_blank">The Source™</a> and open an issue.</div>
+					
+					<div class="smallTitle helpBox">Does this work on mobile?</div>
+					<div class="helpText">I hope so. I have added some responsitivity stuff on the css but I have no clue if it actually does anything. Also the <b>Browser</b> (right menu, setting and list browser) should be an additional tab if you are browsing this on mobile.</div>
+					
+					<div class="smallTitle helpBox">What can this do?</div>
+					<div class="helpText">Oh man. There are so many small functionalities this have but I don't remember all of them off the top of my head. Lets see:
+						<br><br><b>Browser</b>;
+						<br>● You can choose a lifepath and add it to the <b>Burner</b> by clicking the plus icon if you are browsing a setting or subsetting.
+						<br>● You may choose additional traits and skills and add them to your character by double clicking on them from the Skills and Traits lists. You can remove them by clicking the icon next to them that will appear on skills part of the <b>Burner</b>.
+						<br>● Hovering over any red text will show you relevant information about it. Some red text does not have this functionality, namely the setting and list links are just bare links.
+						<br><br><b>Explorer</b></i>;
+						<br>● You can browse settings, subsettings and lists here. Choosing what type of content you want on <b>Adjuster</b> will modify this menu.
+						<br><br><b>Burner</b>;
+						<br>● Remove lifepaths if you added any. You can also reset and download the character as a text file. 
+						<br>● You can spend points and adjust skills, attributes, stats, and traits. You can also add/remove resources. A resource will be removed if you choose "none" as the type.
+						<br>● Common Traits for stocks will be added automatically.
+						<br>● Icons next to skills and traits will tell you what is going on with them.
+						<br>● You can add your general skill points to lifepath skill points if you want to spend them that way, by clicking the plus icon next to it. Same goes for "Either Mental or Physical Pool" stat adjustment which some lifepaths have, you can choose where to spend those the same way.
+						<br>● If you have the right stock and/or trait, you can choose which Emotional Attribute you want for your character. Just click the name, it should be listed there. Choosing one might add additional questions to <b>Chronicler</b> tab.
+						<br><br><b>Chronicler</b>;
+						<br>● You can choose Appropriate Weapons and they will be added automatically. You can alter that list by moving the weapons around, the top weapon will be mandatory if the Appropriate Weapons skill is the first skill of a lifepath.
+						<br>● You can answer questions, which will be reflected on <b>Burner</b> tab. If you choose your Emotional Attribute on <b>Burner</b> tab, additional questions may appear there.
+						<br><br><b>Adjuster</b>;
+						<br>● You can choose settings and optional content here.
+						<br><br><b>Observer</b>;
+						<br>● You are here..
+
+						<br><br>There might be some additional functionality that I forgot to add here, i might add new points later. 
+					</div>
+
+					<div class="smallTitle helpBox">So what is Burning Sun?</div>
+					<div class="helpText">Burning Sun is a work that I compiled from the now-closed Burning Wheel forums and from various websites. It is basically a Dark Sun inspired setting for Burning Wheel. You can, probably, use it for your Dark Sun Burning Wheel games, although for me its set in a completely different world. You can download the rulebook from <a href="https://yigitlevent.github.io/burningwheel/pdf/burningsun.pdf" target="_blank">here</a>.</div>
+
+					<div class="smallTitle helpBox">So what is Burning Dregs?</div>
+					<div class="helpText">Burning Dregs is a small compilation of lifepaths, traits, and skills. You can find the blog of the creator of Burning Dregs <a href="https://www.generallypithy.com/burning-dregs/" target="_blank">here</a>.</div>
+
+					<div class="smallTitle helpBox">So what is Halfling Stock?</div>
+					<div class="helpText">This one is something i have found a long time ago, I have no idea who created it. You can find the original file <a href="https://docs.google.com/document/d/1H5Ydu4BC4aQppsTADjfJ8SQHqeKH6QUNX07grlm3J6E/edit" target="_blank">here</a>. If anyone knows a blog or something that I can link to, let me know.</div>
+
+					<div class="smallTitle helpBox">So what is Changeling Stock?</div>
+					<div class="helpText">This one is also something i have found a long time ago, and I have no idea who created it. You can find the original file <a href="https://docs.google.com/document/d/1v8aSAWKqNDTEs9udHALt4a8xc_zevG-xWqN-1hdWHZ0/edit" target="_blank">here</a>. If anyone knows a blog or something that I can link to, let me know.</div>
+
+					<div class="smallTitle helpBox">Slave Raider, Black Barbarian and Lost Atlantean?</div>
+					<div class="helpText">Those were official additions to the (if I am remembering correctly) Revised Edition. They were freely available and still is, I think. I adjusted the numbers on those a bit and I might have to adjust even more later (any feedback is welcome). You can download the Black Barbarian pdf from <a href="https://yigitlevent.github.io/burningwheel/pdf/Black Barbarian Setting.pdf" target="_blank">here</a>, Lost Atlantean pdf from <a href="https://yigitlevent.github.io/burningwheel/pdf/Lost Atlantean Setting.pdf" target="_blank">here</a>, and Slave Raider from <a href="https://yigitlevent.github.io/burningwheel/pdf/Slave Raider Setting.pdf" target="_blank"></a>here</a>.</div>
+
+					<div class="smallTitle helpBox">Credits?</div>
+					<div class="helpText">Yeah!
+						<br><a href="https://www.burningwheel.com/" target="_blank">Burning Wheel</a> for their game and their great sourcebooks.
+						<br><a href="https://www.janklabs.com/" target="_blank">Janklabs</a> for the inspiration to work with.
+						<br>Samson for helping out with transfering lifepaths, skills and traits to a spreadsheet.
+						<br>All the people who made the fan-made stuff.
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="revealerWrapper">
+			<div id="content"></div>
+		</div>
+
+		<div id="infoBox"></div>
+
+		<br style="clear: both;">
+	</body>
+</html>
