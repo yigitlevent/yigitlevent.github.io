@@ -24,7 +24,7 @@ const InnerWrapper = styled.div`
 	max-height: 100%;
 
 	margin: 5px auto;
-	padding: 5px;
+	padding: 1px;
 
 	display: grid;
 	grid-template-columns: 120px 1fr;

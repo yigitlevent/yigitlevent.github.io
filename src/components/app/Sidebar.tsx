@@ -19,13 +19,17 @@ const Image = styled.img`
 
 const Link = styled.div`
 	font-size: 1.1em;
-	margin: 0 16px 10px;
+
+	margin: 0 8px 5px;
+	padding: 4px 8px 5px;
+
 	filter: brightness(100%);
 	
 	&:hover {
-		filter: brightness(200%);
+		filter: brightness(140%);
 		transition: filter 1s;
 		cursor: pointer;
+		background: ${(props: pg.theme.StyleProps) => props.theme.background.sidebar};
 	}
 `;
 

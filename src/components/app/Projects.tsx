@@ -4,6 +4,7 @@ import { Title, Subtitle } from "../shared/Title";
 
 const Wrapper = styled.div`
 	margin: 0 10px;
+	padding: 5px;
 `;
 
 export function Projects(): JSX.Element {

@@ -4,6 +4,7 @@ import { Title } from "../shared/Title";
 
 const Wrapper = styled.div`
 	margin: 0 10px;
+	padding: 5px;
 `;
 
 export function About(): JSX.Element {
